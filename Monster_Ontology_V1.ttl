@@ -1,0 +1,170 @@
+@prefix : <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/> .
+
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#appearsIn
+:appearsIn rdf:type owl:ObjectProperty ;
+           rdfs:domain :Creature ;
+           rdfs:range :Film .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#directedBy
+:directedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :Film ;
+            rdfs:range :Director .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasOrigin
+:hasOrigin rdf:type owl:ObjectProperty ;
+           rdfs:domain :Creature ;
+           rdfs:range :Origin .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasPower
+:hasPower rdf:type owl:ObjectProperty ;
+          rdfs:domain :Creature ;
+          rdfs:range :Power .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#powerLevel
+:powerLevel rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Creature ;
+            rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#releaseYear
+:releaseYear rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Film ;
+             rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Actor
+:Actor rdf:type owl:Class ;
+       rdfs:subClassOf :Film .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature
+:Creature rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director
+:Director rdf:type owl:Class ;
+          rdfs:subClassOf :Film .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Film
+:Film rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Franchise
+:Franchise rdf:type owl:Class ;
+           rdfs:subClassOf :Film .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Habitat
+:Habitat rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterType
+:MonsterType rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin
+:Origin rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power
+:Power rdf:type owl:Class ;
+       rdfs:subClassOf :Creature .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Weakness
+:Weakness rdf:type owl:Class ;
+          rdfs:subClassOf :Creature .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Dracula
+:Dracula rdf:type owl:NamedIndividual ,
+                  :Creature ;
+         :appearsIn :Dracula_1931 ;
+         :hasOrigin :Mythological ;
+         :hasPower :Regeneration ;
+         :powerLevel 500 .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Dracula_1931
+:Dracula_1931 rdf:type owl:NamedIndividual ,
+                       :Film ;
+              :directedBy :Tod_Browning ;
+              :releaseYear 1931 .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Firebreath
+:Firebreath rdf:type owl:NamedIndividual ,
+                     :Power .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Godzilla
+:Godzilla rdf:type owl:NamedIndividual ,
+                   :Creature ;
+          :appearsIn :Godzilla_1954 ;
+          :hasOrigin :Nuclear ;
+          :hasPower :Firebreath ;
+          :powerLevel 800 .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Godzilla_1954
+:Godzilla_1954 rdf:type owl:NamedIndividual ,
+                        :Film ;
+               :directedBy :Yoshimitsu_Banno ;
+               :releaseYear 1954 .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Mythological
+:Mythological rdf:type owl:NamedIndividual ,
+                       :Origin .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Nuclear
+:Nuclear rdf:type owl:NamedIndividual ,
+                  :Origin .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Regeneration
+:Regeneration rdf:type owl:NamedIndividual ,
+                       :Power .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Tod_Browning
+:Tod_Browning rdf:type owl:NamedIndividual ,
+                       :Director .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Yoshimitsu_Banno
+:Yoshimitsu_Banno rdf:type owl:NamedIndividual ,
+                           :Director .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
