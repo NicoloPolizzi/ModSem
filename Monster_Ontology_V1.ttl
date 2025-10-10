@@ -25,10 +25,29 @@
           rdfs:range :Creature .
 
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#happensIn
+:happensIn rdf:type owl:ObjectProperty ;
+           rdfs:domain :Battle ;
+           rdfs:range :Film .
+
+
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasOrigin
 :hasOrigin rdf:type owl:ObjectProperty ;
            rdfs:domain :Creature ;
            rdfs:range :Origin .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasParticipant
+:hasParticipant rdf:type owl:ObjectProperty ;
+                rdfs:domain :Battle ;
+                rdfs:range :Creature .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#isSequel
+:isSequel rdf:type owl:ObjectProperty ,
+                   owl:TransitiveProperty ;
+          rdfs:domain :Film ;
+          rdfs:range :Film .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn
@@ -68,6 +87,10 @@
 #################################################################
 #    Classes
 #################################################################
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Battle
+:Battle rdf:type owl:Class .
+
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#CreatureType
 :CreatureType rdf:type owl:Class ;
@@ -143,6 +166,17 @@
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Adam_Wingard
+:Adam_Wingard rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Battle1
+:Battle1 rdf:type owl:NamedIndividual ;
+         :happensIn :Ghidorah_The_ThreeHeaded_Monster ;
+         :hasParticipant :King_Ghidora ,
+                         :Godzilla .
+
+
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bite
 :Bite rdf:type owl:NamedIndividual .
 
@@ -150,8 +184,16 @@
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Ghidorah_The_ThreeHeaded_Monster
 :Ghidorah_The_ThreeHeaded_Monster rdf:type owl:NamedIndividual ;
                                   owl:differentFrom :Godzilla_1954 ;
+                                  :isSequel :Godzilla_1954 ;
                                   :directedBy :Ishiro_Honda ;
                                   :releaseYear 1964 .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Godzilla_vs_Kong
+:Godzilla_vs_Kong rdf:type owl:NamedIndividual ;
+                  :isSequel :Ghidorah_The_ThreeHeaded_Monster ;
+                  :directedBy :Adam_Wingard ;
+                  :releaseYear 2021 .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Infection
@@ -163,8 +205,7 @@
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#King_Ghidora
-:King_Ghidora rdf:type owl:NamedIndividual ,
-                       :NuclearCreature ;
+:King_Ghidora rdf:type owl:NamedIndividual ;
               :hasOrigin :Nuclear ;
               :appearsIn :Ghidorah_The_ThreeHeaded_Monster ;
               :hasPower :Firebreath ;
