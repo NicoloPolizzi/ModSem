@@ -74,29 +74,22 @@
               rdfs:subClassOf :Creature .
 
 
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Mythological_Origin
-:Mythological_Origin rdf:type owl:Class ;
-                     rdfs:subClassOf :Origin .
-
-
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#NuclearCreature
 :NuclearCreature rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasOrigin ;
+                                       owl:hasValue :Nuclear
+                                     ] ;
                  rdfs:subClassOf :CreatureType .
-
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Nuclear_Origin
-:Nuclear_Origin rdf:type owl:Class ;
-                rdfs:subClassOf :Origin .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#VampireCreature
 :VampireCreature rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasOrigin ;
+                                       owl:hasValue :Bite
+                                     ] ;
                  rdfs:subClassOf :CreatureType .
-
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Actor
-:Actor rdf:type owl:Class ;
-       rdfs:subClassOf :Film .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature
@@ -126,12 +119,14 @@
 :Habitat rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterType
-:MonsterType rdf:type owl:Class .
-
-
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin
-:Origin rdf:type owl:Class .
+:Origin rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                              owl:oneOf ( :Bite
+                                          :Infection
+                                          :Nuclear
+                                        )
+                            ] .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power
@@ -148,10 +143,19 @@
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bite
+:Bite rdf:type owl:NamedIndividual .
+
+
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Ghidorah_The_ThreeHeaded_Monster
 :Ghidorah_The_ThreeHeaded_Monster rdf:type owl:NamedIndividual ;
+                                  owl:differentFrom :Godzilla_1954 ;
                                   :directedBy :Ishiro_Honda ;
                                   :releaseYear 1964 .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Infection
+:Infection rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Ishiro_Honda
@@ -173,6 +177,7 @@
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula
 :Dracula rdf:type owl:NamedIndividual ;
+         :hasOrigin :Bite ;
          :appearsIn :Dracula_1931 ;
          :hasPower :Regeneration ;
          :powerLevel 500 .
@@ -189,11 +194,11 @@
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla
-:Godzilla rdf:type owl:NamedIndividual ,
-                   :NuclearCreature ;
+:Godzilla rdf:type owl:NamedIndividual ;
           :fights :King_Ghidora ;
           :hasOrigin :Nuclear ;
-          :appearsIn :Godzilla_1954 ;
+          :appearsIn :Ghidorah_The_ThreeHeaded_Monster ,
+                     :Godzilla_1954 ;
           :hasPower :Firebreath ;
           :powerLevel 800 .
 
