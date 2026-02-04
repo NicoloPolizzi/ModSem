@@ -1,0 +1,984 @@
+@prefix : <http://www.semanticweb.org/chiar/ontologies/CampagnePubblicitarie/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix dbpedia: <http://dbpedia.org/ontology/> .
+@base <http://www.semanticweb.org/chiar/ontologies/CampagnePubblicitarie/> .
+
+<http://www.semanticweb.org/chiar/ontologies/CampagnePubblicitarie> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/appartieneAdUn
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/appartieneAdUn> rdf:type owl:ObjectProperty ;
+                                                                          rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                          rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/comunicaIndirettamente
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/comunicaIndirettamente> rdf:type owl:ObjectProperty ;
+                                                                                  rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                                  rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Messaggio> ;
+                                                                                  owl:propertyChainAxiom ( <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/persegueUn>
+                                                                                                           <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/comunicaUn>
+                                                                                                         ) .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/comunicaUn
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/comunicaUn> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Obiettivo> ;
+                                                                      rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Messaggio> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/creaUna
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/creaUna> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand> ;
+                                                                   rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/diffusaAttraverso
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/diffusaAttraverso> rdf:type owl:ObjectProperty ;
+                                                                             rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                             rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleComunicazione> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/ePerseguitoDa
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/ePerseguitoDa> rdf:type owl:ObjectProperty ;
+                                                                         owl:inverseOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/persegueUn> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/giraUn
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/giraUn> rdf:type owl:ObjectProperty ;
+                                                                  rdfs:subPropertyOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/partecipaA> ;
+                                                                  rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Attore> ;
+                                                                  rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/AnnuncioTelevisivo> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/giratoIn
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/giratoIn> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/AnnuncioTelevisivo> ;
+                                                                    rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTelevisivo> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haCategoria
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haCategoria> rdf:type owl:ObjectProperty ,
+                                                                                owl:TransitiveProperty ;
+                                                                       rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                       rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haMedia
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haMedia> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PostCollection> ;
+                                                                   rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Media> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haRisultato
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haRisultato> rdf:type owl:ObjectProperty ;
+                                                                       rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                       rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Risultati> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTarget
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTarget> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                    rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Target> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/invitaAlla
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/invitaAlla> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Messaggio> ;
+                                                                      rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CallToAction> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/partecipaA
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/partecipaA> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:domain foaf:Person ;
+                                                                      rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/persegueUn
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/persegueUn> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                      rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Obiettivo> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/presenziaA
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/presenziaA> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:subPropertyOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/partecipaA> ;
+                                                                      rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Influencer> ;
+                                                                      rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/EventoPromozionale> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/provocaUna
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/provocaUna> rdf:type owl:ObjectProperty ;
+                                                                      rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Messaggio> ;
+                                                                      rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Emozione> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/svoltoInLocation
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/svoltoInLocation> rdf:type owl:ObjectProperty ;
+                                                                            rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/EventoPromozionale> ;
+                                                                            rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleEsperienziale> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/CampagnePubblicitariee/interagisceCon
+<http://www.semanticweb.org/chiar/ontologies/CampagnePubblicitariee/interagisceCon> rdf:type owl:ObjectProperty ;
+                                                                                    rdfs:domain foaf:Person ;
+                                                                                    rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Target> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/CampagnePubblicitariee/rispondeAlla
+<http://www.semanticweb.org/chiar/ontologies/CampagnePubblicitariee/rispondeAlla> rdf:type owl:ObjectProperty ;
+                                                                                  rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Target> ;
+                                                                                  rdfs:range <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CallToAction> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/aEta
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/aEta> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Target> ;
+                                                                rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/daEta
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/daEta> rdf:type owl:DatatypeProperty ;
+                                                                 rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Target> ;
+                                                                 rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTitolo
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTitolo> rdf:type owl:DatatypeProperty ,
+                                                                             owl:FunctionalProperty ;
+                                                                    rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                    rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/hannoValore
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/hannoValore> rdf:type owl:DatatypeProperty ;
+                                                                       rdfs:domain <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Risultati> ;
+                                                                       rdfs:range xsd:decimal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://schema.org/Brand
+<http://schema.org/Brand> rdf:type owl:Class ;
+                          rdfs:comment "classe brand presa dalla ontologia schema.org"@it ;
+                          rdfs:label "schema:Brand"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/AnnuncioTelevisivo
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/AnnuncioTelevisivo> rdf:type owl:Class ;
+                                                                              rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaTradizionale> ;
+                                                                              rdfs:comment "Spot pubblicitario mandato in onda nei canali televisivi tra i vari programmi presenti"@it ;
+                                                                              rdfs:label "AnnuncioTelevisivo"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/AppSocial
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/AppSocial> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleDigitale> ;
+                                                                     rdfs:comment "Si tratta delle applicazioni usate come social media, che permettono una fruizione rapida dei contenuti, anche in parte interattiva"@it ;
+                                                                     rdfs:label "AppSocial"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Articolo
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Articolo> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaTradizionale> ;
+                                                                    rdfs:comment "Articoli di giornali"@it ;
+                                                                    rdfs:label "Articolo"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Attore
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Attore> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf foaf:Person ;
+                                                                  rdfs:comment "Attori usati all'interno degli spot televisivi per esempio"@it ;
+                                                                  rdfs:label "Attore"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/BannerAdv
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/BannerAdv> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaDigitale> ;
+                                                                     rdfs:comment "Sono i tipi di pubblicità inserite all'interno dei siti web che hanno delle apposite aree, i banner per l'appunto"@it ;
+                                                                     rdfs:label "BannerAdv"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand> rdf:type owl:Class ;
+                                                                 rdfs:comment "Nome del Brand che organizza la campagna pubblicitaria"@it ;
+                                                                 rdfs:label "Brand"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CallToAction
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CallToAction> rdf:type owl:Class ;
+                                                                        rdfs:comment "Call to Action è un termine usato per intendere il desiderio di una azienda a portare un utente a compiere un'azione per tenerlo affiliato e creare un contatto"@it ;
+                                                                        rdfs:label "CallToAction"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleComunicazione
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleComunicazione> rdf:type owl:Class ;
+                                                                               rdfs:comment "Il canale di comunicazione è il mezzo, fisico e non, che viene usato per trasmettere la pubblicità, è la sovraclasse di altre tre" ;
+                                                                               rdfs:label "CanaleComunicazione"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleDigitale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleDigitale> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleComunicazione> ;
+                                                                          rdfs:comment "Canale di tipo digitale in quanto composto da mezzi di tipo digitale"@it ;
+                                                                          rdfs:label "CanaleDigitale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleEsperienziale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleEsperienziale> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleComunicazione> ;
+                                                                               rdfs:comment "I canali di tipo esperienziali sono quelli che permetto all'utente una esperienza più interattiva"@it ;
+                                                                               rdfs:label "CanaleEsperienziale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTelevisivo
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTelevisivo> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTradizionale> ;
+                                                                            rdfs:comment "Sono i canali televisibili disponibili"@it ;
+                                                                            rdfs:label "CanaleTelevisivo"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTradizionale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTradizionale> rdf:type owl:Class ;
+                                                                              rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleComunicazione> ;
+                                                                              rdfs:comment "Per canali tradizionali si intendono mezzi comunemente usati come radio, televisione e giornali"@it ;
+                                                                              rdfs:label "CanaleTradizionale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Emozione
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Emozione> rdf:type owl:Class ;
+                                                                    rdfs:comment "Spesso le pubblicità negli ultimi anni hanno lo scopo di suscitare delle emozioni negli utenti, in modo tale da creare un attaccamento emotivo, un'idea del brand che non sia sono informativa ma anche sentimentale"@it ;
+                                                                    rdfs:label "Emozione"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/EventoPromozionale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/EventoPromozionale> rdf:type owl:Class ;
+                                                                              rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaEsperienziale> ;
+                                                                              rdfs:comment "L'evento promozionale è un tipo di pubblicità che permette la partecipazione diretta degli utenti o anche indiretta in quanto può essere ripresa e raccontata da diversi tipi di persone, quali influencer o persone di spicco famose, servea creare interazioni, ricordi e emozioni da associare al brand"@it ;
+                                                                              rdfs:label "EventoPromozionale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Foto
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Foto> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Media> ;
+                                                                rdfs:comment "Foto che possono essere considerate come item di un insieme di altri contenuti che formano il set PostCollection"@it ;
+                                                                rdfs:label "Foto"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Giornale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Giornale> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTradizionale> ;
+                                                                    rdfs:comment "Si pubblicano le pubblicità su diversi tipi di giornali, informativi o meno"@it ;
+                                                                    rdfs:label "Giornale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/GuerrillaMarketing
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/GuerrillaMarketing> rdf:type owl:Class ;
+                                                                              rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaEsperienziale> ;
+                                                                              rdfs:comment "Un tipo di pubblcità particoalre in quanto fatto per esempio con opere d'arte su strada, come graffiti, o costruzione posate in punti strategici per attirare l'attenzione dell'utente e provocare curiosità"@it ;
+                                                                              rdfs:label "GuerrillaMarketing"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Influencer
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Influencer> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf foaf:Person ;
+                                                                      rdfs:comment "Persone che lavorano spesso con i Social con un approccio vicino agli utenti, partecipano ad eventi per poi pubblicarli  e pubblicizzarli sui loro profili"@it ;
+                                                                      rdfs:label "Influencer"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/LocationPrivata
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/LocationPrivata> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleEsperienziale> ;
+                                                                           rdfs:comment "Location che possono essere usate per esempio per ospitare degli eventi pormozionali che appartengono ad un privato, che possono essere affitati per permetterne lo svolgimento"@it ;
+                                                                           rdfs:label "LocationPrivata"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/LuogoPubblico
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/LuogoPubblico> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleEsperienziale> ;
+                                                                         rdfs:comment "Si tratta di luoghi pubblici come per esempio le strade, usate spesso nel guerrilla marketing, piuttosto che piazze o aree metropolitane delle citta"@it ;
+                                                                         rdfs:label "LuogoPubblico"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Media
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Media> rdf:type owl:Class ;
+                                                                 rdfs:comment "Media si intendono foto e video che possono essere pubblicati sulle applicazioni social, oppure nelle campagne fotografiche su giornali"@it ;
+                                                                 rdfs:label "Media"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Messaggio
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Messaggio> rdf:type owl:Class ;
+                                                                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/invitaAlla> ;
+                                                                                           owl:someValuesFrom <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CallToAction>
+                                                                                         ] ;
+                                                                     rdfs:comment "Ogni campagna pubblicitaria ha il compito di raggiungere un obiettivo per la visibilità o la considerazione del brand o ancora dello specifico servizio o prodotto, per farlo e ottenere una risposta dagli utenti deve inviare un messaggio"@it ;
+                                                                     rdfs:label "Messaggio"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Obiettivo
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Obiettivo> rdf:type owl:Class ;
+                                                                     rdfs:comment "Gli obiettivi delle campagne pubblicitarie cercano di raggiungere determinati obiettii di marketing quali brand awarness, lead generation, conversion, brand loyalty"@it ;
+                                                                     rdfs:label "Obiettivo"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PostCollection
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PostCollection> rdf:type owl:Class ;
+                                                                          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                                owl:onProperty <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haMedia> ;
+                                                                                                owl:someValuesFrom <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Media>
+                                                                                              ] ;
+                                                                          rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaDigitale> ;
+                                                                          rdfs:comment "Rappresenta un set, un insieme di elementi, ognuno è un tipo di media ossia foto o video, ed è per esempio un carosello di instagram, piuttosto che di facebook."@it ;
+                                                                          rdfs:label "PostCollection"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> rdf:type owl:Class ;
+                                                                      owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/appartieneAdUn> ;
+                                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand>
+                                                                                          ] ;
+                                                                      rdfs:comment "Sovraclasse di altre tre sottoclassi, la prima che comprende tutte le pubblicità di una campagna che può essere composta anche più di una"@it ;
+                                                                      rdfs:label "Pubblicita"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaDigitale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaDigitale> rdf:type owl:Class ;
+                                                                              rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                              rdfs:comment "Pubblicità di tipo digitale in quantoil mezzo di comunicazione usato per trasmetterla è di tipo 'canale digitale'"@it ;
+                                                                              rdfs:label "PubblicitaDigitale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaEsperienziale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaEsperienziale> rdf:type owl:Class ;
+                                                                                   rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                                   rdfs:comment "Pubblicità di tipo esperienziale  in quanto il mezzo di comunicazione usato per trasmetterla è di tipo 'canale esperienziale'"@it ;
+                                                                                   rdfs:label "PubblicitaEsperienziale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaTradizionale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaTradizionale> rdf:type owl:Class ;
+                                                                                  rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                                  rdfs:comment "Si riferisce alla pubblicità di tipo tradizionale, quali  spot televisivi, annunci radiofonici o articoli di giornali"@it ;
+                                                                                  rdfs:label "PubblicitaTradizionale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Radio
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Radio> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTradizionale> ;
+                                                                 rdfs:comment "Sono i canali radiofonici su cui vengono trasmessi gli spot"@it ;
+                                                                 rdfs:label "Radio"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Risultati
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Risultati> rdf:type owl:Class ;
+                                                                     rdfs:comment "Sono i risultati miurati dai dati raccolti dalle campagne, attraverso l'utilizzo di alcune metriche come SOV, conversion rate.."@it ;
+                                                                     rdfs:label "Risultati"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SitiWeb
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SitiWeb> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleDigitale> ;
+                                                                   rdfs:comment "Siti sul web, che possono essere appositamente costruiti solo per le pubblicità piuttosto che fornire aree, come banner in alto o laterali, come appositi spazi per gli adv"@it ;
+                                                                   rdfs:label "SitiWeb"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Sportivo
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Sportivo> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf foaf:Person ;
+                                                                    rdfs:comment "Persone famose, quali sportivi alle volte usati come immagini che rimandano subito al brand"@it ;
+                                                                    rdfs:label "Sportivo"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SpotRadiofonico
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SpotRadiofonico> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/PubblicitaTradizionale> ;
+                                                                           rdfs:comment "Spot radiofonici da mandare in onda"@it ;
+                                                                           rdfs:label "SpotRadiofonico"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Target
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Target> rdf:type owl:Class ;
+                                                                  rdfs:comment "Ogni pubblicità fa riferimento ad un target che risponde alle specifiche di un utente che rappresenta esattamento quello a cui deve arrivare il messaggio pubblicitario"@it ;
+                                                                  rdfs:label "Target"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Video
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Video> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Media> ;
+                                                                 rdfs:comment "Video che possono essere considerati come item di un set di PostCollection"@it ;
+                                                                 rdfs:label "Video"@it .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class ;
+            rdfs:comment "Si riferisce alla classe Person nell'ontologia foaf, usata in questo caso per identificare persone e in che tipo di veste sono all'interno delle campagne pubblcicitarie, come attori, sportivi o influencer."@it ;
+            rdfs:label "foaf:Person"@it .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova#Nespresso_What_Else?
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova#Nespresso_What_Else?> rdf:type owl:NamedIndividual ;
+                                                                                <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/invitaAlla> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Registrati_alla_newsLetter_di_Nespresso> ;
+                                                                                <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/provocaUna> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Curiosità> ;
+                                                                                rdfs:comment "Messaggio della pubblicità di Nespresso"@it ;
+                                                                                rdfs:label "Nespresso_What_Else?"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Adulti
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Adulti> rdf:type owl:NamedIndividual ;
+                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/aEta> "70"^^xsd:int ;
+                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/daEta> "18"^^xsd:int ;
+                                                                  rdfs:comment "Target di tipo adulto"@it ;
+                                                                  rdfs:label "Adulti"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Annuncio_televisivo_Nespreso_what_else
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Annuncio_televisivo_Nespreso_what_else> rdf:type owl:NamedIndividual ;
+                                                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/appartieneAdUn> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Nespresso> ;
+                                                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/diffusaAttraverso> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Canali_Televisivi> ;
+                                                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/giratoIn> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Mediaset> ;
+                                                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haRisultato> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Conversion_Nespresso> ,
+                                                                                                                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SOV_Nespresso> ;
+                                                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTarget> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Adulti> ;
+                                                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/persegueUn> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Lead_Generation> ;
+                                                                                                  rdfs:comment "Pubblicità del brand Nespresso che è un annuncio televisivo mandato in onda nei canali di mediaset"@it ;
+                                                                                                  rdfs:label "Annuncio_televisivo_Nespresso_what_else"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Applicazione
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Applicazione> rdf:type owl:NamedIndividual ;
+                                                                        rdfs:comment "Tipo di canale di comunicazione, di tipo digitale"@it ;
+                                                                        rdfs:label "Applicazione"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand_Awareness
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand_Awareness> rdf:type owl:NamedIndividual ;
+                                                                           <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/comunicaUn> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_Cola_è_divertimento> ;
+                                                                           rdfs:comment "Uno dei tipi di obiettivo: conoscenza di una marca da parte di un target di riferimento. Riguarda dunque il posizionamento del brand in relazione al pubblico cui si rivolge e misura quanto i clienti sono in grado di riconoscerlo."@it ;
+                                                                           rdfs:label "Brand_Awareness"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand_Loyalty
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand_Loyalty> rdf:type owl:NamedIndividual ;
+                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/comunicaUn> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_Cola_è_divertimento> ;
+                                                                         rdfs:comment "Uno dei tipi di obiettivo: conoscenza di una marca da parte di un target di riferimento. Riguarda dunque il posizionamento del brand in relazione al pubblico cui si rivolge e misura quanto i clienti sono in grado di riconoscerlo."@it ;
+                                                                         rdfs:label "Brand_Loyalty"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Canali_Televisivi
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Canali_Televisivi> rdf:type owl:NamedIndividual ,
+                                                                                      <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTradizionale> ;
+                                                                             rdfs:comment "sprime un concetto meno tangibile rispetto alla customer loyalty intesa in termini puramente commerciali e si sviluppa attorno al sentimento di un consumatore nei confronti del marchio stesso."@it ;
+                                                                             rdfs:label "Canali_Televisivi"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_Cola
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_Cola> rdf:type owl:NamedIndividual ;
+                                                                     <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/creaUna> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Post_Cocacola> ,
+                                                                                                                                        <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Coca_Cola_Vola_con_Babbo_Natale> ,
+                                                                                                                                        <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_cola:_vola_con_Babbo_Natale> ;
+                                                                     rdfs:comment "Coca Cola multinazionale statunitense"@it ;
+                                                                     rdfs:label "Coca Cola"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_Cola_è_divertimento
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_Cola_è_divertimento> rdf:type owl:NamedIndividual ;
+                                                                                    <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/provocaUna> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Divertimento> ;
+                                                                                    rdfs:comment "Coca Cola vuole puntare su un evento esperienziale come tipo di pubblicità,mandando un messaggio agli utenti target che li inviti ad una azione coinvolgente, collettiva"@it ;
+                                                                                    rdfs:label "Coca_Cola_è_divertimento"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Conversion_Nespresso
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Conversion_Nespresso> rdf:type owl:NamedIndividual ;
+                                                                                <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/hannoValore> 18.9 ;
+                                                                                rdfs:comment "è la trasformazione di un visitatore o un contatto in un utente che compie un'azione specifica, coerente con gli obiettivi del business"@it ;
+                                                                                rdfs:label "Conversion_Nespresso"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Curiosità
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Curiosità> rdf:type owl:NamedIndividual ;
+                                                                     rdfs:comment "Curiosità, come tipo di emozione provocata dai messaggi o dalle call to action"@it ;
+                                                                     rdfs:label "Curiosità"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Customer_Engagement
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Customer_Engagement> rdf:type owl:NamedIndividual ;
+                                                                               rdfs:comment "l'insieme di interazioni, attraverso vari canali, mirate a creare e rafforzare la relazione con il cliente"@it ;
+                                                                               rdfs:label "Customer_Engagement"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Divertimento
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Divertimento> rdf:type owl:NamedIndividual ;
+                                                                        rdfs:comment "Divertimento, come tipo di emozione provocata dai messaggi o dalle call to action"@it ;
+                                                                        rdfs:label "Divertimento"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Engagement_rate
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Engagement_rate> rdf:type owl:NamedIndividual ;
+                                                                           <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/hannoValore> 32.4 ;
+                                                                           rdfs:comment "tasso di interazione del pubblico e viene definito prendendo in considerazione il numero di interazioni di risposta ad un contenuto."@it ;
+                                                                           rdfs:label "Engagement_rate"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/George_Clooney
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/George_Clooney> rdf:type owl:NamedIndividual ;
+                                                                          <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/giraUn> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Annuncio_televisivo_Nespreso_what_else> ;
+                                                                          rdfs:comment "Attore hollywoodiano di spicco"@it ;
+                                                                          rdfs:label "George_Clooney"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Instagram
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Instagram> rdf:type owl:NamedIndividual ,
+                                                                              <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/AppSocial> ;
+                                                                     rdfs:comment "Tipologia di social media"@it ;
+                                                                     rdfs:label "Instagram"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Lead_Generation
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Lead_Generation> rdf:type owl:NamedIndividual ;
+                                                                           <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/comunicaUn> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova#Nespresso_What_Else?> .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Lunapark_PL
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Lunapark_PL> rdf:type owl:NamedIndividual ;
+                                                                       rdfs:comment "Lunapark_PL che si trova in Polonia, tipo di località privata"@it ;
+                                                                       rdfs:label "Lunapark_PL"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Mediaset
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Mediaset> rdf:type owl:NamedIndividual ;
+                                                                    rdfs:comment "Mediaset S.p.A. è un'azienda italiana controllata dalla società olandese MFE - MediaForEurope N.V. (parte del gruppo Fininvest della famiglia Berlusconi), attiva nell'ambito dei media e della comunicazione, specializzata primariamente nella produzione e distribuzione televisiva"@it ;
+                                                                    rdfs:label "Mediaset"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Nespresso
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Nespresso> rdf:type owl:NamedIndividual ;
+                                                                     <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/creaUna> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Annuncio_televisivo_Nespreso_what_else> ;
+                                                                     rdfs:comment "Azienda produttrice di capsule di caffè"@it ;
+                                                                     rdfs:label "Nespresso"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Post_Cocacola
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Post_Cocacola> rdf:type owl:NamedIndividual ,
+                                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/diffusaAttraverso> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Instagram> ;
+                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haMedia> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/img_bottiglia_cocacola> ,
+                                                                                                                                            <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/video_bottiglia_cocacola> ;
+                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haRisultato> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SOV_cocacola> ;
+                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTarget> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Ragazzi> ;
+                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/persegueUn> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand_Awareness> ;
+                                                                         rdfs:comment "Una delle pubblicità portate avanti di cocacola per la campagna di CocaCola: Vola con babbo natale, carosello di instagram"@it ;
+                                                                         rdfs:label "Post_Cocacola"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Coca_Cola_Digitale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Coca_Cola_Digitale> rdf:type owl:NamedIndividual ;
+                                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/diffusaAttraverso> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Applicazione> ;
+                                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haCategoria> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Post_Cocacola> ;
+                                                                                         rdfs:comment "Pubblicità di tipo digitale del Brand Coca Cola"@it ;
+                                                                                         rdfs:label "Pubblicita_Coca_Cola_Digitale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Coca_Cola_Evento
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Coca_Cola_Evento> rdf:type owl:NamedIndividual ;
+                                                                                       <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haCategoria> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_cola:_vola_con_Babbo_Natale> ;
+                                                                                       <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/svoltoInLocation> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Lunapark_PL> ;
+                                                                                       rdfs:comment "Pubblicità di tipo esperienziale del Brand Coca Cola"@it ;
+                                                                                       rdfs:label "Pubblicita_Coca_Cola_Evento"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Coca_Cola_Vola_con_Babbo_Natale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Coca_Cola_Vola_con_Babbo_Natale> rdf:type owl:NamedIndividual ;
+                                                                                                      <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haCategoria> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Coca_Cola_Digitale> ,
+                                                                                                                                                                             <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Coca_Cola_Evento> ;
+                                                                                                      rdfs:comment "Campagna pubblcicitaria di Coca Cola dal nome \"Coca Coca: Vola con Babbo Natale\""@it ;
+                                                                                                      rdfs:label "Pubblicita_Coca_Cola_Vola_con_Babbo_Natale"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Nespresso_What_Else
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita_Nespresso_What_Else> rdf:type owl:NamedIndividual ;
+                                                                                          <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haCategoria> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicità_Nespresso_tv> ;
+                                                                                          rdfs:comment "Campagna pubblcicitaria di Nespresso dal nome \"Nespresso What Else?\""@it ;
+                                                                                          rdfs:label "Pubblicita_Nespresso_What_Else"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicità_Nespresso_tv
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicità_Nespresso_tv> rdf:type owl:NamedIndividual ;
+                                                                                   <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/diffusaAttraverso> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Canali_Televisivi> ;
+                                                                                   <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haCategoria> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Annuncio_televisivo_Nespreso_what_else> ;
+                                                                                   rdfs:comment "Pubblicità di Nespresso che verrà trasmessa nei canali televisivi"@it ;
+                                                                                   rdfs:label "Pubblicità_Nespresso_tv"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Ragazzi
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Ragazzi> rdf:type owl:NamedIndividual ;
+                                                                   <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/aEta> "20"^^xsd:int ;
+                                                                   <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/daEta> "12"^^xsd:int ;
+                                                                   rdfs:comment "Tipo di target giovanile a cui una campagna può rifeerirsi"@it ;
+                                                                   rdfs:label "Ragazzi"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Registrati_alla_newsLetter_di_Nespresso
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Registrati_alla_newsLetter_di_Nespresso> rdf:type owl:NamedIndividual ;
+                                                                                                   rdfs:comment "Tipo di messaggio inviato dalla campagna di Nespresso what else? che invita a iscriversi alla newsletter e quindi a far compiere un'azione all'utente"@it ;
+                                                                                                   rdfs:label "Registrati_alla_newsLetter_di_Nespresso"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SOV_Nespresso
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SOV_Nespresso> rdf:type owl:NamedIndividual ;
+                                                                         <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/hannoValore> 39.2 ;
+                                                                         rdfs:comment "SOV è la misura del peso di un determinato brand all'interno di un mercato di riferimento"@it ;
+                                                                         rdfs:label "SOV_Nespresso"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SOV_cocacola
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SOV_cocacola> rdf:type owl:NamedIndividual ;
+                                                                        <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/hannoValore> 46.5 ;
+                                                                        rdfs:comment "SOV è la misura del peso di un determinato brand all'interno di un mercato di riferimento"@it ;
+                                                                        rdfs:label "SOV_cocacola"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Tamara
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Tamara> rdf:type owl:NamedIndividual ;
+                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/presenziaA> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_cola:_vola_con_Babbo_Natale> ;
+                                                                  rdfs:comment "Influencer polacca"@it ;
+                                                                  rdfs:label "Tamara"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/img_bottiglia_cocacola
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/img_bottiglia_cocacola> rdf:type owl:NamedIndividual ,
+                                                                                           <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Foto> ;
+                                                                                  rdfs:comment "immagine raffigurante una bottiglia di Coca Cola"@it ;
+                                                                                  rdfs:label "img_bottiglia_cocacola"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/video_bottiglia_cocacola
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/video_bottiglia_cocacola> rdf:type owl:NamedIndividual ;
+                                                                                    rdfs:comment "Video di una bottiglia coca cola che viene aperta"@it ;
+                                                                                    rdfs:label "video_bottiglia_cocacola"@it .
+
+
+###  http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_cola:_vola_con_Babbo_Natale
+<http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Coca_cola:_vola_con_Babbo_Natale> rdf:type owl:NamedIndividual ;
+                                                                                            <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/diffusaAttraverso> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Lunapark_PL> ;
+                                                                                            <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haRisultato> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Engagement_rate> ;
+                                                                                            <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTarget> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Ragazzi> ;
+                                                                                            <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/persegueUn> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand_Loyalty> ,
+                                                                                                                                                                  <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Customer_Engagement> ;
+                                                                                            <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTitolo> "Coca cola: vola con Babbo Natale" ;
+                                                                                            rdfs:comment "Coca cola: vola con Babbo Natale utilizzo di realtà virtuale per simulare slitta di Babbo Natale su New York"@it ;
+                                                                                            rdfs:label "Coca cola: vola con Babbo Natale"@it .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/AppSocial>
+                <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CanaleTelevisivo>
+                <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Giornale>
+                <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/LocationPrivata>
+                <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/LuogoPubblico>
+                <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Radio>
+                <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/SitiWeb>
+              )
+] .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+:b rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:p rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:m rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:e rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:cta rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:i rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:ep rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:o rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:t rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:publ rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S1" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Brand> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :b
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/creaUna> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :b ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :p
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/appartieneAdUn> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :b
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S2" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Messaggio> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :m
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/provocaUna> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :e
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Emozione> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :e
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/CallToAction> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :cta
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/invitaAlla> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :cta
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/provocaUna> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :cta
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S4" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Influencer> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :i
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/partecipaA> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :i ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :ep
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/EventoPromozionale> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :ep
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haCategoria> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :ep
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/partecipaA> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :i ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :p
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S5" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Obiettivo> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :o
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Messaggio> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :m
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/invitaAlla> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :cta
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Target> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :t
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/comunicaUn> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :o ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :m
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/persegueUn> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :o
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTarget> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :t
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest rdf:nil
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/CampagnePubblicitariee/rispondeAlla> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :t ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :cta
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S3" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Pubblicita> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :publ
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/haTarget> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :publ ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :t
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> foaf:Person ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :p
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/Target> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :t
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/2025/1/prova/partecipaA> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :publ
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/chiar/ontologies/CampagnePubblicitariee/interagisceCon> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :t
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
