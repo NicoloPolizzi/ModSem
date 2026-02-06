@@ -14,8 +14,29 @@ Prefix: monster""" ;
                                                                            rdfs:label "Monster Ontology"@en .
 
 #################################################################
+#    Annotation properties
+#################################################################
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
 #    Object Properties
 #################################################################
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasWinner
+:hasWinner rdf:type owl:ObjectProperty ;
+           rdfs:comment "Indica il vincitore di una battaglia"@it ;
+           rdfs:label "hasWinner"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#participatesIn
+:participatesIn rdf:type owl:ObjectProperty ;
+                owl:inverseOf :hasParticipant ;
+                rdfs:comment "Inverso di hasParticipant"@it ;
+                rdfs:label "participatesIn"@it .
+
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn
 :appearsIn rdf:type owl:ObjectProperty ;
@@ -34,7 +55,7 @@ Prefix: monster""" ;
                                         :isSequel
                                       ) ;
                rdfs:comment "Indica che una creatura fa parte di un Franchise"@en ;
-               rdfs:label "belongsToSagae"@en .
+               rdfs:label "belongsToFranchise"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/directedBy
@@ -128,6 +149,13 @@ Prefix: monster""" ;
 #    Classes
 #################################################################
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Creature_Characteristics
+:Creature_Characteristics rdf:type owl:Class ;
+                          rdfs:subClassOf :Creature ;
+                          rdfs:comment "Classificazione delle creature in base ai loro valori di potere e le loro debolezze"@it ;
+                          rdfs:label "Creature Characteristics"@en .
+
+
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle
 :Battle rdf:type owl:Class .
 
@@ -201,7 +229,7 @@ Prefix: monster""" ;
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power
 :Power rdf:type owl:Class ;
-       rdfs:subClassOf :Creature ;
+       rdfs:subClassOf :Creature_Characteristics ;
        rdfs:comment "Potere o abilità speciale posseduta da una creatura"@it ;
        rdfs:label "Power"@en .
 
@@ -219,7 +247,7 @@ Prefix: monster""" ;
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Weakness
 :Weakness rdf:type owl:Class ;
-          rdfs:subClassOf :Creature ;
+          rdfs:subClassOf :Creature_Characteristics ;
           rdfs:comment "Debolezza o vulnerabilità di una creatura"@it ;
           rdfs:label "Weakness"@en .
 
@@ -236,11 +264,12 @@ Prefix: monster""" ;
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle1
 :Battle1 rdf:type owl:NamedIndividual ;
+         :hasWinner :Godzilla ;
          :happensIn :Ghidorah_The_ThreeHeaded_Monster ;
          :hasParticipant :Godzilla ,
                          :King_Ghidora ;
          rdfs:comment "Battaglia tra Godzilla e King Ghidorah avvenuta nel film Ghidorah, the Three-Headed Monster"@it ;
-         rdfs:label "Battle of Godzilla vs King Ghidorah"@en .
+         rdfs:label "Battle of Godzilla vs King Ghidorah (1964)"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Bite
@@ -285,9 +314,9 @@ Prefix: monster""" ;
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla
 :Godzilla rdf:type owl:NamedIndividual ;
+          owl:differentFrom :King_Ghidora ;
           :appearsIn :Ghidorah_The_ThreeHeaded_Monster ,
                      :Godzilla_1954 ;
-          :fights :King_Ghidora ;
           :hasOrigin :Nuclear ;
           :hasPower :Firebreath ;
           :powerLevel 800 ;
@@ -357,5 +386,56 @@ Prefix: monster""" ;
                   rdfs:comment "Regista giapponese che ha diretto film del franchise Godzilla"@it ;
                   rdfs:label "Yoshimitsu Banno"@en .
 
+
+#################################################################
+#    Rules
+#################################################################
+
+:b rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:m1 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:m2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Indica che se in una battaglia vi sono due partecipanti distinti, allora essi combattono" ;
+   rdfs:label "BattleParticipantsFight" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Battle ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :b
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasParticipant ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :b ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :m1
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasParticipant ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :b ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :m2
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :m1 ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :m2
+                                                                                      ] ;
+                                                                            rdf:rest rdf:nil
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :fights ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :m1 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :m2
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
