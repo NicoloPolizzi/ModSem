@@ -34,7 +34,7 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#participatesIn
 :participatesIn rdf:type owl:ObjectProperty ;
                 owl:inverseOf :hasParticipant ;
-                rdfs:comment "Inverso di hasParticipant"@it ;
+                rdfs:comment "Inverso di hasParticipant, indica che una creatura fa parte di una battaglia"@it ;
                 rdfs:label "participatesIn"@it .
 
 
@@ -140,7 +140,7 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/releaseYear
 :releaseYear rdf:type owl:DatatypeProperty ;
              rdfs:domain :Film ;
-             rdfs:range xsd:integer ;
+             rdfs:range xsd:dateTime ;
              rdfs:comment "Anno di uscita di un film"@it ;
              rdfs:label "releaseYear"@en .
 
@@ -149,11 +149,29 @@ Prefix: monster""" ;
 #    Classes
 #################################################################
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#AggressiveCreature
+:AggressiveCreature rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :participatesIn ;
+                                          owl:someValuesFrom :Battle
+                                        ] ;
+                    rdfs:subClassOf :CreatureType ;
+                    rdfs:comment "Una creatura che ha partecipato ad almeno una battaglia con un'altra, viene definita aggressiva"@it ;
+                    rdfs:label "Aggressive Creature"@en .
+
+
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Creature_Characteristics
 :Creature_Characteristics rdf:type owl:Class ;
                           rdfs:subClassOf :Creature ;
                           rdfs:comment "Classificazione delle creature in base ai loro valori di potere e le loro debolezze"@it ;
                           rdfs:label "Creature Characteristics"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#HighlyDangerousCreature
+:HighlyDangerousCreature rdf:type owl:Class ;
+                         rdfs:subClassOf :CreatureType ;
+                         rdfs:comment "Una creatura con un power level eccessivo"@it ;
+                         rdfs:label "Highly Dangerous Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle
@@ -163,8 +181,8 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature
 :Creature rdf:type owl:Class ;
           rdfs:comment "Rappresenta un mostro o creatura cinematografica che appare in uno o più film"@it ;
-          rdfs:label "Creatura"@it ,
-                     "Creature"@en .
+          rdfs:label "Creature"@en ;
+          rdfs:seeAlso <http://dbpedia.org/ontology/FictionalCharacter> .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureType
@@ -178,11 +196,13 @@ Prefix: monster""" ;
 :Director rdf:type owl:Class ;
           rdfs:subClassOf :FilmCrew ;
           rdfs:comment "Regista cinematografico che ha diretto uno o più film" ;
-          rdfs:label "Director"@en .
+          rdfs:label "Director"@en ;
+          rdfs:seeAlso <http://schema.org/Person> .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Film
-:Film rdf:type owl:Class .
+:Film rdf:type owl:Class ;
+      rdfs:seeAlso <http://schema.org/Movie> .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/FilmCrew
@@ -291,7 +311,7 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula_1931
 :Dracula_1931 rdf:type owl:NamedIndividual ;
               :directedBy :Tod_Browning ;
-              :releaseYear 1931 ;
+              :releaseYear "1964-02-14T00:00:00"^^xsd:dateTime ;
               rdfs:comment "Film horror classico del 1931 diretto da Tod Browning, con Bela Lugosi nel ruolo di Dracula"@it ;
               rdfs:label "Dracula (1931)"@en .
 
@@ -307,7 +327,7 @@ Prefix: monster""" ;
                                   owl:differentFrom :Godzilla_1954 ;
                                   :directedBy :Ishiro_Honda ;
                                   :isSequel :Godzilla_1954 ;
-                                  :releaseYear 1964 ;
+                                  :releaseYear "1964-12-20T00:00:00"^^xsd:dateTime ;
                                   rdfs:comment "Film del 1964 diretto da Ishiro Honda, sequel di Godzilla 1954, in cui appare per la prima volta King Ghidorah"@it ;
                                   rdfs:label "Ghidorah, the Three-Headed Monster"@en .
 
@@ -327,7 +347,7 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954
 :Godzilla_1954 rdf:type owl:NamedIndividual ;
                :directedBy :Yoshimitsu_Banno ;
-               :releaseYear 1954 ;
+               :releaseYear "1954-05-14T00:00:00"^^xsd:dateTime ;
                rdfs:comment "Primo film del franchise Godzilla, diretto da Yoshimitsu Banno e uscito nel 1954"@it ;
                rdfs:label "Godzilla 1954"@en .
 
@@ -336,7 +356,7 @@ Prefix: monster""" ;
 :Godzilla_vs_Kong rdf:type owl:NamedIndividual ;
                   :directedBy :Adam_Wingard ;
                   :isSequel :Ghidorah_The_ThreeHeaded_Monster ;
-                  :releaseYear 2021 ;
+                  :releaseYear "2021-03-31T00:00:00"^^xsd:dateTime ;
                   rdfs:comment "Film del 2021 diretto da Adam Wingard, parte del MonsterVerse"@it ;
                   rdfs:label "Godzilla vs. Kong"@en .
 
@@ -397,6 +417,10 @@ Prefix: monster""" ;
 
 :m2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+:c rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:lvl rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "Indica che se in una battaglia vi sono due partecipanti distinti, allora essi combattono" ;
    rdfs:label "BattleParticipantsFight" ;
@@ -433,6 +457,45 @@ Prefix: monster""" ;
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :fights ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> :m1 ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :m2
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Indica che se una creatura ha un powerLevel troppo elevato diventa molto pericolosa" ;
+   rdfs:label "Highly Dangerous Creatures" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Creature ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :powerLevel ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :lvl
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first :lvl ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 800 ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :HighlyDangerousCreature ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
