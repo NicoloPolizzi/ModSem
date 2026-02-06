@@ -7,77 +7,101 @@
 @base <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/> .
 
 <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1> rdf:type owl:Ontology ;
+                                                                           rdfs:comment """Ontologia per la rappresentazione di mostri cinematografici, i loro poteri, origini, battaglie e i film in cui appaiono. 
+Autore: Nicolò Maria Polizzi. 
+Data: 2024-12-06. 
+Prefix: monster""" ;
                                                                            rdfs:label "Monster Ontology"@en .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#belongsToSaga
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn
+:appearsIn rdf:type owl:ObjectProperty ;
+           rdfs:domain :Creature ;
+           rdfs:range :Film ;
+           rdfs:comment "Indica il film in cui una creatura appare"@it ;
+           rdfs:label "appearsIn"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/belongsToSaga
 :belongsToSaga rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf owl:topObjectProperty ;
                rdfs:domain :Creature ;
                rdfs:range :Film ;
                owl:propertyChainAxiom ( :appearsIn
                                         :isSequel
-                                      ) .
-
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn
-:appearsIn rdf:type owl:ObjectProperty ;
-           rdfs:domain :Creature ;
-           rdfs:range :Film .
+                                      ) ;
+               rdfs:comment "Indica che una creatura fa parte di un Franchise"@en ;
+               rdfs:label "belongsToSagae"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/directedBy
 :directedBy rdf:type owl:ObjectProperty ;
             rdfs:domain :Film ;
-            rdfs:range :Director .
+            rdfs:range :Director ;
+            rdfs:comment "Indica il regista che ha diretto un determinato film"@it ;
+            rdfs:label "directedBy"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/fights
 :fights rdf:type owl:ObjectProperty ;
         owl:inverseOf :foughtBy ;
         rdfs:domain :Creature ;
-        rdfs:range :Creature .
+        rdfs:range :Creature ;
+        rdfs:comment "Indica che una creatura combatte contro un'altra creatura"@it ;
+        rdfs:label "fights"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/foughtBy
 :foughtBy rdf:type owl:ObjectProperty ;
           rdfs:domain :Creature ;
-          rdfs:range :Creature .
+          rdfs:range :Creature ;
+          rdfs:comment "Proprietà inversa di fights, indica che una creatura è combattuta da un'altra"@it ;
+          rdfs:label "foughtBy"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/happensIn
 :happensIn rdf:type owl:ObjectProperty ;
            rdfs:domain :Battle ;
-           rdfs:range :Film .
+           rdfs:range :Film ;
+           rdfs:comment "Indica il film in cui si svolge una determinata battaglia" ;
+           rdfs:label "happensIn"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin
 :hasOrigin rdf:type owl:ObjectProperty ,
                     owl:FunctionalProperty ;
            rdfs:domain :Creature ;
-           rdfs:range :Origin .
+           rdfs:range :Origin ;
+           rdfs:comment "Indica l'origine di una creatura (nucleare, morso, infezione)"@it ;
+           rdfs:label "hasOrigin"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant
 :hasParticipant rdf:type owl:ObjectProperty ;
                 rdfs:domain :Battle ;
-                rdfs:range :Creature .
+                rdfs:range :Creature ;
+                rdfs:comment "Indica le creature che partecipano a una determinata battaglia"@it ;
+                rdfs:label "hasParticipant"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasPower
 :hasPower rdf:type owl:ObjectProperty ;
           rdfs:domain :Creature ;
-          rdfs:range :Power .
+          rdfs:range :Power ;
+          rdfs:comment "Indica un potere o abilità posseduta da una creatura"@it ;
+          rdfs:label "hasPower"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/isSequel
 :isSequel rdf:type owl:ObjectProperty ,
                    owl:TransitiveProperty ;
           rdfs:domain :Film ;
-          rdfs:range :Film .
+          rdfs:range :Film ;
+          rdfs:comment "Indica che un film è il sequel di un altro film. Proprietà transitiva"@it ;
+          rdfs:label "isSequel"@en .
 
 
 #################################################################
@@ -87,23 +111,22 @@
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/powerLevel
 :powerLevel rdf:type owl:DatatypeProperty ;
             rdfs:domain :Creature ;
-            rdfs:range xsd:integer .
+            rdfs:range xsd:integer ;
+            rdfs:comment "Livello numerico che indica la potenza di una creatura"@it ;
+            rdfs:label "powerLevel"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/releaseYear
 :releaseYear rdf:type owl:DatatypeProperty ;
              rdfs:domain :Film ;
-             rdfs:range xsd:integer .
+             rdfs:range xsd:integer ;
+             rdfs:comment "Anno di uscita di un film"@it ;
+             rdfs:label "releaseYear"@en .
 
 
 #################################################################
 #    Classes
 #################################################################
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#FilmCrew
-:FilmCrew rdf:type owl:Class ;
-          rdfs:subClassOf :Film .
-
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle
 :Battle rdf:type owl:Class .
@@ -111,22 +134,34 @@
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature
 :Creature rdf:type owl:Class ;
-          rdfs:comment "Rappresenta un mostro o una creatura all'interno di un film"@it ;
-          rdfs:label "Creature"@en .
+          rdfs:comment "Rappresenta un mostro o creatura cinematografica che appare in uno o più film"@it ;
+          rdfs:label "Creatura"@it ,
+                     "Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureType
 :CreatureType rdf:type owl:Class ;
-              rdfs:subClassOf :Creature .
+              rdfs:subClassOf :Creature ;
+              rdfs:comment "Classificazione delle creature in base alla loro origine o natura"@it ;
+              rdfs:label "Creature Type"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director
 :Director rdf:type owl:Class ;
-          rdfs:subClassOf :FilmCrew .
+          rdfs:subClassOf :FilmCrew ;
+          rdfs:comment "Regista cinematografico che ha diretto uno o più film" ;
+          rdfs:label "Director"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Film
 :Film rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/FilmCrew
+:FilmCrew rdf:type owl:Class ;
+          rdfs:subClassOf :Film ;
+          rdfs:comment "Persone che hanno lavorato ad un Film"@it ;
+          rdfs:label "Film Crew"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Franchise
@@ -136,7 +171,9 @@
                                  owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
                                  owl:onClass :Film
                                ] ;
-           rdfs:subClassOf :Film .
+           rdfs:subClassOf :Film ;
+           rdfs:comment "Serie di film collegati tra loro, definita come un insieme di almeno due film correlati"@it ;
+           rdfs:label "Franchise"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NuclearCreature
@@ -145,7 +182,9 @@
                                        owl:onProperty :hasOrigin ;
                                        owl:hasValue :Nuclear
                                      ] ;
-                 rdfs:subClassOf :CreatureType .
+                 rdfs:subClassOf :CreatureType ;
+                 rdfs:comment "Creatura la cui origine è legata all'energia nucleare o alle radiazioni"@it ;
+                 rdfs:label "Nuclear Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin
@@ -155,12 +194,16 @@
                                           :Infection
                                           :Nuclear
                                         )
-                            ] .
+                            ] ;
+        rdfs:comment "Classe enumerata che rappresenta le possibili origini di una creatura: morso, infezione o nucleare" ;
+        rdfs:label "Origin"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power
 :Power rdf:type owl:Class ;
-       rdfs:subClassOf :Creature .
+       rdfs:subClassOf :Creature ;
+       rdfs:comment "Potere o abilità speciale posseduta da una creatura"@it ;
+       rdfs:label "Power"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/VampireCreature
@@ -169,12 +212,16 @@
                                        owl:onProperty :hasOrigin ;
                                        owl:hasValue :Bite
                                      ] ;
-                 rdfs:subClassOf :CreatureType .
+                 rdfs:subClassOf :CreatureType ;
+                 rdfs:comment "Creatura la cui origine è legata al morso di un vampiro" ;
+                 rdfs:label "Vampire Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Weakness
 :Weakness rdf:type owl:Class ;
-          rdfs:subClassOf :Creature .
+          rdfs:subClassOf :Creature ;
+          rdfs:comment "Debolezza o vulnerabilità di una creatura"@it ;
+          rdfs:label "Weakness"@en .
 
 
 #################################################################
@@ -182,18 +229,24 @@
 #################################################################
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Adam_Wingard
-:Adam_Wingard rdf:type owl:NamedIndividual .
+:Adam_Wingard rdf:type owl:NamedIndividual ;
+              rdfs:comment "Regista americano noto per Godzilla vs. Kong"@it ;
+              rdfs:label "Adam Wingard"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle1
 :Battle1 rdf:type owl:NamedIndividual ;
          :happensIn :Ghidorah_The_ThreeHeaded_Monster ;
          :hasParticipant :Godzilla ,
-                         :King_Ghidora .
+                         :King_Ghidora ;
+         rdfs:comment "Battaglia tra Godzilla e King Ghidorah avvenuta nel film Ghidorah, the Three-Headed Monster"@it ;
+         rdfs:label "Battle of Godzilla vs King Ghidorah"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Bite
-:Bite rdf:type owl:NamedIndividual .
+:Bite rdf:type owl:NamedIndividual ;
+      rdfs:comment "Origine legata al morso di una creatura soprannaturale come un vampiro"@it ;
+      rdfs:label "Bite"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula
@@ -201,17 +254,23 @@
          :appearsIn :Dracula_1931 ;
          :hasOrigin :Bite ;
          :hasPower :Regeneration ;
-         :powerLevel 500 .
+         :powerLevel 500 ;
+         rdfs:comment "Vampiro leggendario originato da un morso, protagonista dell'omonimo film del 1931. Possiede il potere della rigenerazione"@it ;
+         rdfs:label "Dracula"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula_1931
 :Dracula_1931 rdf:type owl:NamedIndividual ;
               :directedBy :Tod_Browning ;
-              :releaseYear 1931 .
+              :releaseYear 1931 ;
+              rdfs:comment "Film horror classico del 1931 diretto da Tod Browning, con Bela Lugosi nel ruolo di Dracula"@it ;
+              rdfs:label "Dracula (1931)"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Firebreath
-:Firebreath rdf:type owl:NamedIndividual .
+:Firebreath rdf:type owl:NamedIndividual ;
+            rdfs:comment "Soffio atomico, potere caratteristico di Godzilla e altre creature nucleari"@it ;
+            rdfs:label "Atomic Breath"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster
@@ -219,7 +278,9 @@
                                   owl:differentFrom :Godzilla_1954 ;
                                   :directedBy :Ishiro_Honda ;
                                   :isSequel :Godzilla_1954 ;
-                                  :releaseYear 1964 .
+                                  :releaseYear 1964 ;
+                                  rdfs:comment "Film del 1964 diretto da Ishiro Honda, sequel di Godzilla 1954, in cui appare per la prima volta King Ghidorah"@it ;
+                                  rdfs:label "Ghidorah, the Three-Headed Monster"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla
@@ -229,28 +290,38 @@
           :fights :King_Ghidora ;
           :hasOrigin :Nuclear ;
           :hasPower :Firebreath ;
-          :powerLevel 800 .
+          :powerLevel 800 ;
+          rdfs:comment "Mostro gigante di origine nucleare, protagonista dell'omonimo franchise giapponese. Possiede il potere del soffio atomico"@it ;
+          rdfs:label "Godzilla"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954
 :Godzilla_1954 rdf:type owl:NamedIndividual ;
                :directedBy :Yoshimitsu_Banno ;
-               :releaseYear 1954 .
+               :releaseYear 1954 ;
+               rdfs:comment "Primo film del franchise Godzilla, diretto da Yoshimitsu Banno e uscito nel 1954"@it ;
+               rdfs:label "Godzilla 1954"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong
 :Godzilla_vs_Kong rdf:type owl:NamedIndividual ;
                   :directedBy :Adam_Wingard ;
                   :isSequel :Ghidorah_The_ThreeHeaded_Monster ;
-                  :releaseYear 2021 .
+                  :releaseYear 2021 ;
+                  rdfs:comment "Film del 2021 diretto da Adam Wingard, parte del MonsterVerse"@it ;
+                  rdfs:label "Godzilla vs. Kong"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Infection
-:Infection rdf:type owl:NamedIndividual .
+:Infection rdf:type owl:NamedIndividual ;
+           rdfs:comment "Origine legata a un'infezione virale o batterica"@it ;
+           rdfs:label "Infection"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ishiro_Honda
-:Ishiro_Honda rdf:type owl:NamedIndividual .
+:Ishiro_Honda rdf:type owl:NamedIndividual ;
+              rdfs:comment "Regista giapponese noto per aver diretto numerosi film di Godzilla"@it ;
+              rdfs:label "Ishiro Honda"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora
@@ -258,23 +329,33 @@
               :appearsIn :Ghidorah_The_ThreeHeaded_Monster ;
               :hasOrigin :Nuclear ;
               :hasPower :Firebreath ;
-              :powerLevel 900 .
+              :powerLevel 900 ;
+              rdfs:comment "Drago a tre teste di origine nucleare, principale antagonista di Godzilla"@it ;
+              rdfs:label "King Ghidora"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear
-:Nuclear rdf:type owl:NamedIndividual .
+:Nuclear rdf:type owl:NamedIndividual ;
+         rdfs:comment "Origine legata all'energia nucleare o alle radiazioni atomiche"@it ;
+         rdfs:label "Nuclear"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Regeneration
-:Regeneration rdf:type owl:NamedIndividual .
+:Regeneration rdf:type owl:NamedIndividual ;
+              rdfs:comment "Capacità di rigenerare parti del corpo danneggiate"@it ;
+              rdfs:label "Regeneration"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Tod_Browning
-:Tod_Browning rdf:type owl:NamedIndividual .
+:Tod_Browning rdf:type owl:NamedIndividual ;
+              rdfs:comment "Regista americano noto per il film Dracula del 1931"@it ;
+              rdfs:label "Tod Browning"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Yoshimitsu_Banno
-:Yoshimitsu_Banno rdf:type owl:NamedIndividual .
+:Yoshimitsu_Banno rdf:type owl:NamedIndividual ;
+                  rdfs:comment "Regista giapponese che ha diretto film del franchise Godzilla"@it ;
+                  rdfs:label "Yoshimitsu Banno"@en .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
