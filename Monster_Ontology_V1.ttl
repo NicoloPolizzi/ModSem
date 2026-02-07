@@ -3,7 +3,10 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix dbpedia: <http://dbpedia.org/ontology/> .
 @base <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/> .
 
 <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1> rdf:type owl:Ontology ;
@@ -24,12 +27,6 @@ Prefix: monster""" ;
 #################################################################
 #    Object Properties
 #################################################################
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#sharesOriginWith
-:sharesOriginWith rdf:type owl:ObjectProperty ;
-                  rdfs:comment "Due creature condividono la stessa origine"@it ;
-                  rdfs:label "sharesOriginWith"@en .
-
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn
 :appearsIn rdf:type owl:ObjectProperty ;
@@ -112,6 +109,8 @@ Prefix: monster""" ;
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasWinner
 :hasWinner rdf:type owl:ObjectProperty ;
+           rdfs:domain :Creature ;
+           rdfs:range :Creature ;
            rdfs:comment "Indica il vincitore di una battaglia"@it ;
            rdfs:label "hasWinner"@en .
 
@@ -131,9 +130,31 @@ Prefix: monster""" ;
                 rdfs:label "participatesIn"@it .
 
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/sharesOriginWith
+:sharesOriginWith rdf:type owl:ObjectProperty ;
+                  rdfs:comment "Due creature condividono la stessa origine"@it ;
+                  rdfs:label "sharesOriginWith"@en .
+
+
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/firstMovie
+:firstMovie rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Creature ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Primo film in cui quella creatura appare"@it ;
+            rdfs:label "firstMovie"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/height
+:height rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Creature ;
+        rdfs:range xsd:float ;
+        rdfs:comment "Altezza della creatura"@it ;
+        rdfs:label "heighth"@en .
+
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/powerLevel
 :powerLevel rdf:type owl:DatatypeProperty ;
@@ -148,35 +169,12 @@ Prefix: monster""" ;
              rdfs:domain :Film ;
              rdfs:range xsd:dateTime ;
              rdfs:comment "Anno di uscita di un film"@it ;
-             rdfs:label "releaseYear"@en .
+             rdfs:label "releaseDate"@en .
 
 
 #################################################################
 #    Classes
 #################################################################
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist
-:Antagonist rdf:type owl:Class ;
-            rdfs:subClassOf :CreatureType ;
-            rdfs:comment "Antagonista di un film, la creatura che perde dal protagonista"@it ;
-            rdfs:label "Antagonist"@en .
-
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#DominantCreature
-:DominantCreature rdf:type owl:Class ;
-                  rdfs:subClassOf :CreatureType ;
-                  rdfs:comment "Creatura che vince più battaglie"@it ;
-                  rdfs:label "Dominant Creature"@en .
-
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Natural_Creature
-:Natural_Creature rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty :hasOrigin ;
-                                        owl:hasValue :Evolution
-                                      ] ;
-                  rdfs:subClassOf :CreatureType .
-
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/AggressiveCreature
 :AggressiveCreature rdf:type owl:Class ;
@@ -184,38 +182,48 @@ Prefix: monster""" ;
                                           owl:onProperty :participatesIn ;
                                           owl:someValuesFrom :Battle
                                         ] ;
-                    rdfs:subClassOf :CreatureType ;
+                    rdfs:subClassOf :CreatureByRole ;
                     rdfs:comment "Una creatura che ha partecipato ad almeno una battaglia con un'altra, viene definita aggressiva"@it ;
                     rdfs:label "Aggressive Creature"@en .
 
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Antagonist
+:Antagonist rdf:type owl:Class ;
+            rdfs:subClassOf :CreatureByRole ;
+            rdfs:comment "Antagonista di un film, la creatura che perde dal protagonista"@it ;
+            rdfs:label "Antagonist"@en .
+
+
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle
-:Battle rdf:type owl:Class .
+:Battle rdf:type owl:Class ;
+        rdfs:comment "Evento per gestire le battaglie tra due creature"@it ;
+        rdfs:label "Battle"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature
 :Creature rdf:type owl:Class ;
           rdfs:comment "Rappresenta un mostro o creatura cinematografica che appare in uno o più film"@it ;
           rdfs:label "Creature"@en ;
-          rdfs:seeAlso <http://dbpedia.org/ontology/FictionalCharacter> .
+          rdfs:seeAlso dbpedia:FictionalCharacter .
 
 
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureType
-:CreatureType rdf:type owl:Class ;
-              rdfs:subClassOf :Creature ;
-              rdfs:comment "Classificazione delle creature in base alla loro origine o natura"@it ;
-              rdfs:label "Creature Type"@en .
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin
+:CreatureByOrigin rdf:type owl:Class ;
+                  rdfs:subClassOf :Creature ;
+                  rdfs:comment "Classificazione delle creature in base alla loro origine"@it ;
+                  rdfs:label "Creature By Origin"@en .
 
 
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature_Characteristics
-:Creature_Characteristics rdf:type owl:Class ;
-                          rdfs:subClassOf :Creature ;
-                          rdfs:comment "Classificazione delle creature in base ai loro valori di potere e le loro debolezze"@it ;
-                          rdfs:label "Creature Characteristics"@en .
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole
+:CreatureByRole rdf:type owl:Class ;
+                rdfs:subClassOf :Creature ;
+                rdfs:comment "Categorizza le creature in base alla loro natura"@it ;
+                rdfs:label "Creature By Role"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Crew
 :Crew rdf:type owl:Class ;
+      rdfs:subClassOf :Person ;
       rdfs:comment "Persone che hanno lavorato ad un Film"@it ;
       rdfs:label "Film Crew"@en .
 
@@ -223,14 +231,22 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director
 :Director rdf:type owl:Class ;
           rdfs:subClassOf :Crew ;
-          rdfs:comment "Regista cinematografico che ha diretto uno o più film" ;
-          rdfs:label "Director"@en ;
-          rdfs:seeAlso <http://schema.org/Person> .
+          rdfs:comment "Regista cinematografico che ha diretto uno o più film"@it ;
+          rdfs:label "Director"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/DominantCreature
+:DominantCreature rdf:type owl:Class ;
+                  rdfs:subClassOf :CreatureByRole ;
+                  rdfs:comment "Creatura che vince più battaglie"@it ;
+                  rdfs:label "Dominant Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Film
 :Film rdf:type owl:Class ;
-      rdfs:seeAlso <http://schema.org/Movie> .
+      rdfs:comment "Pellicola cinematografica con una creatura di finzione all'interno"@it ;
+      rdfs:label "Film"@en ;
+      rdfs:seeAlso "http://schema.org/Movie" .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Franchise
@@ -240,16 +256,26 @@ Prefix: monster""" ;
                                  owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
                                  owl:onClass :Film
                                ] ;
-           rdfs:subClassOf :Film ;
            rdfs:comment "Serie di film collegati tra loro, definita come un insieme di almeno due film correlati"@it ;
            rdfs:label "Franchise"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/HighlyDangerousCreature
 :HighlyDangerousCreature rdf:type owl:Class ;
-                         rdfs:subClassOf :CreatureType ;
+                         rdfs:subClassOf :CreatureByRole ;
                          rdfs:comment "Una creatura con un power level eccessivo"@it ;
                          rdfs:label "Highly Dangerous Creature"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Natural_Creature
+:Natural_Creature rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasOrigin ;
+                                        owl:hasValue :Evolution
+                                      ] ;
+                  rdfs:subClassOf :CreatureByOrigin ;
+                  rdfs:comment "Creatura generata per cause naturali"@it ;
+                  rdfs:label "Natural Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NuclearCreature
@@ -258,7 +284,7 @@ Prefix: monster""" ;
                                        owl:onProperty :hasOrigin ;
                                        owl:hasValue :Nuclear
                                      ] ;
-                 rdfs:subClassOf :CreatureType ;
+                 rdfs:subClassOf :CreatureByOrigin ;
                  rdfs:comment "Creatura la cui origine è legata all'energia nucleare o alle radiazioni"@it ;
                  rdfs:label "Nuclear Creature"@en .
 
@@ -266,20 +292,25 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin
 :Origin rdf:type owl:Class ;
         owl:equivalentClass [ rdf:type owl:Class ;
-                              owl:oneOf ( :Evolution
-                                          :Bite
+                              owl:oneOf ( :Bite
+                                          :Evolution
                                           :Infection
                                           :Nuclear
                                         )
                             ] ;
-        rdfs:subClassOf :Creature_Characteristics ;
-        rdfs:comment "Classe enumerata che rappresenta le possibili origini di una creatura: morso, infezione o nucleare" ;
+        rdfs:comment "Classe enumerata che rappresenta le possibili origini di una creatura: morso, infezione o nucleare"@it ;
         rdfs:label "Origin"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Person
+:Person rdf:type owl:Class ;
+        rdfs:comment "Classe che categorizza le persone"@it ;
+        rdfs:label "Person"@en ;
+        rdfs:seeAlso <http://schema.org/Person> .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power
 :Power rdf:type owl:Class ;
-       rdfs:subClassOf :Creature_Characteristics ;
        rdfs:comment "Potere o abilità speciale posseduta da una creatura"@it ;
        rdfs:label "Power"@en .
 
@@ -290,50 +321,14 @@ Prefix: monster""" ;
                                        owl:onProperty :hasOrigin ;
                                        owl:hasValue :Bite
                                      ] ;
-                 rdfs:subClassOf :CreatureType ;
+                 rdfs:subClassOf :CreatureByOrigin ;
                  rdfs:comment "Creatura la cui origine è legata al morso di un vampiro" ;
                  rdfs:label "Vampire Creature"@en .
-
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Weakness
-:Weakness rdf:type owl:Class ;
-          rdfs:subClassOf :Creature_Characteristics ;
-          rdfs:comment "Debolezza o vulnerabilità di una creatura"@it ;
-          rdfs:label "Weakness"@en .
 
 
 #################################################################
 #    Individuals
 #################################################################
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Battle_of_Godzilla_vs_King_Kong
-:Battle_of_Godzilla_vs_King_Kong rdf:type owl:NamedIndividual ;
-                                 owl:differentFrom :Battle1 ;
-                                 :happensIn :Godzilla_vs_Kong ;
-                                 :hasParticipant :King_Kong ,
-                                                 :Godzilla ;
-                                 :hasWinner :Godzilla ;
-                                 rdfs:comment "Battaglia tra Godzilla e King Kongh avvenuta nel film Godzilla vs Kong"@it ;
-                                 rdfs:label "Battle of Godzilla vs King Kong"@en .
-
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Evolution
-:Evolution rdf:type owl:NamedIndividual ;
-           rdfs:comment "Processo di generazione di mostri"@it ;
-           rdfs:label "Evolution"@en .
-
-
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#King_Kong
-:King_Kong rdf:type owl:NamedIndividual ;
-           owl:differentFrom :Dracula ,
-                             :Godzilla ,
-                             :King_Ghidora ;
-           :appearsIn :Godzilla_vs_Kong ;
-           :hasOrigin :Evolution ;
-           :powerLevel 600 ;
-           rdfs:comment "Gigantesco gorilla nato per processi evolutivi particolari"@it ;
-           rdfs:label "King Kong"@en .
-
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Adam_Wingard
 :Adam_Wingard rdf:type owl:NamedIndividual ;
@@ -343,12 +338,23 @@ Prefix: monster""" ;
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle1
 :Battle1 rdf:type owl:NamedIndividual ;
+         owl:differentFrom :Battle_of_Godzilla_vs_King_Kong ;
          :happensIn :Ghidorah_The_ThreeHeaded_Monster ;
          :hasParticipant :Godzilla ,
                          :King_Ghidora ;
          :hasWinner :Godzilla ;
          rdfs:comment "Battaglia tra Godzilla e King Ghidorah avvenuta nel film Ghidorah, the Three-Headed Monster"@it ;
          rdfs:label "Battle of Godzilla vs King Ghidorah (1964)"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle_of_Godzilla_vs_King_Kong
+:Battle_of_Godzilla_vs_King_Kong rdf:type owl:NamedIndividual ;
+                                 :happensIn :Godzilla_vs_Kong ;
+                                 :hasParticipant :Godzilla ,
+                                                 :King_Kong ;
+                                 :hasWinner :Godzilla ;
+                                 rdfs:comment "Battaglia tra Godzilla e King Kongh avvenuta nel film Godzilla vs Kong"@it ;
+                                 rdfs:label "Battle of Godzilla vs King Kong"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Bite
@@ -360,10 +366,13 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula
 :Dracula rdf:type owl:NamedIndividual ;
          owl:differentFrom :Godzilla ,
-                           :King_Ghidora ;
+                           :King_Ghidora ,
+                           :King_Kong ;
          :appearsIn :Dracula_1931 ;
          :hasOrigin :Bite ;
          :hasPower :Regeneration ;
+         :firstMovie "Dracula (1931)" ;
+         :height "1.8"^^xsd:float ;
          :powerLevel 500 ;
          rdfs:comment "Vampiro leggendario originato da un morso, protagonista dell'omonimo film del 1931. Possiede il potere della rigenerazione"@it ;
          rdfs:label "Dracula"@en .
@@ -375,9 +384,15 @@ Prefix: monster""" ;
                                 :Godzilla_1954 ,
                                 :Godzilla_vs_Kong ;
               :directedBy :Tod_Browning ;
-              :releaseYear "1964-02-14T00:00:00"^^xsd:dateTime ;
+              :releaseYear "1931-02-14T00:00:00"^^xsd:dateTime ;
               rdfs:comment "Film horror classico del 1931 diretto da Tod Browning, con Bela Lugosi nel ruolo di Dracula"@it ;
               rdfs:label "Dracula (1931)"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Evolution
+:Evolution rdf:type owl:NamedIndividual ;
+           rdfs:comment "Processo di generazione di mostri"@it ;
+           rdfs:label "Evolution"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Firebreath
@@ -390,7 +405,7 @@ Prefix: monster""" ;
 :Ghidorah_The_ThreeHeaded_Monster rdf:type owl:NamedIndividual ;
                                   owl:differentFrom :Godzilla_1954 ,
                                                     :Godzilla_vs_Kong ;
-                                  :directedBy :Ishiro_Honda ;
+                                  :directedBy :Yoshimitsu_Banno ;
                                   :isSequel :Godzilla_1954 ;
                                   :releaseYear "1964-12-20T00:00:00"^^xsd:dateTime ;
                                   rdfs:comment "Film del 1964 diretto da Ishiro Honda, sequel di Godzilla 1954, in cui appare per la prima volta King Ghidorah"@it ;
@@ -399,11 +414,14 @@ Prefix: monster""" ;
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla
 :Godzilla rdf:type owl:NamedIndividual ;
-          owl:differentFrom :King_Ghidora ;
+          owl:differentFrom :King_Ghidora ,
+                            :King_Kong ;
           :appearsIn :Ghidorah_The_ThreeHeaded_Monster ,
                      :Godzilla_1954 ;
           :hasOrigin :Nuclear ;
           :hasPower :Firebreath ;
+          :firstMovie "Godzilla (1954)" ;
+          :height "129.8"^^xsd:float ;
           :powerLevel 800 ;
           rdfs:comment "Mostro gigante di origine nucleare, protagonista dell'omonimo franchise giapponese. Possiede il potere del soffio atomico"@it ;
           rdfs:label "Godzilla"@en .
@@ -412,7 +430,7 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954
 :Godzilla_1954 rdf:type owl:NamedIndividual ;
                owl:differentFrom :Godzilla_vs_Kong ;
-               :directedBy :Yoshimitsu_Banno ;
+               :directedBy :Ishiro_Honda ;
                :releaseYear "1954-05-14T00:00:00"^^xsd:dateTime ;
                rdfs:comment "Primo film del franchise Godzilla, diretto da Yoshimitsu Banno e uscito nel 1954"@it ;
                rdfs:label "Godzilla 1954"@en .
@@ -421,6 +439,7 @@ Prefix: monster""" ;
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong
 :Godzilla_vs_Kong rdf:type owl:NamedIndividual ;
                   :directedBy :Adam_Wingard ;
+                  :isSequel :Ghidorah_The_ThreeHeaded_Monster ;
                   :releaseYear "2021-03-31T00:00:00"^^xsd:dateTime ;
                   rdfs:comment "Film del 2021 diretto da Adam Wingard, parte del MonsterVerse"@it ;
                   rdfs:label "Godzilla vs. Kong"@en .
@@ -440,12 +459,26 @@ Prefix: monster""" ;
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora
 :King_Ghidora rdf:type owl:NamedIndividual ;
+              owl:differentFrom :King_Kong ;
               :appearsIn :Ghidorah_The_ThreeHeaded_Monster ;
               :hasOrigin :Nuclear ;
               :hasPower :Firebreath ;
+              :firstMovie "Ghidorah, the Three-Headed Monster" ;
+              :height "158.5"^^xsd:float ;
               :powerLevel 900 ;
               rdfs:comment "Drago a tre teste di origine nucleare, principale antagonista di Godzilla"@it ;
               rdfs:label "King Ghidora"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong
+:King_Kong rdf:type owl:NamedIndividual ;
+           :appearsIn :Godzilla_vs_Kong ;
+           :hasOrigin :Evolution ;
+           :firstMovie "King Kong (1933)" ;
+           :height "102.2"^^xsd:float ;
+           :powerLevel 600 ;
+           rdfs:comment "Gigantesco gorilla nato per processi evolutivi particolari"@it ;
+           rdfs:label "King Kong"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear
