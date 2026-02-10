@@ -13,7 +13,8 @@
      xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:schema="https://schema.org/"
-     xmlns:dbpedia="http://dbpedia.org/ontology/">
+     xmlns:dbpedia="http://dbpedia.org/ontology/"
+     xmlns:Monster_Ontology_V1="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1">
         <terms:creator xml:lang="it">Nicolò Maria Polizzi</terms:creator>
         <terms:date>2024-12-06</terms:date>
@@ -88,6 +89,15 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment"/>
+    </owl:ObjectProperty>
     
 
 
@@ -335,6 +345,52 @@
     
 
 
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment">
+        <rdfs:comment xml:lang="it">Indica se una creatura è considerata buona, cattiva o se è un antieroe</rdfs:comment>
+        <rdfs:label xml:lang="en">Alignment</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole"/>
+        <rdfs:comment xml:lang="it">Creatura che combatte contro un buono o un antieroe</rdfs:comment>
+        <rdfs:label xml:lang="en">Antagonist</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#AntiHero -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#AntiHero">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment"/>
+        <rdfs:comment xml:lang="it">Creatura tendenzialmente buona ma con comportamenti disallineati a quelli di un eroe</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment"/>
+        <rdfs:comment xml:lang="it">Creatura che combatte con ideologie distruttive</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#GoodAlignment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#GoodAlignment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment"/>
+        <rdfs:comment xml:lang="it">Una creatura che combatte per il bene</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/AggressiveCreature -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/AggressiveCreature">
@@ -347,16 +403,6 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole"/>
         <rdfs:comment xml:lang="it">Una creatura che ha partecipato ad almeno una battaglia con un&apos;altra, viene definita aggressiva</rdfs:comment>
         <rdfs:label xml:lang="en">Aggressive Creature</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Antagonist -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Antagonist">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole"/>
-        <rdfs:comment xml:lang="it">Antagonista di un film, la creatura che perde dal protagonista</rdfs:comment>
-        <rdfs:label xml:lang="en">Antagonist</rdfs:label>
     </owl:Class>
     
 
@@ -465,6 +511,16 @@
     
 
 
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Loser -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Loser">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole"/>
+        <rdfs:comment xml:lang="it">Sconfitto in una battaglia di un film, la creatura che perde</rdfs:comment>
+        <rdfs:label xml:lang="en">Loser</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies">
@@ -565,6 +621,32 @@
     
 
 
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Anti_Hero_Alignment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Anti_Hero_Alignment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#AntiHero"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment"/>
+        <rdfs:comment xml:lang="it">Allineamento Cattivo</rdfs:comment>
+        <rdfs:label xml:lang="en">Evil Alignment</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Good_Alignment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Good_Alignment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#GoodAlignment"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Adam_Wingard -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Adam_Wingard">
@@ -616,6 +698,7 @@
         <owl:differentFrom rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla"/>
         <owl:differentFrom rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora"/>
         <owl:differentFrom rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong"/>
+        <Monster_Ontology_V1:hasAlignment rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment"/>
         <appearsIn rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula_1931"/>
         <hasOrigin rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Bite"/>
         <hasPower rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Regeneration"/>
@@ -679,6 +762,8 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla">
         <owl:differentFrom rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora"/>
         <owl:differentFrom rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong"/>
+        <Monster_Ontology_V1:hasAlignment rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Anti_Hero_Alignment"/>
+        <Monster_Ontology_V1:hasAlignment rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment"/>
         <appearsIn rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster"/>
         <appearsIn rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954"/>
         <hasOrigin rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear"/>
@@ -738,6 +823,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora">
         <owl:differentFrom rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong"/>
+        <Monster_Ontology_V1:hasAlignment rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment"/>
         <appearsIn rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster"/>
         <hasOrigin rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear"/>
         <hasPower rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Firebreath"/>
@@ -753,6 +839,8 @@
     <!-- http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong">
+        <Monster_Ontology_V1:hasAlignment rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Anti_Hero_Alignment"/>
+        <Monster_Ontology_V1:hasAlignment rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Good_Alignment"/>
         <appearsIn rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong"/>
         <hasOrigin rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Evolution"/>
         <firstMovie>King Kong (1933)</firstMovie>
@@ -808,6 +896,18 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    <rdf:Description rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a1">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a2">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
     <rdf:Description rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
@@ -838,19 +938,13 @@
     <rdf:Description rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/lvl">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
-    <rdf:Description rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1">
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
-    </rdf:Description>
     <rdf:Description rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/o">
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2">
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
     </rdf:Description>
     <rdf:Description>
         <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
-        <rdfs:comment>Indica che se una creatura perde un combattimento, era l&apos;antagonista della storia</rdfs:comment>
-        <rdfs:label>Antagonist</rdfs:label>
+        <rdfs:comment>Creatura cattiva che combatte contro un anti-eroe</rdfs:comment>
+        <rdfs:label>Antagonist B</rdfs:label>
         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
         <swrl:body>
             <rdf:Description>
@@ -858,8 +952,8 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle"/>
-                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1"/>
                     </rdf:Description>
                 </rdf:first>
                 <rdf:rest>
@@ -868,9 +962,199 @@
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/fights"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment"/>
+                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1"/>
+                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a1"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment"/>
+                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a1"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment"/>
+                                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2"/>
+                                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a2"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#AntiHero"/>
+                                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a2"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment>Creatura cattiva che combatte contro un buono</rdfs:comment>
+        <rdfs:label>Antagonist A</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/fights"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment"/>
+                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1"/>
+                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a1"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment"/>
+                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a1"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment"/>
+                                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2"/>
+                                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a2"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#GoodAlignment"/>
+                                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/a2"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment>Indica che se una creatura perde un combattimento, era l&apos;antagonista della storia</rdfs:comment>
+        <rdfs:label>Loser</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle"/>
                                 <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b"/>
-                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c"/>
                             </rdf:Description>
                         </rdf:first>
                         <rdf:rest>
@@ -909,7 +1193,7 @@
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Antagonist"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Loser"/>
                         <swrl:argument1 rdf:resource="http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c"/>
                     </rdf:Description>
                 </rdf:first>

@@ -1,20 +1,20 @@
-@prefix : <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#> .
+@prefix : <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1> .
+@base <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1> rdf:type owl:Ontology ;
-                                                                           <http://purl.org/dc/terms/creator> "Nicolò Maria Polizzi"@it ;
-                                                                           <http://purl.org/dc/terms/date> "2024-12-06" ;
-                                                                           <http://purl.org/dc/terms/license> "https://creativecommons.org/licenses/by/4.0/" ;
-                                                                           <http://purl.org/dc/terms/title> "Monster Ontology"@en ;
-                                                                           <http://purl.org/vocab/vann/preferredNamespacePrefix> "mo" ;
-                                                                           <http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/" ;
-                                                                           rdfs:comment "Ontologia per la rappresentazione di mostri cinematografici, i loro poteri, origini, battaglie e i film in cui appaiono."@it ;
-                                                                           rdfs:label "Monster Ontology"@en .
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/> rdf:type owl:Ontology ;
+                                                                            <http://purl.org/dc/terms/creator> "Nicolò Maria Polizzi"@it ;
+                                                                            <http://purl.org/dc/terms/date> "2024-12-06" ;
+                                                                            <http://purl.org/dc/terms/license> "https://creativecommons.org/licenses/by/4.0/" ;
+                                                                            <http://purl.org/dc/terms/title> "Monster Ontology"@en ;
+                                                                            <http://purl.org/vocab/vann/preferredNamespacePrefix> "mo" ;
+                                                                            <http://purl.org/vocab/vann/preferredNamespaceUri> "http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/" ;
+                                                                            rdfs:comment "Ontologia per la rappresentazione di mostri cinematografici, i loro poteri, origini, battaglie e i film in cui appaiono."@it ;
+                                                                            rdfs:label "Monster Ontology"@en .
 
 #################################################################
 #    Annotation properties
@@ -52,117 +52,125 @@
 #    Object Properties
 #################################################################
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment> rdf:type owl:ObjectProperty ;
+                                                                                       rdfs:domain :Creature ;
+                                                                                       rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment> ;
+                                                                                       rdfs:comment "Indica se una creatura è buona, cattiva, o un antieroe"@it ;
+                                                                                       rdfs:label "hasAlignment"@en .
+
+
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn> rdf:type owl:ObjectProperty ;
-                                                                                    rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                    rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                    rdfs:comment "Indica il film in cui una creatura appare"@it ;
-                                                                                    rdfs:label "appearsIn"@en .
+:appearsIn rdf:type owl:ObjectProperty ;
+           rdfs:domain :Creature ;
+           rdfs:range :MonsterMovies ;
+           rdfs:comment "Indica il film in cui una creatura appare"@it ;
+           rdfs:label "appearsIn"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/belongsToSaga
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/belongsToSaga> rdf:type owl:ObjectProperty ,
-                                                                                                 owl:AsymmetricProperty ,
-                                                                                                 owl:IrreflexiveProperty ;
-                                                                                        rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                        rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                        owl:propertyChainAxiom ( <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn>
-                                                                                                                 <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/isSequel>
-                                                                                                               ) ;
-                                                                                        rdfs:comment "Indica che una creatura fa parte di un Franchise"@en ;
-                                                                                        rdfs:label "belongsToFranchise"@en .
+:belongsToSaga rdf:type owl:ObjectProperty ,
+                        owl:AsymmetricProperty ,
+                        owl:IrreflexiveProperty ;
+               rdfs:domain :Creature ;
+               rdfs:range :MonsterMovies ;
+               owl:propertyChainAxiom ( :appearsIn
+                                        :isSequel
+                                      ) ;
+               rdfs:comment "Indica che una creatura fa parte di un Franchise"@en ;
+               rdfs:label "belongsToFranchise"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/directedBy
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/directedBy> rdf:type owl:ObjectProperty ;
-                                                                                     rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                     rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director> ;
-                                                                                     rdfs:comment "Indica il regista che ha diretto un determinato film"@it ;
-                                                                                     rdfs:label "directedBy"@en .
+:directedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :MonsterMovies ;
+            rdfs:range :Director ;
+            rdfs:comment "Indica il regista che ha diretto un determinato film"@it ;
+            rdfs:label "directedBy"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/fights
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/fights> rdf:type owl:ObjectProperty ;
-                                                                                 owl:inverseOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/foughtBy> ;
-                                                                                 rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                 rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                 rdfs:comment "Indica che una creatura combatte contro un'altra creatura"@it ;
-                                                                                 rdfs:label "fights"@en .
+:fights rdf:type owl:ObjectProperty ;
+        owl:inverseOf :foughtBy ;
+        rdfs:domain :Creature ;
+        rdfs:range :Creature ;
+        rdfs:comment "Indica che una creatura combatte contro un'altra creatura"@it ;
+        rdfs:label "fights"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/foughtBy
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/foughtBy> rdf:type owl:ObjectProperty ;
-                                                                                   rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                   rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                   rdfs:comment "Proprietà inversa di fights, indica che una creatura è combattuta da un'altra"@it ;
-                                                                                   rdfs:label "foughtBy"@en .
+:foughtBy rdf:type owl:ObjectProperty ;
+          rdfs:domain :Creature ;
+          rdfs:range :Creature ;
+          rdfs:comment "Proprietà inversa di fights, indica che una creatura è combattuta da un'altra"@it ;
+          rdfs:label "foughtBy"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/happensIn
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/happensIn> rdf:type owl:ObjectProperty ;
-                                                                                    rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                                                    rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                    rdfs:comment "Indica il film in cui si svolge una determinata battaglia"@it ;
-                                                                                    rdfs:label "happensIn"@en .
+:happensIn rdf:type owl:ObjectProperty ;
+           rdfs:domain :Battle ;
+           rdfs:range :MonsterMovies ;
+           rdfs:comment "Indica il film in cui si svolge una determinata battaglia"@it ;
+           rdfs:label "happensIn"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> rdf:type owl:ObjectProperty ,
-                                                                                             owl:FunctionalProperty ;
-                                                                                    rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                    rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ;
-                                                                                    rdfs:comment "Indica l'origine di una creatura (nucleare, morso, infezione)"@it ;
-                                                                                    rdfs:label "hasOrigin"@en .
+:hasOrigin rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Creature ;
+           rdfs:range :Origin ;
+           rdfs:comment "Indica l'origine di una creatura (nucleare, morso, infezione)"@it ;
+           rdfs:label "hasOrigin"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant> rdf:type owl:ObjectProperty ;
-                                                                                         owl:inverseOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/participatesIn> ;
-                                                                                         rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                                                         rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                         rdfs:comment "Indica le creature che partecipano a una determinata battaglia"@it ;
-                                                                                         rdfs:label "hasParticipant"@en .
+:hasParticipant rdf:type owl:ObjectProperty ;
+                owl:inverseOf :participatesIn ;
+                rdfs:domain :Battle ;
+                rdfs:range :Creature ;
+                rdfs:comment "Indica le creature che partecipano a una determinata battaglia"@it ;
+                rdfs:label "hasParticipant"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasPower
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasPower> rdf:type owl:ObjectProperty ;
-                                                                                   rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                   rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                   rdfs:comment "Indica un potere o abilità posseduta da una creatura"@it ;
-                                                                                   rdfs:label "hasPower"@en .
+:hasPower rdf:type owl:ObjectProperty ;
+          rdfs:domain :Creature ;
+          rdfs:range :Power ;
+          rdfs:comment "Indica un potere o abilità posseduta da una creatura"@it ;
+          rdfs:label "hasPower"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasWinner
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasWinner> rdf:type owl:ObjectProperty ;
-                                                                                    rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                                                    rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                    rdfs:comment "Indica il vincitore di una battaglia"@it ;
-                                                                                    rdfs:label "hasWinner"@en .
+:hasWinner rdf:type owl:ObjectProperty ;
+           rdfs:domain :Battle ;
+           rdfs:range :Creature ;
+           rdfs:comment "Indica il vincitore di una battaglia"@it ;
+           rdfs:label "hasWinner"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/isSequel
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/isSequel> rdf:type owl:ObjectProperty ,
-                                                                                            owl:TransitiveProperty ;
-                                                                                   rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                   rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                   rdfs:comment "Indica che un film è il sequel di un altro film. Proprietà transitiva"@it ;
-                                                                                   rdfs:label "isSequel"@en .
+:isSequel rdf:type owl:ObjectProperty ,
+                   owl:TransitiveProperty ;
+          rdfs:domain :MonsterMovies ;
+          rdfs:range :MonsterMovies ;
+          rdfs:comment "Indica che un film è il sequel di un altro film. Proprietà transitiva"@it ;
+          rdfs:label "isSequel"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/participatesIn
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/participatesIn> rdf:type owl:ObjectProperty ;
-                                                                                         rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                         rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                                                         rdfs:comment "Inverso di hasParticipant, indica che una creatura fa parte di una battaglia"@it ;
-                                                                                         rdfs:label "participatesIn"@it .
+:participatesIn rdf:type owl:ObjectProperty ;
+                rdfs:domain :Creature ;
+                rdfs:range :Battle ;
+                rdfs:comment "Inverso di hasParticipant, indica che una creatura fa parte di una battaglia"@it ;
+                rdfs:label "participatesIn"@it .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/sharesOriginWith
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/sharesOriginWith> rdf:type owl:ObjectProperty ;
-                                                                                           rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                           rdfs:range <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                           rdfs:comment "Due creature condividono la stessa origine"@it ;
-                                                                                           rdfs:label "sharesOriginWith"@en .
+:sharesOriginWith rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Creature ;
+                  rdfs:range :Creature ;
+                  rdfs:comment "Due creature condividono la stessa origine"@it ;
+                  rdfs:label "sharesOriginWith"@en .
 
 
 #################################################################
@@ -170,35 +178,35 @@
 #################################################################
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/firstMovie
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/firstMovie> rdf:type owl:DatatypeProperty ;
-                                                                                     rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                     rdfs:range xsd:string ;
-                                                                                     rdfs:comment "Primo film in cui quella creatura appare"@it ;
-                                                                                     rdfs:label "firstMovie"@en .
+:firstMovie rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Creature ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Primo film in cui quella creatura appare"@it ;
+            rdfs:label "firstMovie"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/height
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/height> rdf:type owl:DatatypeProperty ;
-                                                                                 rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                 rdfs:range xsd:float ;
-                                                                                 rdfs:comment "Altezza della creatura"@it ;
-                                                                                 rdfs:label "height"@en .
+:height rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Creature ;
+        rdfs:range xsd:float ;
+        rdfs:comment "Altezza della creatura"@it ;
+        rdfs:label "height"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/powerLevel
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/powerLevel> rdf:type owl:DatatypeProperty ;
-                                                                                     rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                     rdfs:range xsd:integer ;
-                                                                                     rdfs:comment "Livello numerico che indica la potenza di una creatura"@it ;
-                                                                                     rdfs:label "powerLevel"@en .
+:powerLevel rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Creature ;
+            rdfs:range xsd:integer ;
+            rdfs:comment "Livello numerico che indica la potenza di una creatura"@it ;
+            rdfs:label "powerLevel"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/releaseYear
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/releaseYear> rdf:type owl:DatatypeProperty ;
-                                                                                      rdfs:domain <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                      rdfs:range xsd:dateTime ;
-                                                                                      rdfs:comment "Anno di uscita di un film"@it ;
-                                                                                      rdfs:label "releaseDate"@en .
+:releaseYear rdf:type owl:DatatypeProperty ;
+             rdfs:domain :MonsterMovies ;
+             rdfs:range xsd:dateTime ;
+             rdfs:comment "Anno di uscita di un film"@it ;
+             rdfs:label "releaseDate"@en .
 
 
 #################################################################
@@ -223,498 +231,758 @@
                            rdfs:label "schema:Person"@en .
 
 
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/AggressiveCreature
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/AggressiveCreature> rdf:type owl:Class ;
-                                                                                             owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                                                                   owl:onProperty <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/participatesIn> ;
-                                                                                                                   owl:someValuesFrom <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle>
-                                                                                                                 ] ;
-                                                                                             rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole> ;
-                                                                                             owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ,
-                                                                                                              <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                              <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                             rdfs:comment "Una creatura che ha partecipato ad almeno una battaglia con un'altra, viene definita aggressiva"@it ;
-                                                                                             rdfs:label "Aggressive Creature"@en .
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment> rdf:type owl:Class ;
+                                                                                    rdfs:comment "Indica se una creatura è considerata buona, cattiva o se è un antieroe"@it ;
+                                                                                    rdfs:label "Alignment"@en .
 
 
-###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Antagonist
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Antagonist> rdf:type owl:Class ;
-                                                                                     rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole> ;
-                                                                                     owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ,
-                                                                                                      <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                      <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                     rdfs:comment "Antagonista di un film, la creatura che perde dal protagonista"@it ;
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist> rdf:type owl:Class ;
+                                                                                     rdfs:subClassOf :CreatureByRole ;
+                                                                                     owl:disjointWith :MonsterMovies ,
+                                                                                                      :Origin ,
+                                                                                                      :Power ;
+                                                                                     rdfs:comment "Creatura che combatte contro un buono o un antieroe"@it ;
                                                                                      rdfs:label "Antagonist"@en .
 
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment> ;
+                                                                                        rdfs:comment "Creatura che combatte con ideologie distruttive"@it ;
+                                                                                        rdfs:label "Evil Alignment"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#GoodAlignment
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#GoodAlignment> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment> ;
+                                                                                        rdfs:comment "Una creatura che combatte per il bene"@it ;
+                                                                                        rdfs:label "Good Alignment"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Hero
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Hero> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf :CreatureByRole ;
+                                                                               owl:disjointWith :MonsterMovies ,
+                                                                                                :Origin ,
+                                                                                                :Power ;
+                                                                               rdfs:comment "Creatura combattente contro un antagonista"@it ;
+                                                                               rdfs:label "Hero"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#NeutralAlignment
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#NeutralAlignment> rdf:type owl:Class ;
+                                                                                           rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment> ;
+                                                                                           rdfs:comment "Creatura tendenzialmente buona ma con comportamenti disallineati a quelli di un eroe"@it ;
+                                                                                           rdfs:label "Neutral Alignment"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/AggressiveCreature
+:AggressiveCreature rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :participatesIn ;
+                                          owl:someValuesFrom :Battle
+                                        ] ;
+                    rdfs:subClassOf :CreatureByRole ;
+                    owl:disjointWith :MonsterMovies ,
+                                     :Origin ,
+                                     :Power ;
+                    rdfs:comment "Una creatura che ha partecipato ad almeno una battaglia con un'altra, viene definita aggressiva"@it ;
+                    rdfs:label "Aggressive Creature"@en .
+
+
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> rdf:type owl:Class ;
-                                                                                 owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Franchise> ,
-                                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ,
-                                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                 rdfs:comment "Evento per gestire le battaglie tra due creature"@it ;
-                                                                                 rdfs:label "Battle"@en .
+:Battle rdf:type owl:Class ;
+        owl:disjointWith :Franchise ,
+                         :MonsterMovies ,
+                         :Origin ,
+                         :Power ;
+        rdfs:comment "Evento per gestire le battaglie tra due creature"@it ;
+        rdfs:label "Battle"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> rdf:type owl:Class ;
-                                                                                   rdfs:subClassOf <http://dbpedia.org/ontology/FictionalCharacter> ;
-                                                                                   owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ,
-                                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                   rdfs:comment "Rappresenta un mostro o creatura cinematografica che appare in uno o più film"@it ;
-                                                                                   rdfs:label "Creature"@en .
+:Creature rdf:type owl:Class ;
+          rdfs:subClassOf <http://dbpedia.org/ontology/FictionalCharacter> ;
+          owl:disjointWith :MonsterMovies ,
+                           :Origin ,
+                           :Power ;
+          rdfs:comment "Rappresenta un mostro o creatura cinematografica che appare in uno o più film"@it ;
+          rdfs:label "Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin> rdf:type owl:Class ;
-                                                                                           rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                           owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ,
-                                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                           rdfs:comment "Classificazione delle creature in base alla loro origine"@it ;
-                                                                                           rdfs:label "Creature By Origin"@en .
+:CreatureByOrigin rdf:type owl:Class ;
+                  rdfs:subClassOf :Creature ;
+                  owl:disjointWith :MonsterMovies ,
+                                   :Origin ,
+                                   :Power ;
+                  rdfs:comment "Classificazione delle creature in base alla loro origine"@it ;
+                  rdfs:label "Creature By Origin"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole> rdf:type owl:Class ;
-                                                                                         rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                         owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ,
-                                                                                                          <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                          <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                         rdfs:comment "Categorizza le creature in base alla loro natura"@it ;
-                                                                                         rdfs:label "Creature By Role"@en .
+:CreatureByRole rdf:type owl:Class ;
+                rdfs:subClassOf :Creature ;
+                owl:disjointWith :MonsterMovies ,
+                                 :Origin ,
+                                 :Power ;
+                rdfs:comment "Categorizza le creature in base alla loro natura"@it ;
+                rdfs:label "Creature By Role"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Crew
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Crew> rdf:type owl:Class ;
-                                                                               rdfs:subClassOf <http://schema.org/Person> ;
-                                                                               rdfs:comment "Persone che hanno lavorato ad un Film"@it ;
-                                                                               rdfs:label "Film Crew"@en .
+:Crew rdf:type owl:Class ;
+      rdfs:subClassOf <http://schema.org/Person> ;
+      rdfs:comment "Persone che hanno lavorato ad un Film"@it ;
+      rdfs:label "Film Crew"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director> rdf:type owl:Class ;
-                                                                                   rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Crew> ;
-                                                                                   rdfs:comment "Regista cinematografico che ha diretto uno o più film"@it ;
-                                                                                   rdfs:label "Director"@en .
+:Director rdf:type owl:Class ;
+          rdfs:subClassOf :Crew ;
+          rdfs:comment "Regista cinematografico che ha diretto uno o più film"@it ;
+          rdfs:label "Director"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/DominantCreature
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/DominantCreature> rdf:type owl:Class ;
-                                                                                           rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole> ;
-                                                                                           owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ,
-                                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                           rdfs:comment "Creatura che vince più battaglie"@it ;
-                                                                                           rdfs:label "Dominant Creature"@en .
+:DominantCreature rdf:type owl:Class ;
+                  rdfs:subClassOf :CreatureByRole ;
+                  owl:disjointWith :MonsterMovies ,
+                                   :Origin ,
+                                   :Power ;
+                  rdfs:comment "Creatura che vince più battaglie"@it ;
+                  rdfs:label "Dominant Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Franchise
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Franchise> rdf:type owl:Class ;
-                                                                                    owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                                                          owl:onProperty <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn> ;
-                                                                                                          owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                                                                                          owl:onClass <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies>
-                                                                                                        ] ;
-                                                                                    rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                                                    owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ,
-                                                                                                     <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                     <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                    rdfs:comment "Serie di film collegati tra loro, definita come un insieme di almeno due film correlati"@it ;
-                                                                                    rdfs:label "Franchise"@en .
+:Franchise rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                 owl:onProperty :appearsIn ;
+                                 owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :MonsterMovies
+                               ] ;
+           rdfs:subClassOf :Creature ;
+           owl:disjointWith :MonsterMovies ,
+                            :Origin ,
+                            :Power ;
+           rdfs:comment "Serie di film collegati tra loro, definita come un insieme di almeno due film correlati"@it ;
+           rdfs:label "Franchise"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/HighlyDangerousCreature
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/HighlyDangerousCreature> rdf:type owl:Class ;
-                                                                                                  rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole> ;
-                                                                                                  owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ,
-                                                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                                  rdfs:comment "Una creatura con un power level eccessivo"@it ;
-                                                                                                  rdfs:label "Highly Dangerous Creature"@en .
+:HighlyDangerousCreature rdf:type owl:Class ;
+                         rdfs:subClassOf :CreatureByRole ;
+                         owl:disjointWith :MonsterMovies ,
+                                          :Origin ,
+                                          :Power ;
+                         rdfs:comment "Una creatura con un power level eccessivo"@it ;
+                         rdfs:label "Highly Dangerous Creature"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Loser
+:Loser rdf:type owl:Class ;
+       rdfs:subClassOf :CreatureByRole ;
+       owl:disjointWith :MonsterMovies ,
+                        :Origin ,
+                        :Power ;
+       rdfs:comment "Sconfitto in una battaglia di un film, la creatura che perde"@it ;
+       rdfs:label "Loser"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> rdf:type owl:Class ;
-                                                                                        rdfs:subClassOf <http://schema.org/Movie> ;
-                                                                                        owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NaturalCreature> ,
-                                                                                                         <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NuclearCreature> ,
-                                                                                                         <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                         <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ,
-                                                                                                         <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/VampireCreature> ;
-                                                                                        rdfs:comment "Pellicola cinematografica con una creatura di finzione all'interno"@it ;
-                                                                                        rdfs:label "Monster Movies"@en .
+:MonsterMovies rdf:type owl:Class ;
+               rdfs:subClassOf <http://schema.org/Movie> ;
+               owl:disjointWith :NaturalCreature ,
+                                :NuclearCreature ,
+                                :Origin ,
+                                :Power ,
+                                :VampireCreature ;
+               rdfs:comment "Pellicola cinematografica con una creatura di finzione all'interno"@it ;
+               rdfs:label "Monster Movies"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NaturalCreature
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NaturalCreature> rdf:type owl:Class ;
-                                                                                          owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                                                                owl:onProperty <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> ;
-                                                                                                                owl:hasValue <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Evolution>
-                                                                                                              ] ;
-                                                                                          rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin> ;
-                                                                                          owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                          rdfs:comment "Creatura generata per cause naturali"@it ;
-                                                                                          rdfs:label "Natural Creature"@en .
+:NaturalCreature rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasOrigin ;
+                                       owl:hasValue :Evolution
+                                     ] ;
+                 rdfs:subClassOf :CreatureByOrigin ;
+                 owl:disjointWith :Origin ,
+                                  :Power ;
+                 rdfs:comment "Creatura generata per cause naturali"@it ;
+                 rdfs:label "Natural Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NuclearCreature
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NuclearCreature> rdf:type owl:Class ;
-                                                                                          owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                                                                owl:onProperty <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> ;
-                                                                                                                owl:hasValue <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear>
-                                                                                                              ] ;
-                                                                                          rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin> ;
-                                                                                          owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ,
-                                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                          rdfs:comment "Creatura la cui origine è legata all'energia nucleare o alle radiazioni"@it ;
-                                                                                          rdfs:label "Nuclear Creature"@en .
+:NuclearCreature rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasOrigin ;
+                                       owl:hasValue :Nuclear
+                                     ] ;
+                 rdfs:subClassOf :CreatureByOrigin ;
+                 owl:disjointWith :Origin ,
+                                  :Power ;
+                 rdfs:comment "Creatura la cui origine è legata all'energia nucleare o alle radiazioni"@it ;
+                 rdfs:label "Nuclear Creature"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> rdf:type owl:Class ;
-                                                                                 owl:equivalentClass [ rdf:type owl:Class ;
-                                                                                                       owl:oneOf ( <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Bite>
-                                                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Evolution>
-                                                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Infection>
-                                                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear>
-                                                                                                                 )
-                                                                                                     ] ;
-                                                                                 owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ,
-                                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/VampireCreature> ;
-                                                                                 rdfs:comment "Classe enumerata che rappresenta le possibili origini di una creatura: morso, infezione o nucleare"@it ;
-                                                                                 rdfs:label "Origin"@en .
+:Origin rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                              owl:oneOf ( :Bite
+                                          :Evolution
+                                          :Infection
+                                          :Nuclear
+                                        )
+                            ] ;
+        owl:disjointWith :Power ,
+                         :VampireCreature ;
+        rdfs:comment "Classe enumerata che rappresenta le possibili origini di una creatura: morso, infezione o nucleare"@it ;
+        rdfs:label "Origin"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> rdf:type owl:Class ;
-                                                                                owl:disjointWith <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/VampireCreature> ;
-                                                                                rdfs:comment "Potere o abilità speciale posseduta da una creatura"@it ;
-                                                                                rdfs:label "Power"@en .
+:Power rdf:type owl:Class ;
+       owl:disjointWith :VampireCreature ;
+       rdfs:comment "Potere o abilità speciale posseduta da una creatura"@it ;
+       rdfs:label "Power"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/VampireCreature
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/VampireCreature> rdf:type owl:Class ;
-                                                                                          owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                                                                owl:onProperty <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> ;
-                                                                                                                owl:hasValue <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Bite>
-                                                                                                              ] ;
-                                                                                          rdfs:subClassOf <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin> ;
-                                                                                          rdfs:comment "Creatura la cui origine è legata al morso di un vampiro"@en ;
-                                                                                          rdfs:label "Vampire Creature"@en .
+:VampireCreature rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasOrigin ;
+                                       owl:hasValue :Bite
+                                     ] ;
+                 rdfs:subClassOf :CreatureByOrigin ;
+                 rdfs:comment "Creatura la cui origine è legata al morso di un vampiro"@en ;
+                 rdfs:label "Vampire Creature"@en .
 
 
 #################################################################
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Anti_Hero_Alignment
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Anti_Hero_Alignment> rdf:type owl:NamedIndividual ,
+                                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment> ,
+                                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#NeutralAlignment> ;
+                                                                                              rdfs:comment "Allineamento neutrale, nè tendente al bene nè al male"@it ;
+                                                                                              rdfs:label "Neutral_Alignment"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment> rdf:type owl:NamedIndividual ,
+                                                                                                 <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment> ,
+                                                                                                 <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment> ;
+                                                                                        rdfs:comment "Allineamento Cattivo"@it ;
+                                                                                        rdfs:label "Evil Alignment"@en .
+
+
+###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Good_Alignment
+<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Good_Alignment> rdf:type owl:NamedIndividual ,
+                                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Alignment> ,
+                                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#GoodAlignment> ;
+                                                                                         rdfs:comment "Allineamento Buono"@it ;
+                                                                                         rdfs:label "Good Alignment"@en .
+
+
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Adam_Wingard
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Adam_Wingard> rdf:type owl:NamedIndividual ,
-                                                                                                <http://schema.org/Person> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Crew> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director> ;
-                                                                                       rdfs:comment "Regista americano noto per Godzilla vs. Kong"@it ;
-                                                                                       rdfs:label "Adam Wingard"@en .
+:Adam_Wingard rdf:type owl:NamedIndividual ,
+                       <http://schema.org/Person> ,
+                       :Crew ,
+                       :Director ;
+              rdfs:comment "Regista americano noto per Godzilla vs. Kong"@it ;
+              rdfs:label "Adam Wingard"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle1
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle1> rdf:type owl:NamedIndividual ,
-                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                                                  owl:differentFrom <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle_of_Godzilla_vs_King_Kong> ;
-                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/happensIn> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster> ;
-                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ,
-                                                                                                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora> ;
-                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasWinner> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ;
-                                                                                  rdfs:comment "Battaglia tra Godzilla e King Ghidorah avvenuta nel film Ghidorah, the Three-Headed Monster"@it ;
-                                                                                  rdfs:label "Battle of Godzilla vs King Ghidorah (1964)"@en .
+:Battle1 rdf:type owl:NamedIndividual ,
+                  :Battle ;
+         owl:differentFrom :Battle_of_Godzilla_vs_King_Kong ;
+         :happensIn :Ghidorah_The_ThreeHeaded_Monster ;
+         :hasParticipant :Godzilla ,
+                         :King_Ghidora ;
+         :hasWinner :Godzilla ;
+         rdfs:comment "Battaglia tra Godzilla e King Ghidorah avvenuta nel film Ghidorah, the Three-Headed Monster"@it ;
+         rdfs:label "Battle of Godzilla vs King Ghidorah (1964)"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle_of_Godzilla_vs_King_Kong
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle_of_Godzilla_vs_King_Kong> rdf:type owl:NamedIndividual ,
-                                                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                                                                          <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/happensIn> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong> ;
-                                                                                                          <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ,
-                                                                                                                                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong> ;
-                                                                                                          <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasWinner> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ;
-                                                                                                          rdfs:comment "Battaglia tra Godzilla e King Kongh avvenuta nel film Godzilla vs Kong"@it ;
-                                                                                                          rdfs:label "Battle of Godzilla vs King Kong"@en .
+:Battle_of_Godzilla_vs_King_Kong rdf:type owl:NamedIndividual ,
+                                          :Battle ;
+                                 :happensIn :Godzilla_vs_Kong ;
+                                 :hasParticipant :Godzilla ,
+                                                 :King_Kong ;
+                                 :hasWinner :Godzilla ;
+                                 rdfs:comment "Battaglia tra Godzilla e King Kongh avvenuta nel film Godzilla vs Kong"@it ;
+                                 rdfs:label "Battle of Godzilla vs King Kong"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Bite
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Bite> rdf:type owl:NamedIndividual ,
-                                                                                        <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ;
-                                                                               rdfs:comment "Origine legata al morso di una creatura soprannaturale come un vampiro"@it ;
-                                                                               rdfs:label "Bite"@en .
+:Bite rdf:type owl:NamedIndividual ,
+               :Origin ;
+      rdfs:comment "Origine legata al morso di una creatura soprannaturale come un vampiro"@it ;
+      rdfs:label "Bite"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula> rdf:type owl:NamedIndividual ,
-                                                                                           <http://dbpedia.org/ontology/FictionalCharacter> ,
-                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ,
-                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin> ,
-                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/VampireCreature> ;
-                                                                                  owl:differentFrom <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ,
-                                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora> ,
-                                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong> ;
-                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula_1931> ;
-                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Bite> ;
-                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasPower> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Regeneration> ;
-                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/firstMovie> "Dracula (1931)" ;
-                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/height> "1.8"^^xsd:float ;
-                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/powerLevel> 500 ;
-                                                                                  rdfs:comment "Vampiro leggendario originato da un morso, protagonista dell'omonimo film del 1931. Possiede il potere della rigenerazione"@it ;
-                                                                                  rdfs:label "Dracula"@en .
+:Dracula rdf:type owl:NamedIndividual ,
+                  <http://dbpedia.org/ontology/FictionalCharacter> ,
+                  :Creature ,
+                  :CreatureByOrigin ,
+                  :VampireCreature ;
+         owl:differentFrom :Godzilla ,
+                           :King_Ghidora ,
+                           :King_Kong ;
+         <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment> ;
+         :appearsIn :Dracula_1931 ;
+         :hasOrigin :Bite ;
+         :hasPower :Regeneration ;
+         :firstMovie "Dracula (1931)" ;
+         :height "1.8"^^xsd:float ;
+         :powerLevel 500 ;
+         rdfs:comment "Vampiro leggendario originato da un morso, protagonista dell'omonimo film del 1931. Possiede il potere della rigenerazione"@it ;
+         rdfs:label "Dracula"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula_1931
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Dracula_1931> rdf:type owl:NamedIndividual ,
-                                                                                                <http://schema.org/Movie> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                       owl:differentFrom <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster> ,
-                                                                                                         <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954> ,
-                                                                                                         <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/directedBy> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Tod_Browning> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/releaseYear> "1931-02-14T00:00:00"^^xsd:dateTime ;
-                                                                                       rdfs:comment "Film horror classico del 1931 diretto da Tod Browning, con Bela Lugosi nel ruolo di Dracula"@it ;
-                                                                                       rdfs:label "Dracula (1931)"@en .
+:Dracula_1931 rdf:type owl:NamedIndividual ,
+                       <http://schema.org/Movie> ,
+                       :MonsterMovies ;
+              owl:differentFrom :Ghidorah_The_ThreeHeaded_Monster ,
+                                :Godzilla_1954 ,
+                                :Godzilla_vs_Kong ;
+              :directedBy :Tod_Browning ;
+              :releaseYear "1931-02-14T00:00:00"^^xsd:dateTime ;
+              rdfs:comment "Film horror classico del 1931 diretto da Tod Browning, con Bela Lugosi nel ruolo di Dracula"@it ;
+              rdfs:label "Dracula (1931)"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Evolution
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Evolution> rdf:type owl:NamedIndividual ,
-                                                                                             <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ;
-                                                                                    rdfs:comment "Processo di generazione di mostri"@it ;
-                                                                                    rdfs:label "Evolution"@en .
+:Evolution rdf:type owl:NamedIndividual ,
+                    :Origin ;
+           rdfs:comment "Processo di generazione di mostri"@it ;
+           rdfs:label "Evolution"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Firebreath
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Firebreath> rdf:type owl:NamedIndividual ,
-                                                                                              <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                     rdfs:comment "Soffio atomico, potere caratteristico di Godzilla e altre creature nucleari"@it ;
-                                                                                     rdfs:label "Atomic Breath"@en .
+:Firebreath rdf:type owl:NamedIndividual ,
+                     :Power ;
+            rdfs:comment "Soffio atomico, potere caratteristico di Godzilla e altre creature nucleari"@it ;
+            rdfs:label "Atomic Breath"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster> rdf:type owl:NamedIndividual ,
-                                                                                                                    <http://schema.org/Movie> ,
-                                                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                                           owl:differentFrom <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954> ,
-                                                                                                                             <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong> ;
-                                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/directedBy> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Yoshimitsu_Banno> ;
-                                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/isSequel> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954> ;
-                                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/releaseYear> "1964-12-20T00:00:00"^^xsd:dateTime ;
-                                                                                                           rdfs:comment "Film del 1964 diretto da Ishiro Honda, sequel di Godzilla 1954, in cui appare per la prima volta King Ghidorah"@it ;
-                                                                                                           rdfs:label "Ghidorah, the Three-Headed Monster"@en .
+:Ghidorah_The_ThreeHeaded_Monster rdf:type owl:NamedIndividual ,
+                                           <http://schema.org/Movie> ,
+                                           :MonsterMovies ;
+                                  owl:differentFrom :Godzilla_1954 ,
+                                                    :Godzilla_vs_Kong ;
+                                  :directedBy :Yoshimitsu_Banno ;
+                                  :isSequel :Godzilla_1954 ;
+                                  :releaseYear "1964-12-20T00:00:00"^^xsd:dateTime ;
+                                  rdfs:comment "Film del 1964 diretto da Ishiro Honda, sequel di Godzilla 1954, in cui appare per la prima volta King Ghidorah"@it ;
+                                  rdfs:label "Ghidorah, the Three-Headed Monster"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> rdf:type owl:NamedIndividual ,
-                                                                                            <http://dbpedia.org/ontology/FictionalCharacter> ,
-                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/AggressiveCreature> ,
-                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ,
-                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin> ,
-                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole> ,
-                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/DominantCreature> ,
-                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Franchise> ,
-                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NuclearCreature> ;
-                                                                                   owl:differentFrom <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora> ,
-                                                                                                     <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong> ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster> ,
-                                                                                                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954> ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/belongsToSaga> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954> ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/fights> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora> ,
-                                                                                                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong> ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/foughtBy> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora> ,
-                                                                                                                                                                      <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong> ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear> ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasPower> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Firebreath> ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/participatesIn> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle1> ,
-                                                                                                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle_of_Godzilla_vs_King_Kong> ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/sharesOriginWith> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora> ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/firstMovie> "Godzilla (1954)" ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/height> "129.8"^^xsd:float ;
-                                                                                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/powerLevel> 800 ;
-                                                                                   rdfs:comment "Mostro gigante di origine nucleare, protagonista dell'omonimo franchise giapponese. Possiede il potere del soffio atomico"@it ;
-                                                                                   rdfs:label "Godzilla"@en .
+:Godzilla rdf:type owl:NamedIndividual ,
+                   <http://dbpedia.org/ontology/FictionalCharacter> ,
+                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist> ,
+                   <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Hero> ,
+                   :AggressiveCreature ,
+                   :Creature ,
+                   :CreatureByOrigin ,
+                   :CreatureByRole ,
+                   :DominantCreature ,
+                   :Franchise ,
+                   :NuclearCreature ;
+          owl:differentFrom :King_Ghidora ,
+                            :King_Kong ;
+          <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Anti_Hero_Alignment> ,
+                                                                                                 <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment> ;
+          :appearsIn :Ghidorah_The_ThreeHeaded_Monster ,
+                     :Godzilla_1954 ;
+          :belongsToSaga :Godzilla_1954 ;
+          :fights :King_Ghidora ,
+                  :King_Kong ;
+          :foughtBy :King_Ghidora ,
+                    :King_Kong ;
+          :hasOrigin :Nuclear ;
+          :hasPower :Firebreath ;
+          :participatesIn :Battle1 ,
+                          :Battle_of_Godzilla_vs_King_Kong ;
+          :sharesOriginWith :King_Ghidora ;
+          :firstMovie "Godzilla (1954)" ;
+          :height "129.8"^^xsd:float ;
+          :powerLevel 800 ;
+          rdfs:comment "Mostro gigante di origine nucleare, protagonista dell'omonimo franchise giapponese. Possiede il potere del soffio atomico"@it ;
+          rdfs:label "Godzilla"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954> rdf:type owl:NamedIndividual ,
-                                                                                                 <http://schema.org/Movie> ,
-                                                                                                 <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                        owl:differentFrom <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong> ;
-                                                                                        <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/directedBy> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ishiro_Honda> ;
-                                                                                        <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/releaseYear> "1954-05-14T00:00:00"^^xsd:dateTime ;
-                                                                                        rdfs:comment "Primo film del franchise Godzilla, diretto da Yoshimitsu Banno e uscito nel 1954"@it ;
-                                                                                        rdfs:label "Godzilla 1954"@en .
+:Godzilla_1954 rdf:type owl:NamedIndividual ,
+                        <http://schema.org/Movie> ,
+                        :MonsterMovies ;
+               owl:differentFrom :Godzilla_vs_Kong ;
+               :directedBy :Ishiro_Honda ;
+               :releaseYear "1954-05-14T00:00:00"^^xsd:dateTime ;
+               rdfs:comment "Primo film del franchise Godzilla, diretto da Yoshimitsu Banno e uscito nel 1954"@it ;
+               rdfs:label "Godzilla 1954"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong> rdf:type owl:NamedIndividual ,
-                                                                                                    <http://schema.org/Movie> ,
-                                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/MonsterMovies> ;
-                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/directedBy> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Adam_Wingard> ;
-                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/isSequel> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster> ,
-                                                                                                                                                                              <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954> ;
-                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/releaseYear> "2021-03-31T00:00:00"^^xsd:dateTime ;
-                                                                                           rdfs:comment "Film del 2021 diretto da Adam Wingard, parte del MonsterVerse"@it ;
-                                                                                           rdfs:label "Godzilla vs. Kong"@en .
+:Godzilla_vs_Kong rdf:type owl:NamedIndividual ,
+                           <http://schema.org/Movie> ,
+                           :MonsterMovies ;
+                  :directedBy :Adam_Wingard ;
+                  :isSequel :Ghidorah_The_ThreeHeaded_Monster ,
+                            :Godzilla_1954 ;
+                  :releaseYear "2021-03-31T00:00:00"^^xsd:dateTime ;
+                  rdfs:comment "Film del 2021 diretto da Adam Wingard, parte del MonsterVerse"@it ;
+                  rdfs:label "Godzilla vs. Kong"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Infection
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Infection> rdf:type owl:NamedIndividual ,
-                                                                                             <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ;
-                                                                                    rdfs:comment "Origine legata a un'infezione virale o batterica"@it ;
-                                                                                    rdfs:label "Infection"@en .
+:Infection rdf:type owl:NamedIndividual ,
+                    :Origin ;
+           rdfs:comment "Origine legata a un'infezione virale o batterica"@it ;
+           rdfs:label "Infection"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ishiro_Honda
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ishiro_Honda> rdf:type owl:NamedIndividual ,
-                                                                                                <http://schema.org/Person> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Crew> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director> ;
-                                                                                       rdfs:comment "Regista giapponese noto per aver diretto numerosi film di Godzilla"@it ;
-                                                                                       rdfs:label "Ishiro Honda"@en .
+:Ishiro_Honda rdf:type owl:NamedIndividual ,
+                       <http://schema.org/Person> ,
+                       :Crew ,
+                       :Director ;
+              rdfs:comment "Regista giapponese noto per aver diretto numerosi film di Godzilla"@it ;
+              rdfs:label "Ishiro Honda"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Ghidora> rdf:type owl:NamedIndividual ,
-                                                                                                <http://dbpedia.org/ontology/FictionalCharacter> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/AggressiveCreature> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Antagonist> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/HighlyDangerousCreature> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NuclearCreature> ;
-                                                                                       owl:differentFrom <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/belongsToSaga> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/fights> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/foughtBy> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasPower> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Firebreath> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/participatesIn> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle1> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/sharesOriginWith> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/firstMovie> "Ghidorah, the Three-Headed Monster" ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/height> "158.5"^^xsd:float ;
-                                                                                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/powerLevel> 900 ;
-                                                                                       rdfs:comment "Drago a tre teste di origine nucleare, principale antagonista di Godzilla"@it ;
-                                                                                       rdfs:label "King Ghidora"@en .
+:King_Ghidora rdf:type owl:NamedIndividual ,
+                       <http://dbpedia.org/ontology/FictionalCharacter> ,
+                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist> ,
+                       <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Hero> ,
+                       :AggressiveCreature ,
+                       :Creature ,
+                       :CreatureByOrigin ,
+                       :CreatureByRole ,
+                       :HighlyDangerousCreature ,
+                       :Loser ,
+                       :NuclearCreature ;
+              owl:differentFrom :King_Kong ;
+              <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Bad_Alignment> ;
+              :appearsIn :Ghidorah_The_ThreeHeaded_Monster ;
+              :belongsToSaga :Godzilla_1954 ;
+              :fights :Godzilla ;
+              :foughtBy :Godzilla ;
+              :hasOrigin :Nuclear ;
+              :hasPower :Firebreath ;
+              :participatesIn :Battle1 ;
+              :sharesOriginWith :Godzilla ;
+              :firstMovie "Ghidorah, the Three-Headed Monster" ;
+              :height "158.5"^^xsd:float ;
+              :powerLevel 900 ;
+              rdfs:comment "Drago a tre teste di origine nucleare, principale antagonista di Godzilla"@it ;
+              rdfs:label "King Ghidora"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/King_Kong> rdf:type owl:NamedIndividual ,
-                                                                                             <http://dbpedia.org/ontology/FictionalCharacter> ,
-                                                                                             <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/AggressiveCreature> ,
-                                                                                             <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Antagonist> ,
-                                                                                             <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ,
-                                                                                             <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByOrigin> ,
-                                                                                             <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/CreatureByRole> ,
-                                                                                             <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/NaturalCreature> ;
-                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/appearsIn> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_vs_Kong> ;
-                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/belongsToSaga> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Ghidorah_The_ThreeHeaded_Monster> ,
-                                                                                                                                                                            <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla_1954> ;
-                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/fights> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ;
-                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/foughtBy> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Godzilla> ;
-                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Evolution> ;
-                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/participatesIn> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle_of_Godzilla_vs_King_Kong> ;
-                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/firstMovie> "King Kong (1933)" ;
-                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/height> "102.2"^^xsd:float ;
-                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/powerLevel> 600 ;
-                                                                                    rdfs:comment "Gigantesco gorilla nato per processi evolutivi particolari"@it ;
-                                                                                    rdfs:label "King Kong"@en .
+:King_Kong rdf:type owl:NamedIndividual ,
+                    <http://dbpedia.org/ontology/FictionalCharacter> ,
+                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Hero> ,
+                    :AggressiveCreature ,
+                    :Creature ,
+                    :CreatureByOrigin ,
+                    :CreatureByRole ,
+                    :Loser ,
+                    :NaturalCreature ;
+           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Anti_Hero_Alignment> ,
+                                                                                                  <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Good_Alignment> ;
+           :appearsIn :Godzilla_vs_Kong ;
+           :belongsToSaga :Ghidorah_The_ThreeHeaded_Monster ,
+                          :Godzilla_1954 ;
+           :fights :Godzilla ;
+           :foughtBy :Godzilla ;
+           :hasOrigin :Evolution ;
+           :participatesIn :Battle_of_Godzilla_vs_King_Kong ;
+           :firstMovie "King Kong (1933)" ;
+           :height "102.2"^^xsd:float ;
+           :powerLevel 600 ;
+           rdfs:comment "Gigantesco gorilla nato per processi evolutivi particolari"@it ;
+           rdfs:label "King Kong"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Nuclear> rdf:type owl:NamedIndividual ,
-                                                                                           <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Origin> ;
-                                                                                  rdfs:comment "Origine legata all'energia nucleare o alle radiazioni atomiche"@it ;
-                                                                                  rdfs:label "Nuclear"@en .
+:Nuclear rdf:type owl:NamedIndividual ,
+                  :Origin ;
+         rdfs:comment "Origine legata all'energia nucleare o alle radiazioni atomiche"@it ;
+         rdfs:label "Nuclear"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Regeneration
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Regeneration> rdf:type owl:NamedIndividual ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Power> ;
-                                                                                       rdfs:comment "Capacità di rigenerare parti del corpo danneggiate"@it ;
-                                                                                       rdfs:label "Regeneration"@en .
+:Regeneration rdf:type owl:NamedIndividual ,
+                       :Power ;
+              rdfs:comment "Capacità di rigenerare parti del corpo danneggiate"@it ;
+              rdfs:label "Regeneration"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Tod_Browning
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Tod_Browning> rdf:type owl:NamedIndividual ,
-                                                                                                <http://schema.org/Person> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Crew> ,
-                                                                                                <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director> ;
-                                                                                       rdfs:comment "Regista americano noto per il film Dracula del 1931"@it ;
-                                                                                       rdfs:label "Tod Browning"@en .
+:Tod_Browning rdf:type owl:NamedIndividual ,
+                       <http://schema.org/Person> ,
+                       :Crew ,
+                       :Director ;
+              rdfs:comment "Regista americano noto per il film Dracula del 1931"@it ;
+              rdfs:label "Tod Browning"@en .
 
 
 ###  http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Yoshimitsu_Banno
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Yoshimitsu_Banno> rdf:type owl:NamedIndividual ,
-                                                                                                    <http://schema.org/Person> ,
-                                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Crew> ,
-                                                                                                    <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Director> ;
-                                                                                           rdfs:comment "Regista giapponese che ha diretto film del franchise Godzilla"@it ;
-                                                                                           rdfs:label "Yoshimitsu Banno"@en .
+:Yoshimitsu_Banno rdf:type owl:NamedIndividual ,
+                           <http://schema.org/Person> ,
+                           :Crew ,
+                           :Director ;
+                  rdfs:comment "Regista giapponese che ha diretto film del franchise Godzilla"@it ;
+                  rdfs:label "Yoshimitsu Banno"@en .
 
 
 #################################################################
 #    Rules
 #################################################################
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:c1 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:c2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/w> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:a1 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/m1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:a2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/m2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:b rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:c rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:w rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/f1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:m1 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/f2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:m2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/lvl> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:b1 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:b2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/o> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:f1 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+:f2 rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:lvl rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:o rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "Indica che se una creatura perde un combattimento, era l'antagonista della storia" ;
-   rdfs:label "Antagonist" ;
+   rdfs:comment "Se due creature hanno la stessa origine, sono creature affini" ;
+   rdfs:label "SameOrigin" ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b>
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasOrigin ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c1 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :o
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c>
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasOrigin ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :c2 ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :o
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :c1 ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :c2
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :sharesOriginWith ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c1 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :c2
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Creatura che combatte contro un Antagonist" ;
+   rdfs:label "S1" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Creature ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c1
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :fights ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :c1 ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c2
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :c2
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Hero> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c1
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Creatura cattiva che combatte contro un buono" ;
+   rdfs:label "Antagonist A" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Creature ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c1
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :fights ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :c1 ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c2
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasWinner> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/w>
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :c1 ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :a1
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :a1
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :c2 ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :a2
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#GoodAlignment> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :a2
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c1
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Creatura cattiva che combatte contro un anti-eroe" ;
+   rdfs:label "Antagonist B" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :fights ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c1 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :c2
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#NeutralAlignment> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :a2
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Creature ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :c1
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :c1 ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :a1
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#hasAlignment> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :c2 ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :a2
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#EvilAlignment> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :a1
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1#Antagonist> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c1
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Indica che se una creatura perde un combattimento, era l'antagonista della storia" ;
+   rdfs:label "Loser" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasParticipant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :b ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Battle ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :b
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasWinner ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :b ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :w
                                                                            ] ;
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/w>
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :w
                                                                                       ] ;
                                                                             rdf:rest rdf:nil
                                                                           ]
@@ -723,8 +991,8 @@
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Antagonist> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c>
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Loser ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
@@ -736,25 +1004,25 @@
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b>
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Battle ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :b
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/m1>
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasParticipant ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :b ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :m1
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasParticipant> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/m2>
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasParticipant ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :b ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :m2
                                                                            ] ;
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/m1> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/m2>
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :m1 ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :m2
                                                                                       ] ;
                                                                             rdf:rest rdf:nil
                                                                           ]
@@ -763,9 +1031,9 @@
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/fights> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/m1> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/m2>
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :fights ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :m1 ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :m2
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
@@ -777,42 +1045,42 @@
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b1>
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Battle ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :b1
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Battle> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b2>
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Battle ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :b2
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasWinner> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b1> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c>
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasWinner ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :b1 ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :c
                                                                            ] ;
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasWinner> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b2> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c>
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasWinner ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :b2 ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :c
                                                                                       ] ;
                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/happensIn> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b1> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/f1>
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :happensIn ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :b1 ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :f1
                                                                                                  ] ;
                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/happensIn> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/b2> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/f2>
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :happensIn ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :b2 ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :f2
                                                                                                             ] ;
                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/f1> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/f2>
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :f1 ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :f2
                                                                                                                        ] ;
                                                                                                              rdf:rest rdf:nil
                                                                                                            ]
@@ -824,8 +1092,8 @@
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/DominantCreature> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c>
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :DominantCreature ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
@@ -837,20 +1105,20 @@
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/Creature> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c>
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Creature ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/powerLevel> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/lvl>
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :powerLevel ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :lvl
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
                                                                              <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
                                                                              <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                          rdf:first <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/lvl> ;
+                                                                                                                          rdf:first :lvl ;
                                                                                                                           rdf:rest [ rdf:type rdf:List ;
                                                                                                                                      rdf:first 800 ;
                                                                                                                                      rdf:rest rdf:nil
@@ -863,43 +1131,8 @@
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/HighlyDangerousCreature> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c>
-                                                     ] ;
-                                           rdf:rest rdf:nil
-                                         ]
- ] .
-
-[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "Se due creature hanno la stessa origine, sono creature affini" ;
-   rdfs:label "SameOrigin" ;
-   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
-   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/o>
-                                                     ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/hasOrigin> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/o>
-                                                                ] ;
-                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2>
-                                                                           ] ;
-                                                                 rdf:rest rdf:nil
-                                                               ]
-                                                    ]
-                                         ] ;
-   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/sharesOriginWith> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c1> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/utente/ontologies/2025/9/Monster_Ontology_V1/c2>
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :HighlyDangerousCreature ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
