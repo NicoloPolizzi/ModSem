@@ -1,0 +1,1724 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="generator" content="pandoc">
+        <meta name="author" content="Matteo Brunello">
+        
+        <title>Appunti di Modellazione Concettuale per il Web
+Semantico</title>
+        <!-- Include Base CSS -->
+        <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet"/>
+        <!-- Get Google fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        
+                        <style>
+        :root {
+          --bg:  #282828;
+          --bg-secondary: #737373;
+          --fg: #fbf1c7;
+          --fg-secondary: #83a598;
+          --source-code-bg: #fbf1c7;
+          --source-code-fg: #282828;
+        }
+
+        html {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-secondary);
+            color: var(--fg);
+            font-size: 12pt;
+            font-weight: 300;
+        }
+
+        p { font-size: 12pt; }
+        .border { border-color: var(--fg); }
+        .border-left { border-color: var(--fg); }
+
+        hr {
+            color: var(--fg);
+            background-color: var(--fg);
+            border: none;
+            height: 1px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--fg-secondary);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .card {
+            background-color: var(--bg);
+            filter: drop-shadow(15px 15px 4px #4d4d4d);
+        }
+
+        .toc-container li {
+            padding: 4px 0;
+            font-size: 11pt;
+            line-height: 1.2;
+        }
+
+        .toc-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sourceCode {
+            background-color: var(--source-code-bg);
+            border-radius: 0.3em;
+        }
+
+        code.sourceCode {
+            color: var(--source-code-fg);
+            border-radius: 2px;
+            padding: 2px 4px;
+        }
+
+        pre.sourceCode {
+            margin: 16px;
+        }
+
+        code {
+            display: inline-block;
+            color: var(--source-code-fg);
+            background-color: var(--source-code-bg);
+            border-radius: 2px;
+            padding: 0px 2px;
+        }
+
+        .metablock { font-size: 11pt; }
+
+        .tag {
+            margin-left: 4px;
+            margin-bottom: 4px;
+        }
+
+        blockquote {
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            padding-left: 8px;
+            border-color: var(--fg);
+            border-style: solid;
+            border-width: 1px 1px 1px 8px;
+            border-radius: 0 0.3em 0.3em 0;
+        }
+        </style>
+    </head>
+    <!-- Body Content -->
+    <body>
+              <div class="px3 py2 lg-px4">
+            <div class="card clearfix py2">
+                                <div class="px2">
+                                        <h1>Appunti di Modellazione
+Concettuale per il Web Semantico</h1>
+                    <div class="metablock">
+                        
+                                            </div>
+                    <hr>
+                    <h1 data-number="1" id="introduzione"><span
+class="header-section-number">1</span> Introduzione</h1>
+<ul>
+<li>Web attuale: Abbondanza di contenuti strutturati in vari ambiti
+<ul>
+<li>Digital libraries e archivi;</li>
+<li>Social media;</li>
+<li>Servizi;</li>
+<li>Commercio e industria.</li>
+</ul></li>
+<li>In tutti questi ambiti in cui ci sono <em>grandi quantità di dati
+strutturati</em> che devono in qualche modo <em>condividere</em> la
+conoscenza tra di loro, le tecnologie semantiche possono giocare un
+ruolo molto importante.</li>
+<li>Per impiegare queste tecnologie per rappresentare dati strutturati
+si seguono tipicamente due passaggi principali:
+<ol type="1">
+<li>Si rappresentano i contenuti secondo i vocabolari dotati di una
+semantica comprensibile alle macchine. (Semantic Web)
+<ul>
+<li>In un certo senso corrisponde all’assiomatizzazione della
+conoscenza.</li>
+</ul></li>
+<li>Si utilizzano i vocabolari condivisi per rappresentare i dati,
+identificando vocabolari ed entità descritte attraverso gli IRI.
+<ul>
+<li>Corrisponde semplicemente all’utilizzo della conoscenza
+asiomatizzata al passo precedente.</li>
+</ul></li>
+</ol></li>
+<li>Il risultato di queste due operazioni è un <em>grafo</em> di
+conoscenza, che può essere puoi eventualmente interrogato per mezzo di
+un linguaggio (SPARQL).</li>
+<li>Quando si parla di ontologie computazionali bisogna tener conto del
+fatto che esistono anche risorse semantiche non strettamente
+ontologiche. Alcuni esempi possono essere:
+<ul>
+<li><strong>Vocabolari</strong>: utilizzo di un ontologia come
+vocabolario di termini.</li>
+<li><strong>Lessici</strong>: risorse lessicali per l’ambito linguistico
+(WordNet, FrameNet).</li>
+<li><strong>Thesauri</strong>: collezioni di termini strutturati
+fortemente tassonomici, spesso utilizzate in ambito culturale.</li>
+<li><strong>Tassonomie</strong>.</li>
+</ul></li>
+<li>Che differenza c’è quindi tra il rappresentare i dati con utilizzo
+di tecnologie semantiche e l’utilizzo di classici database? Le
+differenze sono in un certo senso limitate:
+<ul>
+<li><strong>Rapresentazione</strong>: i database utilizzano
+<strong>tabelle</strong> mentre le ontologie
+<strong>termini</strong>.</li>
+<li><strong>Semantica</strong>: i database hanno una semantica
+<strong>limitata</strong> rispetto alle <strong>ontologie</strong>
+(ragionamento automatico)</li>
+</ul></li>
+</ul>
+<h1 data-number="2"
+id="rassegna-storica-delle-tecnologie-semantiche"><span
+class="header-section-number">2</span> Rassegna storica delle tecnologie
+semantiche</h1>
+<ul>
+<li>L’antenato del web semantico sono le reti semantiche, per cui vale
+la pena studiare l’evoluzione di queste varie tecnologie fino ad
+arrivare alle ontologie.</li>
+<li>A partire dagli anni 60 si iniziò ad avvertire la necessità di
+superare le limitazioni della logica classica. Essa, difatti, soffriva
+di diversi problemi:
+<ul>
+<li>Inadeguatezza dal punto di vista cognitivo:
+<ul>
+<li>Le procedure di dimostrazione sono diverse dal ragionamento
+umano;</li>
+<li>I valori di verità non sono adatti a rappresentare aspetti
+quantitativi del mondo reale.</li>
+</ul></li>
+<li>È un sistema formale eterarchico, cioè tutte le affermazioni si
+collocano sullo stesso piano (sono tutte importanti allo stesso
+modo);</li>
+<li>È monotona, cioè l’aggiunta di conoscenza nella KB non può essere
+contraddittoria con quella già presente;</li>
+<li>È svantaggiosa dal punto di vista computazionale.</li>
+</ul></li>
+<li>Questa necessità sfocia (tra le altre cose), nella creazione di una
+nuova branca dell’IA, focalizzata sulla rappresentazione della
+conoscenza.</li>
+<li>Il quadro storico fu appunto il seguente:
+<ul>
+<li>Reti semantiche e frames (anni 60-70);</li>
+<li>Logiche non classiche (anni 70-80);</li>
+<li>Logiche desrittive (anni 80-90);</li>
+<li>Ontologie computazionali (anni 2000);</li>
+<li>Linked Data (dal 2010).</li>
+</ul></li>
+</ul>
+<h2 data-number="2.1" id="reti-semantiche"><span
+class="header-section-number">2.1</span> Reti Semantiche</h2>
+<blockquote>
+<p>Le reti semantiche sono strutture reticolari a grafo in cui i nodi
+rappresentano i <strong>concetti</strong> e gli archi rappresentano
+invece le <strong>relazioni tra concetti</strong>.</p>
+</blockquote>
+<ul>
+<li>Le prime reti semantiche venivano proprio definite <em>grafi
+relazionali</em> per questa ragione.</li>
+<li>Un esempio di rete semantica potrebbe essere quella per
+rappresentare il mondo dei blocchi:
+<ul>
+<li>Nodi per rappresentare:
+<ul>
+<li>Concetti di qualità (es. colore, peso);</li>
+<li>Istanze di blocchi (es. Blocco A, Blocco B);</li>
+<li>Elementi della simulazione (es. Tavolo).</li>
+</ul></li>
+<li>Archi che mettono in relazione i nodi:
+<ul>
+<li><code>colore</code> che connettono nodi colore alle istanze dei
+blocchi</li>
+<li><code>sopra</code> che connettono nodo tavolo o blocchi a istanze di
+blocchi</li>
+</ul></li>
+</ul></li>
+<li>I vantaggi dati da questa rappresentazione sono 2:
+<ul>
+<li>Le informazioni riguardanti un determinato concetto sono
+immediatamente disponibili (si trovano semplicemente seguendo gli archi
+che sono connessi ad esso);</li>
+<li>Permette di rappresentare intrinsecamente una nozione di
+<em>rilevanza</em> (la prossimità dei concetti ad un certo concetto
+significa che sono rilevanti ad esso).</li>
+</ul></li>
+<li>Il ragionamento in una rete semantica corrisponde a <strong>seguire
+un percorso</strong> all’interno del grafo.
+<ul>
+<li>es. Se voglio sapere di che colore è il blocco collegato sul tavolo,
+basta partire dal tavolo e seguire i vari collegamenti (<code>su</code>
+e <code>colore</code>).</li>
+</ul></li>
+<li>La rete semantica, corrisponde formalmente ad un sottoinsieme della
+logica del primordine in cui:
+<ul>
+<li>I <strong>nodi</strong> sono i <em>termini</em>;</li>
+<li>Gli <strong>archi</strong> sono i <em>predicati</em>;</li>
+<li>Tutti i fatti sono in <em>congiunzione</em> implicita.</li>
+</ul></li>
+<li>Nonostante le reti semantiche siano vantaggiose dal punto di vista
+di rappresentazione, soffrono comunque dei problemi della logica del
+prim’ordine, soprattutto dal punto di vista computazionale.</li>
+<li>Un’altra problematica delle reti semantiche è data dal fatto che le
+relazioni sono solo binarie, per cui per rappresentare delle relazioni
+che convolgono più di 2 entità viene fatto introducendo un nodo che
+rappresenta la relazione (o evento) e connettendolo a tutte le entità
+che fanno parte della relazione.
+<ul>
+<li>La soluzione, seppur valida, fa perdere la leggibilità originaria
+delle reti semantiche.</li>
+</ul></li>
+<li>Il fatto che si introducano nodi relazione, fa si che ci siano
+all’interno della rete due tipologie di nodi differenti:
+<ul>
+<li>Nodi che rappresentano concetti;</li>
+<li>Nodi che rappresentano relazioni.</li>
+</ul></li>
+<li>Da questa osservazione nascono le reti proposizionali, cioè delle
+reti semantiche che <em>includono nodi che rappresentano
+proposizioni</em>.
+<ul>
+<li>L’introduzione di questi nodi permette di introdurre una dimensione
+<strong>epistemica</strong> (cioè la rappresentazione di
+<em>credenze</em>).</li>
+<li>Ad esempio, possiamo dire che <em>Maria</em> crede un determinata
+proposizione collegando il nodo <em>Maria</em> alla proposizione.</li>
+</ul></li>
+<li>Le reti semantiche proposizionali possono avere la stessa
+espressività della logica del prim’ordine (in caso si introducano
+quantificatori, variabili, ecc..)
+<ul>
+<li>Per questo motivo, soffrono degli stessi problemi computazionali
+della logica del prim’ordine;</li>
+<li>La soluzione fu quella di limitare l’espressività privilegiando
+tipologie di ragionamento meno onerose dal punto di vista
+computazionale.</li>
+</ul></li>
+<li>Le reti semantiche inoltre soffrono di problemi anche a livello di
+rappresentazione:
+<ul>
+<li>I nodi rappresentano sia <strong>tipi</strong> (classi) di entità
+che <strong>entità</strong> (individui)</li>
+<li>Gli archi <code>is_a</code> hanno significato diverso a seconda che
+connettano due classi oppure un individuo e una classe
+<ul>
+<li>Tra classi: relazione sottoclasse;</li>
+<li>Tra classi ed entità: appartenza di un individuo ad una classe.</li>
+</ul></li>
+</ul></li>
+<li>La prima relazione (tra classi) è chiamata <code>is_a</code>, e
+tramite essa è possibile rappresentare relazioni di tipo
+<em>tassonomico</em>.
+<ul>
+<li>Le relazioni tassonomiche hanno diversi vantaggi;</li>
+<li>Otteniamo una rappresentazione meno ridondante facendo l’assunzione
+che una classe eredita tutte le proprietà delle classi di cui è
+sottoclasse e che le sottoclassi hanno proprietà più specifiche delle
+classi;</li>
+<li>Queste assunzioni però introducono anche alcuni problemi ad esempio
+per poter trovare le proprietà di un individuo di una classe bisogna
+andare a fare il retrieval di tutte le proprietà delle classi
+padri;</li>
+<li>Inoltre a livello di rappresentazione ci sono alcune eccezioni (es.
+i Pinguini sono uccelli ma non volano).
+<ul>
+<li>Questi problemi possono essere risolti introducendo delle regole che
+blocchino delle inferenze in base a delle informazioni di
+background;</li>
+<li>Di solito si utilizza come criterio di decisione per selezionare
+quale conoscenza prediligere in base alla <em>prossimità</em> di un
+certo nodo;</li>
+<li>Si predilige il minor numero di passi di inferenza.</li>
+</ul></li>
+</ul></li>
+<li>La seconda relazione (tra classi ed entità) è invece chiamata
+<code>instance_of</code>, e tramite essa rappresentiamo l’appartenenza
+di individui a determinate classi.</li>
+</ul>
+<h2 data-number="2.2" id="frame-theory"><span
+class="header-section-number">2.2</span> Frame Theory</h2>
+<ul>
+<li>Un’evoluzione delle reti semantiche fu appunto la Frame Theory,
+introdotta intorno agli anni 70 da un articolo di Marvin Minsky;</li>
+<li>L’idea era quella di aggiungere capacità espressiva alle reti
+semantiche in modo da rappresentare conoscenza di tipo
+<em>stereotipato</em>;</li>
+<li>Furono sviluppai per applicazioni specifiche dell’IA quali
+<em>visione artificiale</em> ed <em>elaborazione del
+linguaggio</em>;</li>
+<li>Un frame è una struttura dati per rappresentare una certa situazione
+stereotipica (es. essere in una certa stanza, andare ad un compleanno di
+un bambino);
+<ul>
+<li>I livelli più alti rappresentano conoscenza sempre vera rispetto
+alla situazione: contengono slots terminali con valori di default;</li>
+<li>Quelli più bassi sono degli slots che possono essere riempiti con
+dati o istanze specifiche della situazione;</li>
+<li>Gli slots terminali possono puntare anche ad altri sottoframes</li>
+</ul></li>
+<li>La struttura di un frame è quindi la seguente:
+<ul>
+<li><strong>Identificativo</strong>: permette l’identificazione del
+frame da parte di altri frames;</li>
+<li><strong>Slot generali/specifici</strong>: permettono di creare una
+tassonomia di frame;</li>
+<li><strong>Slot generici</strong>: rappresentano la conoscenza
+stereotipica;</li>
+<li><strong>Procedure per il calcolo di valori</strong>: permettono di
+calcolare automaticamente alcuni valori degli slots sulla base di
+condizioni specifiche;</li>
+<li><strong>Valori predefiniti</strong>: valori impostati di
+default.</li>
+</ul></li>
+</ul>
+<h2 data-number="2.3" id="sistemi-a-regole"><span
+class="header-section-number">2.3</span> Sistemi a regole</h2>
+<ul>
+<li>Sistemi in cui la conoscenza viene formalizzata in regole di
+produzione, le quali sono composte da:
+<ul>
+<li><strong>Antecendente</strong>: che formalizza quali fatti devono
+essere veri per attivare la regola;</li>
+<li><strong>Conseguente</strong>: formalizza gli effetti che devono
+essere eseguiti quando l’antecedente è vero.</li>
+</ul></li>
+<li>Questo tipo di sistemi (sistemi esperti) prediligono essenzialmente
+le regole che sono attivate da fatti più recenti nella working
+memory;</li>
+<li>I motori inferenziali hanno dei meccanismi per evitare di applicare
+la stessa regola più volte (<em>rifrazione</em>);</li>
+<li>Un esempio di questa tipolologia di sistemi era MYCIN, un sistema
+sviluppato a Stanford negli anni 70.
+<ul>
+<li>Era un sistema a regole che utilizzava l’incertezza per fare
+diagnosi mediche su agenti patologici.</li>
+<li>Si associavano dei pesi di incertezza (Certainty Factors) sia alle
+regole che ai fatti.</li>
+</ul></li>
+<li>Diversi problemi di questi sistemi era appunto la formalizzazione
+delle regole manuale e l’onerosità dal punto di vista computazionale per
+il pattern matching.</li>
+</ul>
+<h2 data-number="2.4" id="sneps"><span
+class="header-section-number">2.4</span> SNePs</h2>
+<ul>
+<li>Il sistema SNePs fu uno dei sistemi di maggiore rilevanza storica
+<ul>
+<li>Composto da due moduli:
+<ul>
+<li>Rete semantica proposizionale per rappresentare la conoscenza;</li>
+<li>Motore di ragionamento per fare inferenza su di essa.</li>
+</ul></li>
+<li>Permette vari tipi di ragionamento.</li>
+</ul></li>
+<li>SNePs nasce per rappresentare la conoscenza di tipo epistemico di un
+agente (robot).</li>
+<li>Come detto in precedenza la differenza tra reti semantiche e quelle
+proposizionali è l’introduzione di nodi particolari che rappresentano
+proposizioni (essenzialmente sono equivalenti a delle asserzioni)
+<ul>
+<li><em>es</em>. un nodo proposizione <code>M1!</code> connesso a
+<code>Snoopy</code> e <code>Dog</code> che rappresenta che un Snoopy sia
+un cane;</li>
+<li>In questo caso, diciamo che il sistema <em>crede</em> che Snoopy sia
+un Cane.</li>
+</ul></li>
+<li>Le funzionalità di SNePs sono le seguenti:
+<ul>
+<li><strong>Rappresentare</strong> la conoscenza nella rete;</li>
+<li><strong>Interrogare</strong> la rete cercando nodi con determinate
+caratteristiche;</li>
+<li><strong>Inferire</strong> nuova conoscenza a partire da quelle
+esistenti.</li>
+</ul></li>
+<li>Per fare ciò, queste funzionalità sono eseguite esplicitamente
+dall’utente, utilizzando un linguaggio apposito;</li>
+<li>Un nodo in SNePs può essere:
+<ul>
+<li><strong>Molecolare</strong> (<span
+class="math inline"><em>M</em><sub><em>i</em></sub></span>): rappresenta
+delle proposizioni, regole di ragionamento o individui. Ha solo archi
+uscenti.</li>
+<li><strong>Base</strong> (<span
+class="math inline"><em>B</em><sub><em>i</em></sub></span>): rappresenta
+individui che hanno certe caratteristiche a cui non si vuole dare però
+un nome. Non ha archi uscenti.</li>
+<li><strong>Variabile</strong>: rappresenta individui o proposizioni.
+Corrisponde alle variabili logiche. Non ha archi uscenti.</li>
+</ul></li>
+<li>Le relazioni sono date dagli archi tra i nodi
+<ul>
+<li>Una relazione da <span class="math inline"><em>A</em></span> a <span
+class="math inline"><em>B</em></span> è un arco diretto tra <span
+class="math inline"><em>A</em></span> e <span
+class="math inline"><em>B</em></span></li>
+<li>Due relazioni principali:
+<ul>
+<li><code>isa</code> (<em>is a</em>): tra individuo e classe</li>
+<li><code>ako</code> (<em>a kind of</em>): tra classi e sovraclassi</li>
+</ul></li>
+</ul></li>
+<li>Per inserire delle proposizioni si utilizza il comando
+<code>assert</code>
+<ul>
+<li>es. <code>(assert member Clyde class elephant)</code> asserisce la
+proposizione: Clyde è un elefante</li>
+<li>La sottorete risultate è:
+<code>(M1! (CLASS ELEPHANT) (MEMBER CLYDE))</code></li>
+</ul></li>
+<li>L’interrogazione avviene tramite il comando <code>find</code>
+<ul>
+<li>es. <code>(find class elephant)</code> trova tutti i nodi che sono
+connessi al nodo elephant</li>
+<li>Il comando permette anche di specificare se gli archi sono entranti
+oppure uscenti</li>
+</ul></li>
+<li>Le inferenze in questo sistema avvengono in tre modi differenti:
+<ol type="1">
+<li>Riduzione:
+<ul>
+<li>Un nodo proposizionale <code>M1</code> implica un nodo
+proposizionale <code>M2</code> che ha un subset o un superset degli
+archi di <code>M1</code>.</li>
+</ul></li>
+<li>Inferenze basate su percorsi:
+<ul>
+<li><code>define-path</code> e <code>compose</code>: comandi per
+definire e comporre percorsi;</li>
+<li>Permette di definire nuova conoscenza basandosi sulla presenza di
+determinati percorsi.</li>
+</ul></li>
+<li>Regole di ragionamento:
+<ul>
+<li>Si basano su proposizioni che rappresentano regole di
+inferenza;</li>
+<li>Significa che l’agente <em>crede</em> nelle regole di
+inferenza.</li>
+</ul></li>
+</ol></li>
+</ul>
+<h1 data-number="3" id="rdf"><span
+class="header-section-number">3</span> RDF</h1>
+<ul>
+<li>RDF è il formato tramite il quale vengono condivisi i dati nei
+linked data</li>
+<li>Centrale a RDF è il concetto di <em>risorsa</em> che può essere un
+servizio, documento, pagina web, ecc.. (in generale, qualsiasi cosa
+identificabile per mezzo di un IRI)</li>
+<li>Essenziale è la differenza tra RDF e RDFS:
+<ul>
+<li>RDF permette di descrivere <strong>risorse</strong></li>
+<li>RDFS permette di descriverre <strong>relazioni tra
+risorse</strong></li>
+</ul></li>
+<li>Le specifiche di RDF sono date da una famiglia di diversi documenti.
+Quello più importante è l’RDF primer 1.0</li>
+<li>Come detto, RDF nasce per descrivere risorse digitali
+identificabili</li>
+<li>Il suo data model è basato sul concetto di <strong>grafo</strong> in
+cui:
+<ul>
+<li>I <em>nodi</em> rappresentano entità</li>
+<li>Gli <em>archi</em> relazioni tra esse</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>L’unità di base di RDF è una <strong>tripla</strong>, composta da
+soggetto, predicato e oggetto. Il soggetto e l’oggetto possono essere
+<strong>IRI</strong> o <strong>blank nodes</strong>. L’oggetto può
+essere anche un <strong>letterale</strong>, mentre il predicato può
+essere solo un <strong>IRI</strong>.</p>
+</blockquote>
+<ul>
+<li>es.
+<code>&lt;the Mona Lisa&gt;&lt;was created&gt;&lt;Leonardo da Vinci&gt;</code>
+<ul>
+<li><strong>Soggetto</strong>: Mona Lisa;</li>
+<li><strong>Predicato</strong>: è stata creata;</li>
+<li><strong>Oggetto</strong>: Leonardo da Vinci.</li>
+</ul></li>
+<li><strong>Importante</strong>: Un insieme di <strong>Triple
+RDF</strong> forma un <strong>Grafo RDF</strong></li>
+<li>Un grafo viene poi rappresentato da un identificativo IRI oppure da
+un blank node, per questa ragione anche i grafi possono essere a loro
+volta dei nodi di un grafo.</li>
+<li>A loro volta, i grafi possono essere raggruppati tra loro per
+formare un <em>data set RDF</em>. Esso è composto da:
+<ul>
+<li>Un grafo anonimo (<em>default graph</em>)</li>
+<li>Zero o più grafi con un nome (<em>named graphs</em>)</li>
+</ul></li>
+<li>Tutti gli elementi di una tripla devono essere riconducibili a
+entità presenti nel web.
+<ul>
+<li>Lo strumento per poterle rappresentare è dato dal sistema degli
+IRI;</li>
+<li>Come detto, il predicato è sempre rappresentato da un IRI.</li>
+</ul></li>
+<li>I blank node sono dei nodi che fungono da <strong>variabile</strong>
+<ul>
+<li>Permettono di denotare delle risorse senza dover ricorrere agli
+IRI</li>
+<li>es. <code>&lt;&gt;&lt;is a&gt;&lt;Tree&gt;</code></li>
+<li>Possono essere associati a identificativi all’interno della
+rappresentazione delle triple in un determinato store, ma non hanno
+significato al di fuori di esso (essenzialmente vengono
+<em>istanziate</em> da specifiche istanze all’interno di specifici
+store)</li>
+</ul></li>
+<li>Il punto di RDF è quello di riutilizzare vocabolari standard che
+rappresentano termini, invece che ri-definirli sempre da 0
+<ul>
+<li>I vari vocabolari vengono spesso identificati da prefissi che ne
+indicano il namespace (es. <code>foaf</code>)</li>
+</ul></li>
+</ul>
+<h2 data-number="3.1" id="serializzazioni"><span
+class="header-section-number">3.1</span> Serializzazioni</h2>
+<ul>
+<li>RDF di per sè è una <em>sintassi astratta</em> che deve poi essere
+serializzata in un formato specifico. Nel tempo sono stati proposti
+diversi formati di serializzazione, ognuno con i suoi pro e contro:
+<ul>
+<li>Turtle (preferito per concisione e leggibilità)</li>
+<li>RDF/XML</li>
+<li>N-triples</li>
+<li>Json LD</li>
+<li>N3</li>
+<li>RDFa</li>
+</ul></li>
+<li>Il formato Turtle permette di definire dei prefissi in modo da
+definire i vari namespaces
+<ul>
+<li>es.
+<code>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;.</code></li>
+</ul></li>
+<li>Gli IRI sono sempre racchiusi tra <code>&lt;' e '&gt;</code></li>
+<li>Ogni tripla termina con il punto <code>.</code>
+<ul>
+<li>Se ci sono tante triple con lo stesso soggetto oppure lo stesso
+soggetto e predicato, è possibile riportarli una volta sola e dividere
+le varie triple con il <code>;</code> es.
+<code>Spiderman friendOf Superman; Batman.</code></li>
+</ul></li>
+<li>Se più triple hanno come stesso soggetto un blank node, allora si
+possono raggruppare (separate da <code>;</code>) con delle parentesi
+quadre
+<ul>
+<li>es. <code>[ :predicate1 :object; :predicate2 value ]</code></li>
+<li>es. <code>[] foaf:knows [ foaf:name "Bob" ]</code> <span
+class="math inline">≡</span> <em>“Qualcuno conosce una persona di nome
+Bob”</em></li>
+</ul></li>
+<li>Tutti i tipi di dati sono implicitamente di tipo Stringa, però si
+possono specificare esplicitamente dopo il delimitatore <code>^^</code>
+<ul>
+<li>es. <code>schema:birthDate "1990-07-04"^^xsd:date</code></li>
+</ul></li>
+<li>Esiste un sottoinsieme di Turtle chiamato <strong>N-Triples</strong>
+<ul>
+<li>È verboso e meno leggibile perché non ci sono le abbreviazioni che
+provvede di solito Turtle</li>
+<li>Migliore per il trasferimento di dataset tra applicazioni</li>
+<li><strong>N.B</strong>: N-Quads è una sua estensione che aggiunge alla
+tripla un quarto elemento, il graph IRI (<em>che cos’è una quadrupla?
+una tripla + un’indicazione del grafo di appartenenza</em>)</li>
+</ul></li>
+<li>Ogni formato offre i suoi trade off:
+<ul>
+<li>RDF/XML: migliore interoperabilità con strumenti per XML</li>
+<li>Turtle: leggibilità e compatibilità con SPARQL</li>
+<li>N-triples: portabilità dei dati</li>
+<li>Json LD: comunicazione client server via API</li>
+</ul></li>
+</ul>
+<h1 data-number="4" id="rdf-schema"><span
+class="header-section-number">4</span> RDF Schema</h1>
+<ul>
+<li>RDF permette di creare un grafo per descrivere le risorse ma non si
+può dire più nulla su di esso, cioè non è possibile dare nessuna
+informazione sulle entità descritte dal vocabolario</li>
+<li>Con RDF possiamo definire classi, proprietà e gerarchie di classi e
+proprietà</li>
+<li>RDFs invece permette di definire:
+<ul>
+<li>Se una risorsa è una <strong>classe</strong></li>
+<li>Se una risorsa è una <strong>proprietà</strong></li>
+<li>Se una risorsa è una un’<strong>istanza</strong> di una classe</li>
+<li>Se una proprietà è una <strong>sottoproprietà</strong> di una
+proprietà</li>
+<li>Il <strong>dominio</strong> di una proprietà è una classe</li>
+<li>Il <strong>range</strong> di una proprietà è una classe</li>
+</ul></li>
+<li>I namespace convenzionali sono di solito <code>rdf</code> per RDF e
+<code>rdfs</code> per RDF Schema</li>
+<li><strong>Attenzione</strong>: Il predicato <code>type</code> è
+predefinito di RDF e non RDFs, per cui possiamo associare un tipo ad una
+risorsa anche già in RDF
+<ul>
+<li>es. <code>animals:Marty rdf:type animals:Zebra</code></li>
+<li><code>a</code> corrisponde a <code>rdf:type</code></li>
+<li>es. <code>animals:Marty a animals:Zebra</code></li>
+</ul></li>
+<li>Nonostante RDF e RDFs abbiano in modo combinato la potenza
+espressiva per descrivere risorse, hanno alcune limitazioni dal punto di
+vista del ragionamento automatico:
+<ul>
+<li>Non si può esprimere che due classi sono <em>disgiunte</em></li>
+<li>Non si può dire che una relazione è <em>transitiva</em></li>
+<li>Non si può dire che esistono individui
+<ul>
+<li>Possiamo dire solo che esistono risorse, cioè IRI creati
+<strong>esternamente</strong> al linguaggio</li>
+</ul></li>
+</ul></li>
+<li>RDF e RDFS insieme permettono di fare una qualche forma di
+ragionamento automatico (tabella con regole di inferenza specifiche su
+slides)</li>
+</ul>
+<h1 data-number="5" id="vocabolari-rdf"><span
+class="header-section-number">5</span> Vocabolari RDF</h1>
+<ul>
+<li>I vocabolari RDF sono un insieme di definizioni di classi e
+proprietà</li>
+<li>Successivamente, uno o più vocabolari vengono utilizzati per
+descrivere delle risorse
+<ul>
+<li>La descrizione di queste risorse è il <em>Knowledge Graph</em></li>
+<li>La descrizione di classi e proprietà è il <em>Vocabolario
+RDF</em></li>
+</ul></li>
+<li>Precedentemente abbiamo citato come lo spirito di questi vocabolari
+RDF sia l’interoperabilità e il riutilizzo di altri vocabolari</li>
+<li>Alcuni dei vocabolari di utilizzo più comune sono:
+<ul>
+<li><strong>FOAF</strong>: vocabolario per descrivere <em>reti
+sociali</em></li>
+<li><strong>Dublin Core</strong>: vocabolario di elementi (<em>titolo,
+autore, ecc.</em>) per descrivere risorse in termini
+<em>editoriali</em></li>
+<li><strong>Schema.org</strong>: vocabolario nato su iniziativa di un
+consorzio di industrie per descrivere gli argomenti delle pagine web
+secondo uno schema semantico</li>
+<li><strong>SKOS</strong>: W3C reccomendation dal 2009, permette di
+descrivere e allineare terminologie diverse</li>
+</ul></li>
+</ul>
+<h2 data-number="5.1" id="dublin-core"><span
+class="header-section-number">5.1</span> Dublin Core</h2>
+<ul>
+<li>Vocabolario che nasce per descrivere risorse nel web dall’ambito
+archivistico/bibliotecario
+<ul>
+<li>Con l’avvento del WWW, gli archivisti/bibliotecari si sono accorti
+che tantissimi dati di tipo multimediale venivano caricati provocando
+così la cosiddetta <em>data deluge</em> (alluvione di dati)</li>
+<li>Questa crescita portò ad una grandissima difficoltà
+nell’indicizzazione di queste risorse</li>
+<li>Ci fu quindi la necessità di creare un vocabolario standardizzato
+che permettesse di associare a questi dati multimediali dei metadati per
+la loro descrizione</li>
+</ul></li>
+<li>Dublin Core fornisce un set di questi 15 elementi descrittivi
+generici:
+<ul>
+<li>Creator;</li>
+<li>Contributor;</li>
+<li>Publisher;</li>
+<li>Title;</li>
+<li>Date;</li>
+<li>Language;</li>
+<li>Format;</li>
+<li>Subject;</li>
+<li>Description;</li>
+<li>Identifier;</li>
+<li>Relation;</li>
+<li>Source;</li>
+<li>Type;</li>
+<li>Coverage;</li>
+<li>Rights.</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Dublin Core è quindi uno <em>schema di metadati</em> per annotare
+risorse testuali e multimediali, con lo scopo esplicito di facilitare il
+reperimento di risorse</p>
+</blockquote>
+<ul>
+<li>DC è in grado di descrivere un qualsiasi tipo di risorsa, cioè
+qualsiasi cosa che possa avere un’identità
+<ul>
+<li>Le risorse possono essere suddivide in diverse tipologie di classi:
+<ul>
+<li>Collezione</li>
+<li>Dataset</li>
+<li>Evento</li>
+<li>Immagine</li>
+<li>Risorsa interattiva</li>
+<li>Servizio</li>
+<li>Software</li>
+<li>Suono</li>
+<li>Testo</li>
+<li>Oggetto fisico</li>
+</ul></li>
+</ul></li>
+<li>Lo schema di Dublin Core fu portato in RDF principalmente per poter
+effettuare ragionamento automatico</li>
+<li>Oltre che a diversi metadati, sono presenti anche dei termini in
+questo vocabolario quali:
+<ul>
+<li><strong>Label</strong>: un’etichetta human-readable associata ad un
+termine</li>
+<li><strong>Refines</strong>: proprietà della quale il termine descritto
+è sotto-proprietà</li>
+<li><strong>Broader Than</strong>: classe della quale il termine
+descritto è super-classe</li>
+<li><strong>Has Range</strong>: classe della quale il valore descritto
+del termine è istanza</li>
+<li>(altre non descritte)</li>
+</ul></li>
+<li>I 15 elementi descrittivi, difatti, sono descritti utilizzando i
+termini di questo vocabolario</li>
+</ul>
+<h2 data-number="5.2" id="europeana"><span
+class="header-section-number">5.2</span> Europeana</h2>
+<ul>
+<li>È un archivio europeo dei beni culturali</li>
+<li>Metaportale che permette di avere accesso alle opere di diversi
+musei digitali di tutta europa</li>
+<li>Tutte le opere sono descritte in termini dei descrittori di Dublin
+Core</li>
+<li>Essenzialmente funge da aggregatore di tutti i vari musei che voglio
+condividere le loro opere
+<ul>
+<li>La condivisione si basa su un protocollo OAI-PMH (<em>Open Archives
+Initiative Protocol for Metadata harvesting</em>)</li>
+<li>Secondo il protocollo, i vari musei espongono i metadati strutturati
+attraverso il protocollo</li>
+<li>Europeana poi fa richieste per fare <em>harvesting</em> dei dati
+attraverso degli endpoint web specifici</li>
+</ul></li>
+</ul>
+<h2 data-number="5.3" id="schema.org"><span
+class="header-section-number">5.3</span> Schema.org</h2>
+<ul>
+<li>Insieme di vocabolari con il fine di rappresentare dati strutturati
+quali pagine web, email e altro</li>
+<li>Il vocabolario è suddiviso in diversi schemi (o types) organizzati
+in una tassonomia</li>
+</ul>
+<h2 data-number="5.4" id="skos"><span
+class="header-section-number">5.4</span> SKOS</h2>
+<ul>
+<li>L’utilizzo di vocabolari di diverse provenienze, tipico dei Linked
+Data, annulla le relazioni tra i concetti proprio delle ontologie e si
+apre alle differenze</li>
+<li>SKOS (<em>Simple Knowledge Organization System</em>) è una
+raccomandazione del W3C per la creazione di schemi (vocabolari) di vario
+tipo: lessici, thesauri, ecc..</li>
+<li>Lo scopo è quello di facilitare e <strong>uniformare</strong> la
+pubblicazione dei vocabolari RDF come linked data</li>
+<li>Centrato sulla nozione di <em>“concetto”</em> e le sue relazioni con
+altri concetti</li>
+<li>Con SKOS è possibile:
+<ul>
+<li>Identificare concetti tramite URIs</li>
+<li>Etichettare concetti con stringhe di linguaggio naturale</li>
+<li>Assegnare annotazioni ai concetti</li>
+<li>Documentare concetti con diverse tipologie di note</li>
+<li>Connettere e organizzare concetti con gerarchie informali (informali
+perché ri-definiscono le solite relazioni di sottoclasse che mette a
+disposizione RDF)</li>
+<li>Mappare i concetti con altri concetti di altri schemi</li>
+</ul></li>
+<li>Ogni concetto in SKOS viene identificato con un URI
+<ul>
+<li>Ai concetti sono associate <em>etichette lessicali</em>:
+<ul>
+<li><code>prefLabel</code>: etichetta preferenziale
+<ul>
+<li>es. <code>skos:prefLabel "animal"</code></li>
+</ul></li>
+<li><code>altLabel</code>: etichetta alternativa
+<ul>
+<li>es.
+<code>skos:prefLabel "animaux"@fr; skos:altLabl "crèatures"@fr</code></li>
+</ul></li>
+</ul></li>
+<li>I concetti tra di loro possono essere relazionati tramite relazioni:
+<ul>
+<li><code>narrower/broader</code>: relazione più specifica/generale</li>
+<li><code>related</code>: relazione generica di <em>relatedness</em>
+semantica</li>
+</ul></li>
+</ul></li>
+<li>SKOS mette a disposizione tutto un sistema ti etichette lessicali
+per associare ai concetti la loro <strong>documentazione</strong> quali
+<code>example</code> e <code>definition</code>, in modo da renderlo
+coprensibile alle persone</li>
+<li>Uno schema di concetti è una risorsa strutturata, ad esempio un
+thesauro, che in SKOS è rappresentato come una classe
+<code>ConceptScheme</code>
+<ul>
+<li>Tramite la relazione <code>inScheme</code> si indica l’appartenenza
+di un concetto allo schema</li>
+</ul></li>
+<li>Nel seguente esempio si definisce un Thesauro definendolo come
+<code>ConceptScheme</code> e poi si aggiunge un concetto
+(<code>Concept</code>) ad esso</li>
+</ul>
+<pre><code>ex:animalThesaurus rdf:type skos:ConceptScheme;
+    dc:title &quot;Simple animal thesaurus&quot;;
+    dc:creator ex:antoineIsaac.
+
+ex:mammals rdf:type skos:Concept;
+    skos:inScheme ex:animalThesaurus.</code></pre>
+<ul>
+<li>Il predicato <code>broadMatch</code> serve a esprimere che due
+concetti (che possono stare anche in vocabolari diversi), sono uguali
+tra di loro</li>
+<li>Questo predicato non ha una semantica formale che permette il
+ragionamento automatico, ma permette comunque di esprimere questa
+relazione di corrispondenza</li>
+<li>COAR (<em>Confederation of Open Access Repositories</em>) è un
+vocabolario standard che contiene le definizioni dei vari tipi che
+utilizza SKOS</li>
+<li>Un’altra risorsa degna di nota è DCAT, che permette di descrivere
+datasets e servizi di dati in un catalogo utilizzando un modello
+standard e un vocabolario standard che facilita il consumo e
+l’aggregazione di metadati da diversi cataloghi, con lo scopo di
+aumentare la scopribilità dei dataset/servizi.</li>
+</ul>
+<h1 data-number="6" id="ontologie-computazionali"><span
+class="header-section-number">6</span> Ontologie Computazionali</h1>
+<ul>
+<li>Un’ontologia è una rappresentazione astratta di concetti e di
+relazioni tra loro</li>
+<li>Le ontologie formali fissano un particolare formalismo di
+rappresentazione, con la finalità di condividere una concettualizzazione
+comune tra individui, organizzazioni e macchine</li>
+</ul>
+<blockquote>
+<p><em>Definizione (Ontologia)</em>: Un artefatto ingegneristico,
+costituito da uno specifico <strong>vocabolario</strong> utilizzato per
+descrivere una certa realtà, più un insieme di assunzioni esplicite
+riguardo all’utilizzo inteso del vocabolario stesso.</p>
+</blockquote>
+<ul>
+<li>Le ontologie formali si basano su linguaggi formali per descrivere
+in maniera esplicita:
+<ul>
+<li>Le proprietà delle classi;</li>
+<li>Le proprietà delle relazioni tra classi.</li>
+</ul></li>
+<li>Inoltre, i linguaggi permettono di fare ragionamento automatico
+(inferenze)</li>
+<li>Una possibile classificazione delle ontologie fa riferimento al loro
+livello di specificità:
+<ul>
+<li><strong>Ontologie Top-Level</strong>: concetti fondazionali;</li>
+<li><strong>Ontologie Mid-Level</strong>: concetti generali ma non
+fondazionali, si basano su definizioni di ontologie top-level;</li>
+<li><strong>Ontologie di Dominio</strong>: rappresentano concetti e
+relazioni proprie di un dominio specifico.</li>
+</ul></li>
+</ul>
+<h2 data-number="6.1" id="ontologie-fondazionali"><span
+class="header-section-number">6.1</span> Ontologie Fondazionali</h2>
+<ul>
+<li>Al giorno d’oggi ci sono diverse risorse ontologiche di tipo
+fondazionale, di seguito se ne vedono alcune.</li>
+</ul>
+<h3 data-number="6.1.1" id="cyc"><span
+class="header-section-number">6.1.1</span> CYC</h3>
+<ul>
+<li>L’ ontologia fondazionale <strong>CYC</strong> (OpenCYC) è una base
+di conoscenza composta da:
+<ul>
+<li>Termini, che compongono il vocabolario</li>
+<li>Asserzioni che mettono in relazione questi termini. Le asserzioni a
+loro volta includono:
+<ul>
+<li>Asserzioni semplici</li>
+<li>Regole (di ragionamento)</li>
+</ul></li>
+</ul></li>
+<li>La KB di CYC è suddivisa in migliaia di <em>microteorie</em>,
+ciascuna delle quali è costituita da un insieme di asserzioni che
+condividono le stesse assunzioni
+<ul>
+<li>Ogni microteoria si focalizza su un particolare dominio di
+conoscenza</li>
+<li>Questo sistema di divisione permette di poter fare asserzioni
+apparentemente contraddittorie</li>
+</ul></li>
+<li>Il motore inferenziale di CYC è in grado di effettuare deduzione
+logica e di utilizzare anche i meccanismi di inferenza tipici
+dell’IA</li>
+</ul>
+<h3 data-number="6.1.2" id="sumo"><span
+class="header-section-number">6.1.2</span> SuMO</h3>
+<ul>
+<li>Un’altra ontologia top-level di particolare rilevanza è SuMO
+(<em>Suggested Upper Merged Ontology</em>)</li>
+<li>Non è scritta in OWL ma in un linguaggio di rappresentazione
+intermedia chiamato KIF. Esso contiene costrutti per esprimere:
+<ul>
+<li><strong>Termini</strong>;</li>
+<li><strong>Connettivi</strong> (OR, AND);</li>
+<li><strong>Quantificatori</strong> e
+<strong>implicazioni</strong>.</li>
+</ul></li>
+<li>SuMO contiene:
+<ul>
+<li>Una gerarchia di classi (per ogni classe, SuMO ne descrive le
+caratteristiche attraverso un insieme di assiomi);</li>
+<li>Un insieme di relazioni.</li>
+</ul></li>
+<li>SuMO introduce anche la possibilità di descrivere le relazioni
+stesse. Ad esempio è possibile dire che una proprietà è una relazione
+Asimmetrica e Transitiva</li>
+</ul>
+<h3 data-number="6.1.3" id="yagosumo"><span
+class="header-section-number">6.1.3</span> YagoSuMO</h3>
+<ul>
+<li>È l’integrazione tra Wikipedia, Wordnet (YAGO) e SuMO</li>
+<li>Contiene un corpus enorme di conoscenza formalizzata per fare
+inferenze e processing automatico della conoscenza;</li>
+<li>Grazie al mapping con Wordnet, permette di utilizzare il linguaggio
+naturale come mezzo d’interazione con la risorsa ontologica;</li>
+<li>Una versione più recente di YAGO è YAGO2, per cui integra anche
+altre risorse quali GeoNames.
+<ul>
+<li>L’accuratezza di YAGO è stata manualmente valutata.</li>
+</ul></li>
+</ul>
+<h3 data-number="6.1.4" id="wordnet"><span
+class="header-section-number">6.1.4</span> WordNet</h3>
+<ul>
+<li>Risorsa ontologica di tipo linguistico (database lessicale)</li>
+<li>Suddivide le parole in <em>synsets</em>, cioè insiemi di parole che
+condividono lo stesso significato</li>
+</ul>
+<h3 data-number="6.1.5" id="dbpedia"><span
+class="header-section-number">6.1.5</span> DbPedia</h3>
+<ul>
+<li>È una versione semantica di Wikipedia che è stata costruita per
+mezzo di un processo di estrazione automatica.</li>
+</ul>
+<h2 data-number="6.2" id="linguaggi-per-descrivere-ontologie"><span
+class="header-section-number">6.2</span> Linguaggi per descrivere
+ontologie</h2>
+<ul>
+<li>I linguaggi per descrivere le ontologie sono il mezzo tramite il
+quale si va a formalizzare la conoscenza. Essi devono fornire costrutti
+per descrivere:
+<ul>
+<li>Classi e relazioni tra esse;</li>
+<li>Disgiunzioni tra classi;
+<ul>
+<li>es. <em>Un vino non può essere sia bianco che rosso</em>.</li>
+</ul></li>
+<li>Scomposizione esaustiva (e partizione).
+<ul>
+<li>es. <em>Canadesi, Statunitensi e Canadesi sono la scomposizione
+esaustiva di nordamericani</em>.</li>
+</ul></li>
+</ul></li>
+<li>I linguaggi che sono stati sviluppati che sono alla base del
+progetto web semantico sono basati sulle logiche descrittive
+<ul>
+<li>Queste logiche distinguono le definizioni dei concetti
+(<strong>T-Box</strong>), dalle asserzioni fatte sugli individui
+utilizzando quei concetti (<strong>A-Box</strong>);</li>
+<li>In generale, le asserzioni che vengono fatte sulle classi e le
+proprietà fanno parte della T-Box, mentre tutte le altre asserzioni che
+utilizzano tali classi e proprietà fanno parte dell’A-Box;</li>
+<li>Un’altra cosa importante sono i <strong>ruoli</strong>, che sono
+l’equivalente delle relazioni tra classi, per cui permettono di mettere
+in relazione diverse classi tra loro;</li>
+<li>Grazie all’espressività delle logiche descrittive è possibile fare:
+<ul>
+<li><strong>Instance checking</strong>: verificare se un individuo
+appartiene ad una classe</li>
+<li><strong>Relation checking</strong>: verificare se vale una certa
+relazione tra classi</li>
+<li><strong>Subsumption</strong>: verificare se una classe è
+sottoinsieme di un’altra classe</li>
+<li><strong>Concept consistency</strong>: verificare che le definizioni
+e le loro conseguenze non siano contradditorie</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 data-number="6.3" id="owl2"><span
+class="header-section-number">6.3</span> OWL2</h2>
+<ul>
+<li>L’<em>Ontology Web Language</em> (OWL) è un linguaggio atto a creare
+ontologie per il web semantico con un significato definito
+formalmente;</li>
+<li>Tramite questo linguaggio è possibile definire:
+<ul>
+<li>Classi;</li>
+<li>Proprietà;</li>
+<li>Individui;</li>
+<li>Letterali.</li>
+</ul></li>
+<li>Le ontologie scritte in questo linguaggio possono essere utilizzate
+in associazione con i documenti RDF;
+<ul>
+<li>Possono essere esse stesse codificate come documenti RDF.</li>
+</ul></li>
+<li>Uno degli aspetti fondamentali è che OWL si basa su logiche
+computazionali per cui permette di far ragionamento automatico
+utilizzando specifici software detti <em>reasoners</em>;
+<ul>
+<li>Questi software sono in grado di esplicitare la conoscenza implicita
+(fare inferenze) e di verificare la consistenza della base di
+conoscenza.</li>
+</ul></li>
+<li>Un aspetto non del tutto immediato di OWL è che non è possibile
+descrivere in maniera <strong>prescrittiva</strong> la struttura di un
+documento;
+<ul>
+<li>Ciò significa che non c’è modo di specificare che una determinata
+informazione deve essere <strong>necessariamente</strong> presente.</li>
+</ul></li>
+<li>Così come nelle logiche descrittive, anche OWL differenzia tra due
+tipologie di conoscenza:
+<ul>
+<li><strong>T-Box</strong>: parte dell’ontologia che consiste nella
+<em>terminologia</em> che costituisce la conoscenza generale del dominio
+dato;</li>
+<li><strong>A-Box</strong>: asserzioni che descrivono entità concrete o
+specifiche del dominio dato.</li>
+</ul></li>
+<li>Più nel dettaglio, gli elementi di un’ontologia OWL sono:
+<ul>
+<li><strong>Entità</strong>: elementi che si riferiscono al mondo reale.
+Possono essere:
+<ul>
+<li><strong>Individui</strong>: specifiche istanze di classi;</li>
+<li><strong>Classi</strong>: rappresentano classi di individui che
+condividono le stesse caratteristiche;</li>
+<li><strong>Proprietà</strong>: rappresentano relazioni, sono suddivise
+in:
+<ul>
+<li><strong>Object properties</strong>: relazioni da individuo a
+individuo;</li>
+<li><strong>Datatype properties</strong>: relazioni tra dato e
+individuo;</li>
+<li><strong>Annotation properties</strong>: relazioni che contengono
+commenti e descrizioni di qualsiasi entità.</li>
+</ul></li>
+</ul></li>
+<li><strong>Assiomi</strong>: asserzioni generali che possono essere:
+<ul>
+<li><strong>Class Axioms</strong>:
+<ul>
+<li><strong>SubClassOf</strong>: relazione di sottoclasse tra
+classi;</li>
+<li><strong>EquivalentClasses</strong>: relazione di equivalenza tra
+classi;</li>
+<li><strong>DisjiontClasses</strong>: relazione di disgiunzione;</li>
+<li><strong>DisjointUnion</strong>: relazione di unione disgiunta (due
+classi sono l’unione digiunta dell’altra se sono entrambe partizioni di
+una classe comune di cui sono entrambe sottoclassi).</li>
+</ul></li>
+<li><strong>Dichiarazioni</strong>;</li>
+<li><strong>Asserzioni</strong>;</li>
+<li><strong>Assiomi su data properties</strong>;</li>
+<li><strong>Assiomi su object properties</strong>;</li>
+<li>(<em>Altre su documento OWL</em>).</li>
+</ul></li>
+<li><strong>Espressioni</strong>: combinazioni di entità che vanno a
+formare entità più complesse.
+<ul>
+<li>es. Una persona bella è un’entità persona ma che ha la
+<em>proprietà</em> di essere bella.</li>
+</ul></li>
+</ul></li>
+<li>In OWL le class e property expressions sono utilizzate per costruire
+delle <strong>Class Expressions</strong>, anche dette
+<em>descrizioni</em> (o <em>concetti complessi</em> seguendo la
+terminologia delle logiche descrittive)
+<ul>
+<li>Rappresentano un insieme di individui specificando formalmente le
+<strong>condizioni</strong> sulle proprietà degli individui</li>
+<li>Una classe stessa è la forma più semplice di class expression</li>
+<li>Per definire delle class expressions OWL mette a disposizione
+diversi operatori:
+<ul>
+<li>Connettivi booleani (<code>and, or</code>)</li>
+<li>Quantificatori (<code>exists, forall</code>)</li>
+<li>Restrizioni numeriche (<code>x &lt; 100</code>)</li>
+<li>Enumerazioni esplicite
+(<code>RegioniItaliane({Liguria, Piemonte, ..})</code>)</li>
+</ul></li>
+</ul></li>
+<li>Una classe si definisce dichiarandola come appartenente al tipo
+<code>owl:Class</code></li>
+<li>Così come nelle reti semantiche, anche in OWL dichiariamo gerarchie
+di classi in un ordinamento tassonomico
+<ul>
+<li>Per dire che una classe è sottoclasse di un altra si utilizza sempre
+rdfs: <code>rdfs:subClassOf</code></li>
+</ul></li>
+<li>Per esprimere l’equivalenza tra due classi
+<code>owl:equivalentClass</code></li>
+<li>È possibile definire anche proprietà così come si fa con le classi,
+quindi dichiarando la proprietà come appartentente al tipo
+<code>owl:property</code></li>
+<li>Anche le proprietà possono essere relazionate attraverso relazioni
+di sottoproprietà mediante il predicato <code>rdfs:subPropertyOf</code>
+<ul>
+<li>Se una proprietà vale per degli individui, vale anche quella più
+generale</li>
+</ul></li>
+<li>Altri predicati interessanti sono il <code>owl:sameAs</code> e
+<code>owl:differentFrom</code>
+<ul>
+<li>Permettono di specificare che due individui sono gli stessi oppure
+sono differenti</li>
+<li>Particolarmente utili quando si fa allineamento tra diverse basi di
+conoscenza</li>
+</ul></li>
+<li>Le data properties collegano un dominio (tipi di dati) ad una classe
+<ul>
+<li>Si definiscono come si defniscono classi e proprietà utilizzando
+come tipo <code>owl:dataProperty</code></li>
+</ul></li>
+<li>OWL mette a disposizione il meccanismo delle
+<strong>restrizioni</strong> per definire nuove classi a partire da
+quelle esistenti. Ci sono due tipi di restrizioni principali:
+<ul>
+<li>Restrizioni su classi (mediante operatori insiemistici)</li>
+<li>Restrizioni su proprietà (mediante operatori esistenziali,
+universali e sulla cardinalità)</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Le classi che sono definite come <strong>equivalenti</strong>
+<code>equivalentTo</code> ad un certo insieme di restrizioni sono dette
+<strong>classi definite</strong>. Le restrizioni individuano le
+condizioni <em>necessarie e sufficienti</em> per l’appartenenza alla
+classe. D’altra parte, le classi definite come
+<strong>sottoclassi</strong> <code>subclassOf</code> ad un certo insieme
+di restrizioni sono dette <strong>classi primitive</strong>. In questo
+caso, le restrizioni sono condizioni solamente <em>necessarie</em> ma
+<em>non sufficienti</em></p>
+</blockquote>
+<ul>
+<li><p>Le classi primitive non permettono al reasoner di collocare gli
+individui in modo automatico nelle classi, ma permettono solamente al
+reasoner di rilevare le inconsistenze con le asserzioni sugli
+individui</p></li>
+<li><p>OWL permette anche di descrivere delle caratteristiche delle
+proprietà quali:</p>
+<ul>
+<li>Simmetriche;</li>
+<li>Funzionali;</li>
+<li>Inverse;</li>
+<li>Riflessive;</li>
+<li>Transitive.</li>
+</ul></li>
+</ul>
+<h2 data-number="6.4" id="ragionamento-automatico"><span
+class="header-section-number">6.4</span> Ragionamento Automatico</h2>
+<ul>
+<li>Le ontologie computazionali permettono ai reasoners di fare
+ragionamento automatico
+<ul>
+<li>Questi reasoner possono esplicitare la conoscenza implicita facendo
+inferenze, oppure possono validare la correttezza della base di
+conoscenza</li>
+</ul></li>
+<li>Il ragionamento avviene su più livelli:
+<ul>
+<li><strong>Classi</strong>;
+<ul>
+<li>Il reasoner è in grado di inferire relazioni di sussunzione tra le
+classi a partire dalla descrizione delle stesse;</li>
+<li>La gerarchia di classi inferita può anche essere diversa da quella
+dichiarata.</li>
+</ul></li>
+<li><strong>Inserimento di individui</strong>;
+<ul>
+<li>Il reasoner assegna un particolare individuo ad una classe
+automaticamente sulla base delle sue proprietà/caratteristiche;</li>
+<li>es. Se ho un individuo che è in relazione con un altro, il reasoner
+può capire a che classe appartiene guardando il <strong>dominio</strong>
+della relazione;</li>
+<li>Eventualmente, è possibile che un individuo venga riassociato ad
+un’altra classe;</li>
+<li>Il reasoner è anche in grado di rilevare se un individuo appartiene
+a una o più classi disgiunte, cioè se c’è un’inconsistenza sotto questo
+punto di vista.</li>
+</ul></li>
+<li><strong>Classificazione Automatica</strong>;
+<ul>
+<li>È un caso specifico dell’inserimento, essenzialmente è in grado di
+capire se un individuo che fa parte di una classe più generale fa in
+realtà parte di una sottoclasse più specifica.</li>
+<li>es. Da <code>Persona</code> a <code>Studente</code></li>
+</ul></li>
+<li><strong>Restrizioni su DataProperties</strong>;
+<ul>
+<li>Verifica che le restrizioni su data properties (Domain e Range)
+siano consistenti.</li>
+</ul></li>
+<li><strong>Property Chain</strong>.
+<ul>
+<li>es. Se A è coinquilino di B e B risiede in un certo luogo, allora
+anche A risiede nello stesso luogo.</li>
+</ul></li>
+</ul></li>
+</ul>
+<blockquote>
+<p>I reasoners OWL fanno un’assunzione di <strong>mondo aperto</strong>:
+il fatto che un’informazione non sia rappresentata nel sistema non
+determina che essa sia assunta falsa.</p>
+</blockquote>
+<ul>
+<li>Ad esempio, spesso è necessario asserire esplicitamente che due
+individui siano differenti poiché il reasoner può supporre che siano
+entrambi lo stesso individuo</li>
+<li><strong>Quantificazione Universale</strong>: Se si hanno due classi
+che sono rispettivamente definite su una quantificazione universale su
+due classi dichiarate disgiunte, e si asserisce che un individuo
+appartiene ad entrambe le classi, il reasoner rileva un’inconsistenza
+<ul>
+<li>es. Siano <code>GenitoriFigliMaggiorenni</code> e
+<code>GenitoriFigliMinorenni</code> rispettivamente le due classi
+definite con quantificatore universale <code>only</code> su
+<code>Maggiorenni</code> e <code>Minorenni</code></li>
+<li>Siccome <code>Maggiorenni</code> e <code>Minorenni</code> sono
+disgiunte, allora se si assegna ad un individuo sia la classe
+<code>GenitoriFigliMinorenni</code> che la classe
+<code>GenitoriFigliMaggiorenni</code>, il reasoner rileva
+un’inconsistenza</li>
+</ul></li>
+<li>La quantificazione universale <code>only</code> significa che
+<strong>tutti</strong> gli individui devono essere vincolati in quel
+modo, ma non implica che ce ne debba essere almeno uno
+<ul>
+<li>Per ottenere ciò si combina con l’assioma <code>some</code></li>
+<li>es.
+<code>SoloPittore equivalentTo [crea some Dipinto and crea only Dipinto]</code>
+che un artista che è solo pittore è un artista che ha creato solo
+dipinti (avendone prodotto almeno uno)</li>
+</ul></li>
+</ul>
+<h2 data-number="6.5" id="ontology-engineering"><span
+class="header-section-number">6.5</span> Ontology Engineering</h2>
+<ul>
+<li>L’ambito che si occupa del design delle ontologie e del loro
+mantenimento è chiamato <strong>Ontology Engineering</strong>;</li>
+<li>L’idea è quella di fornire principi di modellazione che siano
+standard e comuni a tutte le ontologie in modo da facilitarne
+l’interoperabilità;</li>
+<li>Alcune di queste metodologie tra le più affermate sono
+<em>OntoClean</em> e <em>Neon</em>.</li>
+</ul>
+<h3 data-number="6.5.1" id="ontoclean"><span
+class="header-section-number">6.5.1</span> OntoClean</h3>
+<ul>
+<li>È una metodologia che si basa su nozioni ontologiche molto generali
+ispirate dalla filosofia (es. essenza, identità, unità). Tali nozioni
+sono utilizzate per caratterizzare aspetti rilevanti del
+<strong>significato inteso</strong> delle proprietà, classi e relazioni
+che compongono un’ontologia
+<ul>
+<li>Gli aspetti sono rappresentati da metaproprietà che determinano dei
+vincoli sulla struttura tassonomica dell’ontologia</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Ontoclean è un’analisi delle classi dell’ontologia nei termini delle
+loro metaproprietà che porta alla verifica e all’eventuale revisione
+della <strong>struttura tassonomica</strong> dell’ontologia</p>
+</blockquote>
+<ul>
+<li>Le metaproprietà menzionate sono 4, ognuna identificata da una
+lettera:
+<ul>
+<li><code>(I)</code> - Identità: ciò che è identificabile</li>
+<li><code>(U)</code> - Unità: ciò che è unitario</li>
+<li><code>(R)</code> - Rigidità: ciò che non è soggetto a
+cambiamenti</li>
+<li><code>(D)</code> - Dipendenza</li>
+</ul></li>
+<li>Una classe è definita come <em>“definizione che determina
+l’appartenenza di individui alla classe”</em></li>
+<li>La metodologia consiste nei seguenti passaggi:
+<ol type="1">
+<li>Ogni classe viene annotata con le meta-proprietà
+<ul>
+<li><code>+P</code> se la classe possiede la proprietà
+<code>P</code></li>
+<li><code>-P</code> se la classe non possiede la proprietà
+<code>P</code></li>
+<li><code>~P</code> se la classe possiede l’anti-proprietà di
+<code>P</code></li>
+</ul></li>
+<li>Si analizzano le meta-proprietà delle classi, da cui emergeranno
+determinati vincoli di sussunzione (struttura tassonomica) in base alle
+sue metaproprietà
+<ul>
+<li>es. Una classe <em>anti-rigida</em> non può sussumere una classe
+<em>rigida</em></li>
+</ul></li>
+<li>I vincoli si utilizzano per ristrutturare e verificare la gerarchia
+delle classi</li>
+</ol></li>
+<li><strong>Phased Sortals</strong>: entità che rimangono le stesse pur
+modificando in parte i propri criteri di identità (es. bruco che diventa
+farfalla). Vengono individuati associandone le proprietà di:
+<ul>
+<li>Indipendenza (-D)</li>
+<li>Anti Rigidità (~R)</li>
+<li>Hanno un criterio di identità (+I)</li>
+</ul></li>
+<li>Le metaproprietà possono essere ereditate dalle sottoclassi:
+<ul>
+<li>Identità: ereditata dalle sottoclassi</li>
+<li>Unità: ereditata dalle sottoclassi, ma non vale per (-U)</li>
+<li>Rigidità: non viene ereditata dalle sottoclassi, ma l’antirigidità
+(~R) si</li>
+</ul></li>
+<li>Le proprietà che vengono sussunte non possono essere anti proprietà
+oppure non possono non possederla, in quel caso si otterrebbe una
+contraddizione che deve essere risolta nel processo di revisione</li>
+<li>Il processo di revisione può anche portare all’introduzione di nuove
+classi in modo da risolvere le contraddizioni</li>
+</ul>
+<h3 data-number="6.5.2" id="neon"><span
+class="header-section-number">6.5.2</span> NeOn</h3>
+<ul>
+<li>Metodologia orientata agli aspetti collaborativi dello sviluppo e
+mantenimento di un network di ontologie</li>
+<li>Prevede un insieme di 9 scenari possibili a cui sono associate
+specifiche attività e documenti
+<ul>
+<li>Scenario 1: Dalle specifiche all’implementazione</li>
+<li>Scenario 2: Riutilizzo e re-ingenierizzazione delle risorse
+non-ontologiche</li>
+<li>Scenario 3: Riutilizzo delle risorse ontologiche</li>
+<li>Scenario 4: Riutilizzo e re-ingenierizzazione delle risorse
+ontologiche</li>
+<li>Scenario 5: Riutilizzo e fusione delle risorse ontologiche</li>
+<li>Scenario 6: Riutilizzo, fusione e re-ingenierizzazione delle risorse
+ontologiche</li>
+<li>Scenario 7: Riutilizzo di ontology design patterns (ODPs)</li>
+<li>Scenario 8: Ristrutturazione di risorse ontologiche</li>
+<li>Scenario 9: Localizzazione di risorse ontologiche</li>
+</ul></li>
+<li>Un’altro aspetto importante di NeOn è il focus sul ciclo di vita
+delle ontologie. Secondo NeOn ogni ontologia ha un ciclo di vita
+composto dalle seguenti fasi:
+<ul>
+<li>Fase di inizio</li>
+<li>Fase di design</li>
+<li>Fase di implementazione</li>
+<li>Fase di mantenimento</li>
+</ul></li>
+<li>È poi possibile ottenere un’ulteriore iterazione dell’ontologia
+eventualmente della fase di design, implementazione e mantenimento, in
+modo da ottenere un raffinamento ulteriore dell’ontologia</li>
+</ul>
+<h3 data-number="6.5.3" id="ontology-design-patterns-odp"><span
+class="header-section-number">6.5.3</span> Ontology Design Patterns
+(ODP)</h3>
+<ul>
+<li>Sono una sorta di mattoncini per la creazione di ontologie secondo
+schemi (pattern) ricorrenti condivisi</li>
+<li>Sono divisi in in diverse categorie:
+<ul>
+<li>Strutturali</li>
+<li>Corrispondenza</li>
+<li>Contenuto</li>
+<li>Presentazione</li>
+<li>Sintattico-Lessicale</li>
+</ul></li>
+<li>Ad esempio, un pattern molto famoso è quello che rappresenta il
+concetto di lista</li>
+<li>Gli ODP sono ispirati direttamente ad un’ontologia fondazionale
+chiamata DOLCE</li>
+</ul>
+<h3 data-number="6.5.4" id="dolce"><span
+class="header-section-number">6.5.4</span> DOLCE</h3>
+<ul>
+<li>È un’ontologia orientata alla cognizione e al linguaggio</li>
+<li>La distinzione chiave tra gli elementi in DOLCE è tra
+<em>perduranti</em>, cioè le entità temporali e i processi che nel
+linguaggio naturale sono descritti tramite verbi (correre, mangiare,
+ecc..) ed <em>enduranti</em>, cioè quelle entità che esistono al di
+fuori dal tempo, cioè gli oggetti ed entità che partecipano ai
+processi</li>
+</ul>
+<blockquote>
+<p><em>“Gli enduranti sono interamente presenti in ogni istante in cui
+sono presenti. I perduranti semplicemente si estendono nel tempo
+accumulando diverse parti temporali in modo che ad ogni istante in cui
+sono presenti, sono solamente parzialmente presenti.”</em></p>
+</blockquote>
+<ul>
+<li>Es. Una persona scala una montagna
+<ul>
+<li>La persona è sempre la stessa durante l’atto, per cui è un
+endurante</li>
+<li>Il processo di scalare la montagna è un perdurante invece, poiché
+all’inizio la persona ne avrà scalata un quarto, poi metà e poi tutta,
+per cui è un processo che accumula parti</li>
+</ul></li>
+<li>Il concetto di partecipazione ad un evento da questo punto di vista
+è catturato da un ODP: il <em>Content Design Pattern</em>.
+<ul>
+<li><code>ParticipanRole</code> collega un <code>Evento</code> e un
+<code>Oggetto</code> che partecipa all’evento (per esempio un agente)
+con un <code>Ruolo</code> con cui avviene la partecipazione;</li>
+<li>Essenzialmente collega un oggetto che partecipa ad un evento
+attraverso il ruolo che prende nella partecipazione dello stesso;</li>
+<li>Questo pattern di partecipazione tramite un ruolo ad un evento ha
+diverse formulazioni differenti poiché compare in molte situazioni.</li>
+</ul></li>
+</ul>
+<h3 data-number="6.5.5" id="provenance-ontology"><span
+class="header-section-number">6.5.5</span> Provenance Ontology</h3>
+<ul>
+<li>Risorsa ontologica di rilevanza attuale concepita per rappresentare
+la provenienza delle entità</li>
+<li>Descrive l’origine delle entità intesa soprattutto come processi che
+hanno <em>determinato la creazione</em> di quelle entità</li>
+<li>I metadati delle entità e la descrizione degli agenti è affidata ad
+altre ontologie come FOAF (agenti) e Dublin Core (entità)</li>
+<li>Composta da 3 classi principali: <code>Entity</code>,
+<code>Agent</code> e <code>Activity</code>
+<ul>
+<li><code>Entity</code> - <code>wasDerivedFrom</code> -&gt;
+<code>Entity</code></li>
+<li><code>Entity</code> - <code>wasGeneratedBy</code> -&gt;
+<code>Activity</code></li>
+<li><code>Activity</code> - <code>used</code> -&gt;
+<code>Entity</code></li>
+<li><code>Activity</code> - <code>wasAssociatedWith</code> -&gt;
+<code>Agent</code></li>
+<li><code>Entity</code> - <code>wasAttributedTo</code> -&gt;
+<code>Agent</code></li>
+</ul></li>
+<li>Un agente prende parte ad un’attività attraverso un ruolo in modo
+tale che all’agente possa essere assegnato un certo grado di
+responsabilità per l’attività a cui sta partecipando
+<ul>
+<li>Un agente può essere una persona, un software, un oggetto inanimato
+o qualsiasi altra entità a cui possa essere attribuita una
+responsabilità</li>
+</ul></li>
+<li>Le attività definiscono come le entità vengono ad esistere e come i
+loro attributi cambino per diventare nuove entità</li>
+<li>Un ruolo è la descrizione della funzione o della parte che un entità
+ha svolto nell’attività
+<ul>
+<li>Il ruolo viene rappresentato come una qualified association, cioè si
+annota nella relazione di <code>wasAssociatedWith</code> tramite la
+relazione <code>hadRole</code> e un blank node che connette l’attività
+all’associazione e il ruolo</li>
+</ul></li>
+</ul>
+<h1 data-number="7" id="regole-di-ragionamento"><span
+class="header-section-number">7</span> Regole di ragionamento</h1>
+<h2 data-number="7.1" id="swrl-semantic-web-rule-language"><span
+class="header-section-number">7.1</span> SWRL (Semantic Web Rule
+Language)</h2>
+<ul>
+<li>Le regole di ragionamento sono formate da antecedente e conseguente,
+in cui l’antecedente viene valutato sul grafo che rappresenta l’A-Box e
+la T-Box. Possono essere di due tipologie:
+<ul>
+<li><strong>Dichiarative</strong>: hanno come conseguente una nuova
+asserzione, per cui producono nuova informazione</li>
+<li><strong>Produzione</strong>: hanno come conseguente un’azione</li>
+</ul></li>
+<li>Il vantaggio delle regole è che ci permettono di rappresentare il
+ragionamento in modo molto immediato, ma hanno lo svantaggio che siano
+poco scalabili e portabili</li>
+<li>SWRL è un linguaggio per la definizione di regole nel web semantico
+<ul>
+<li>È supportato solo da alcuni reasoner (come Pellet)</li>
+</ul></li>
+<li>Le regole in SWRL sono sempre composte da antecedente e
+conseguente</li>
+<li>Una peculiarità è che non possano creare nuovi individui, ma solo
+asserire nuove <em>relazioni/proprietà</em> (è possibile solo aggiungere
+asserzioni nel grafo)</li>
+<li>Nonostante queste limitazioni, le regole sono molto utili per:
+<ul>
+<li>Definire un ragionamento di dominio specifico senza intaccare
+l’architettura dell’ontologia</li>
+<li>Allineare un’ontologia ad un’altra, traducendo un’ontologia ad
+un’altra</li>
+</ul></li>
+<li>L’antecedente e il conseguente sono formati da una congiunzione di
+atomi che possono essere:
+<ul>
+<li><code>C(x)</code>: <code>x</code> appartiene alla classe
+<code>C</code></li>
+<li><code>P(x, y)</code>: <code>x</code> è legato a <code>y</code>
+tramite la proprietà <code>P</code></li>
+<li><code>sameAs(x, y)</code>: <code>x</code> è uguale a
+<code>y</code></li>
+<li><code>differentFrom(x, y)</code>: <code>x</code> è diverso da
+<code>y</code></li>
+<li>Operatori built-in</li>
+</ul></li>
+<li>Ogni volta che utilizziamo un reasoner, le inferenze non vengono
+aggiunte all’ontologia a meno che esse non siano esportate in modo
+esplicito
+<ul>
+<li>Alternativamente possiamo utilizzare <code>Drools</code>, che
+aggiunge permanentemente all’ontologia le inferenze effettuate</li>
+</ul></li>
+<li>Esempio di regola:
+<code>haRuolo(?a, ?r) ^ haCompenso(?r, ?c) ^   swrlb:greaterThan(?c, 30000) -&gt; AttoreMoltoPagato(?a)</code></li>
+</ul>
+<h2 data-number="7.2" id="rif-rule-interchange-format"><span
+class="header-section-number">7.2</span> RIF (Rule Interchange
+Format)</h2>
+<ul>
+<li>Formato standard finalizzato alla sintesi e all’integrazione di
+sistemi di regole</li>
+<li>Molto simile a SWRL, cambia solo la sintassi</li>
+</ul>
+<h2 data-number="7.3" id="owl2-1"><span
+class="header-section-number">7.3</span> OWL2</h2>
+<ul>
+<li>OWL2 permette di definire in modo astratto l’ontologia, ma per
+rappresentarla realmente è necessario un mapping tra OWL verso un
+formato come RDF
+<ul>
+<li>L’ontologia è specificata come un insieme di mapping dove
+l’operatore <code>T</code> mappa l’ontologia OWL <code>O</code> in un
+grafo RDF <code>T(O)</code></li>
+</ul></li>
+<li>OWL2 include funzionalità aggiuntive rispetto a OWL1:
+<ul>
+<li>Property Chains</li>
+<li>Datatypes più ricchi, data ranges</li>
+<li>Restrizioni alle cardinalità</li>
+<li>Proprietà disgiunte, riflessive e asimettriche</li>
+<li>Capacità di annotazione più sofisticate</li>
+<li>Sistema di chiavi</li>
+</ul></li>
+<li>All’interno di OWL2 sono distinti anche diversi profili
+<ul>
+<li><strong>OWL 2 EL</strong>: progettato per grandi ontologie e
+thesauri</li>
+<li><strong>OWL QL</strong>: progettato per l’integrazione per le basi
+di dati relazionali</li>
+<li><strong>OWL RL</strong>: concepito per le applicazioni che
+richiedono l’utilizzo del ragionamento automatico senza troppe
+limitazioni</li>
+</ul></li>
+</ul>
+<h2 data-number="7.4" id="sparql"><span
+class="header-section-number">7.4</span> SPARQL</h2>
+<ul>
+<li>Linguaggio di interrogazione per RDF (essenzialmente SQL per
+RDF)</li>
+<li>Supporta diverse tipologie di query:
+<ul>
+<li>Selezione di triple secondo un pattern</li>
+<li>Query costruite con filtri, aggregatori, path expressions</li>
+<li>Query booleane (S/N)</li>
+</ul></li>
+<li>La caratteristica peculiare è che è possibile creare un nuovo grafo
+a partire dalle triple estratte da una query SPARQL</li>
+<li>Una query SPARQL può ritornare o un insieme di triple o un insieme
+di grafi RDF
+<ul>
+<li>Le query vengono indirizzate verso un endpoint HTTP</li>
+<li>L’endpoint fa un forward della query verso uno o più triple
+dataset</li>
+<li>Molte LDP hanno questa funzionalità di default</li>
+</ul></li>
+<li>La struttura di una query è formata nel modo seguente:
+<ul>
+<li>Definizione prefissi
+<code>PREFIX foo: &lt;LINK_TO_FOO&gt;</code></li>
+<li>Definizione di dataset <code>FROM ...</code></li>
+<li>Selezione dei risultati <code>SELECT ...</code></li>
+<li>Pattern della query <code>WHERE {...}</code>
+<ul>
+<li>Nella clausola <code>WHERE</code> si trovano uno o più triple che
+contengono variabili <code>?v</code></li>
+<li>Ovviamente, un sottoinsieme di queste variabili devono comparire
+nella clausola <code>SELECT</code></li>
+</ul></li>
+<li>Modificatory <code>ORDER BY ..</code></li>
+</ul></li>
+</ul>
+<h3 data-number="7.4.1" id="alcune-queries-di-esempio"><span
+class="header-section-number">7.4.1</span> Alcune queries di
+esempio</h3>
+<pre class="sparql"><code>PREFIX rdf: &lt;LINK_TO_RDF&gt;
+PREFIX myontology: &lt;LINK_TO_MY_ONTOLOGY&gt;
+
+SELECT ?subject
+WHERE {
+    ?subject rdf:type myontology:Person
+}</code></pre>
+<ul>
+<li>Cerca tutti i soggetti <code>subject</code> che siano delle
+persone</li>
+</ul>
+<pre class="sparql"><code>PREFIX rdf: &lt;LINK_TO_RDF&gt;
+PREFIX cities: &lt;LINK_TO_MY_ONTOLOGY&gt;
+
+SELECT ?city
+WHERE {
+    ?city rdf:type cities:City;
+          cities:hasPopulation :populationOfTurin
+}</code></pre>
+<ul>
+<li>Cerca tutte le citta <code>city</code> che siano città e che abbiano
+la popolazione di Torino</li>
+</ul>
+<pre class="sparql"><code>PREFIX rdf: &lt;LINK_TO_RDF&gt;
+PREFIX cities: &lt;LINK_TO_MY_ONTOLOGY&gt;
+
+SELECT ?c
+WHERE {
+    ?c cities:hasPopulation ?p.
+    ?p a cities:BigPopulation.
+}</code></pre>
+<ul>
+<li>Cerca tutte le citta che hanno una popolazione ampia</li>
+</ul>
+<pre class="sparql"><code>PREFIX rdf: &lt;LINK_TO_RDF&gt;
+PREFIX cinema: &lt;LINK_TO_MY_ONTOLOGY&gt;
+
+SELECT ?p, ?r
+WHERE {
+    ?p rdf:type cinema:Person.
+    ?p cinema:role ?r.
+    ?r rdf:type cinema:Director.
+}</code></pre>
+<ul>
+<li>Trova tutte le persone che sono registi</li>
+</ul>
+                </div>
+                            </div>
+        </div>
+            </body>
+</html>
